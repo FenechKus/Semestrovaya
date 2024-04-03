@@ -1,0 +1,4 @@
+D:\source\C++\Desktop\Semestrovaya\Semestrovaya\x64\Debug\Semestrovaya.vcxproj.AssemblyReference.cache
+D:\source\C++\Desktop\Semestrovaya\Semestrovaya\x64\Debug\Semestrovaya.MainWindow.resources
+D:\source\C++\Desktop\Semestrovaya\Semestrovaya\x64\Debug\Semestrovaya.vcxproj.GenerateResource.cache
+D:\source\C++\Desktop\Semestrovaya\Semestrovaya\x64\Debug\Semestrovaya.NewUserPhone.resources
