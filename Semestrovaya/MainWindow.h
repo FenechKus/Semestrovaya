@@ -186,7 +186,7 @@ namespace Semestrovaya {
 			while (currentNode != nullptr) {
 				DataGridViewRow^ row = gcnew DataGridViewRow();
 				row->CreateCells(dataGridView);
-				row->Cells[0]->Value = currentNode->GetUser()->l_name;
+				row->Cells[0]->Value = currentNode->GetUser()->lName;
 				row->Cells[1]->Value = currentNode->GetUser()->year_start_up;
 				row->Cells[2]->Value = currentNode->GetUser()->phone;
 				row->Cells[3]->Value = currentNode->GetUser()->street;

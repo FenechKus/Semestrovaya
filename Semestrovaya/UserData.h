@@ -19,7 +19,7 @@ using namespace System;
 public ref class UserData sealed
 {
 public:
-	String^ l_name;
+	String^ lName;
 	int year_start_up;
 	String^ phone;
 

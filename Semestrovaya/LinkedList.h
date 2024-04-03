@@ -15,7 +15,6 @@
 /// GetUser - Получение данных пользователя
 ///	SetUser - Установка данных пользователя
 /// </summary>
-
 ref class Node
 {
 private:

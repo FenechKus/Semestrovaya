@@ -54,7 +54,7 @@ void LinkedList::printList()
 	Node^ current = head;
 	while (current != nullptr)
 	{
-			Windows::Forms::MessageBox::Show(current->GetUser()->l_name->ToString());
+			Windows::Forms::MessageBox::Show(current->GetUser()->lName->ToString());
 			current = current->GetNext();
 	}
 }

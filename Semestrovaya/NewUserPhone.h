@@ -260,7 +260,7 @@ namespace Semestrovaya {
 		try
 		{
 			UserData^ user = gcnew UserData();
-			user->l_name = LastNameBox->Text;
+			user->lName = LastNameBox->Text;
 			user->year_start_up = Convert::ToInt32(YearBox->Text);
 			user->phone = PhoneBox->Text;
 			user->street = StreetBox->Text;

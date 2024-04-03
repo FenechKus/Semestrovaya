@@ -1,15 +1,20 @@
-﻿  MainWindow.cpp
-D:\source\C++\Desktop\Semestrovaya\Semestrovaya\NewUserPhone.h(22,15): warning C4677: NewUserPhone: сигнатура члена, не являющегося частным, содержит частный тип сборки "LinkedList"
-  (компиляция исходного файла "MainWindow.cpp")
-  D:\source\C++\Desktop\Semestrovaya\Semestrovaya\LinkedList.h(49,11):
-   см. объявление "LinkedList"
-  
+﻿  LinkedList.cpp
+  MainWindow.cpp
   NewUserPhone.cpp
-D:\source\C++\Desktop\Semestrovaya\Semestrovaya\NewUserPhone.h(22,15): warning C4677: NewUserPhone: сигнатура члена, не являющегося частным, содержит частный тип сборки "LinkedList"
-  (компиляция исходного файла "NewUserPhone.cpp")
-  D:\source\C++\Desktop\Semestrovaya\Semestrovaya\LinkedList.h(49,11):
+  UserData.cpp
+D:\source\C++\Desktop\Semestrovaya\Semestrovaya\NewUserPhone.h(23,15): warning C4677: NewUserPhone: сигнатура члена, не являющегося частным, содержит частный тип сборки "LinkedList"
+  (компиляция исходного файла "MainWindow.cpp")
+  D:\source\C++\Desktop\Semestrovaya\Semestrovaya\LinkedList.h(48,11):
    см. объявление "LinkedList"
   
+D:\source\C++\Desktop\Semestrovaya\Semestrovaya\NewUserPhone.h(23,15): warning C4677: NewUserPhone: сигнатура члена, не являющегося частным, содержит частный тип сборки "LinkedList"
+  (компиляция исходного файла "NewUserPhone.cpp")
+  D:\source\C++\Desktop\Semestrovaya\Semestrovaya\LinkedList.h(48,11):
+   см. объявление "LinkedList"
+  
+  .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
   Создание кода...
+D:\source\C++\Desktop\Semestrovaya\Semestrovaya\LinkedList.cpp(32,1): warning C4715: LinkedList::GetHead: значение возвращается не при всех путях выполнения
+D:\source\C++\Desktop\Semestrovaya\Semestrovaya\LinkedList.cpp(39,1): warning C4715: Node::GetNext: значение возвращается не при всех путях выполнения
   LinkedList.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
   Semestrovaya.vcxproj -> D:\source\C++\Desktop\Semestrovaya\x64\Debug\Semestrovaya.exe

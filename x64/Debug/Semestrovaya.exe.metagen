@@ -19,7 +19,7 @@ Class UserData: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
     Void .ctor(System.String, Int32, System.String, System.String, Int32, Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Fields:
-    System.String l_name : Public
+    System.String lName : Public
     Int32 year_start_up : Public
     System.String phone : Public
     System.String street : Public
