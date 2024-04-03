@@ -17,14 +17,12 @@ namespace Semestrovaya {
 	/// </summary>
 	public ref class NewUserPhone : public System::Windows::Forms::Form
 	{
+		//Создание ссылки на список, чтобы добавить в него нового пользователя
 		LinkedList^ list;
 	public:
 		NewUserPhone(LinkedList^ _list) : list(_list)
 		{
 			InitializeComponent();
-			//
-			//TODO: добавьте код конструктора
-			//
 		}
 
 	protected:
@@ -68,7 +66,7 @@ namespace Semestrovaya {
 		/// <summary>
 		/// Обязательная переменная конструктора.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -257,29 +255,31 @@ namespace Semestrovaya {
 
 		}
 #pragma endregion
+
 	private: System::Void ApplyButton_Click(System::Object^ sender, System::EventArgs^ e) {
-			try
-			{
-				UserData^ user = gcnew UserData();
-				user->l_name = LastNameBox->Text;
-				user->year_start_up = Convert::ToInt32(YearBox->Text);
-				user->phone = PhoneBox->Text;
-				user->street = StreetBox->Text;
-				user->house = Convert::ToInt32(HouseBox->Text);
-				user->number_apart = Convert::ToInt32(NumApartamentBox->Text);
-				list->PushBack(user);
-				this->Close();
-			}
-			catch (Exception^ e)
-			{
-				MessageBox::Show(e->Message + "\nПроверьте корректность данных в поле ввода", "Error!", MessageBoxButtons::OK, MessageBoxIcon::Error);
-			}
+		try
+		{
+			UserData^ user = gcnew UserData();
+			user->l_name = LastNameBox->Text;
+			user->year_start_up = Convert::ToInt32(YearBox->Text);
+			user->phone = PhoneBox->Text;
+			user->street = StreetBox->Text;
+			user->house = Convert::ToInt32(HouseBox->Text);
+			user->number_apart = Convert::ToInt32(NumApartamentBox->Text);
+			list->PushBack(user);
+			this->Close();
+		}
+		catch (Exception^ e)
+		{
+			MessageBox::Show(e->Message + "\nПроверьте корректность данных в поле ввода", "Error!", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
 
 	}
-private: System::Void CancelButton_Click(System::Object^ sender, System::EventArgs^ e) {
-	auto messResult = MessageBox::Show("Вы уверены, что хотите закрыть окно?", "Подтверждение", MessageBoxButtons::YesNo, MessageBoxIcon::Question);
-		if(messResult == System::Windows::Forms::DialogResult::Yes)
-			this->Close();
-}
-};
+		private: System::Void CancelButton_Click(System::Object^ sender, System::EventArgs^ e) {
+			auto messResult = MessageBox::Show("Вы уверены, что хотите закрыть окно?", "Подтверждение", 
+				MessageBoxButtons::YesNo, MessageBoxIcon::Question);
+			if (messResult == System::Windows::Forms::DialogResult::Yes)
+				this->Close();
+		}
+	};
 }

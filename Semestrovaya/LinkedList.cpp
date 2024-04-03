@@ -2,6 +2,8 @@
 #include "LinkedList.h"
 #include "UserData.h"
 
+
+
 Node::Node(UserData^ _user) : user(_user), next(nullptr) {}
 
 LinkedList::LinkedList() : head(nullptr) {}
@@ -29,7 +31,7 @@ Node^ LinkedList::GetHead()
 		return head;
 }
 
-// ReSharper disable once CppNotAllPathsReturnValue
+
 Node^ Node::GetNext()
 {
 	if (next != nullptr)
@@ -46,7 +48,7 @@ UserData^ Node::GetUser()
 void Node::SetUser(UserData^ _user) { user = _user; }
 
 
-
+//TODO Удалить реализацию, если она не будет использоваться
 void LinkedList::printList()
 {
 	Node^ current = head;
