@@ -292,27 +292,27 @@ namespace Semestrovaya {
 	private: System::Void ApplyButton_Click(System::Object^ sender, System::EventArgs^ e) {
 		try
 		{
-			//TODO дописать, доработать
-			/*if (isEditMode())
-			{
-				user->lName = LastNameBox->Text;
-				user->year_start_up = Convert::ToInt32(YearBox->Text);
-				user->phone = PhoneBox->Text;
-				user->street = StreetBox->Text;
-				user->house = Convert::ToInt32(HouseBox->Text);
-				user->number_apart = Convert::ToInt32(NumApartamentBox->Text);
-				while (list)
-				{
-					if (list->GetUserData(user->lName).lName == user->lName)
-					{
-						list->SetUserData(user);
-						break;
-					}
-					list = list->GetHead()->GetNext();
-				}
-				this->Close();
-				return;
-			}*/
+			////TODO дописать, доработать
+			//if (isEditMode())
+			//{
+			//	user->lName = LastNameBox->Text;
+			//	user->year_start_up = Convert::ToInt32(YearBox->Text);
+			//	user->phone = PhoneBox->Text;
+			//	user->street = StreetBox->Text;
+			//	user->house = Convert::ToInt32(HouseBox->Text);
+			//	user->number_apart = Convert::ToInt32(NumApartamentBox->Text);
+			//	while (list)
+			//	{
+			//		if (list->GetUserData(user->lName).lName == user->lName)
+			//		{
+			//			list->SetUserData(user);
+			//			break;
+			//		}
+			//		list = list->GetHead()->GetNext();
+			//	}
+			//	this->Close();
+			//	return;
+			//}
 			UserData^ user = gcnew UserData();
 			user->lName = LastNameBox->Text;
 			user->year_start_up = Convert::ToInt32(YearBox->Text);

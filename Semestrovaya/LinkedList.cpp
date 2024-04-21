@@ -6,7 +6,7 @@
 
 Node::Node(UserData^ _user) : user(_user), next(nullptr) {}
 
-LinkedList::LinkedList() : head(nullptr) {}
+LinkedList::LinkedList() : head(nullptr), tail(nullptr) {}
 
 void LinkedList::PushBack(UserData^ user)
 {
@@ -15,25 +15,18 @@ void LinkedList::PushBack(UserData^ user)
 	if (head == nullptr)
 	{
 		head = newNode;
-		return;
+		tail = newNode;
 	}
-	Node^ current = head;
-	while (current->GetNext() != nullptr)
+	else
 	{
-		current = current->GetNext();
+		tail->SetNext(newNode);
+		newNode->SetPrev(tail);
+		tail = newNode;
 	}
-	current->SetNext(newNode);
+
 }
 
 /// Методы доступа
-Node^ LinkedList::GetHead()
-{
-	if (head != nullptr)
-		return head;
-	else
-		return nullptr;
-}
-
 Node^ Node::GetNext()
 {
 	if (next != nullptr)
@@ -44,6 +37,16 @@ Node^ Node::GetNext()
 
 void Node::SetNext(Node^ _next) { next = _next; }
 
+Node^ Node::GetPrev()
+{
+	if (next != nullptr)
+		return prev;
+	else
+		return nullptr;
+}
+
+void Node::SetPrev(Node^ _prev) { prev = _prev; }
+
 UserData^ Node::GetUser()
 {
 	return user;
@@ -52,15 +55,20 @@ UserData^ Node::GetUser()
 void Node::SetUser(UserData^ _user) { user = _user; }
 
 
-//TODO Удалить реализацию, если она не будет использоваться
-void LinkedList::printList()
+Node^ LinkedList::GetHead()
 {
-	Node^ current = head;
-	while (current != nullptr)
-	{
-		Windows::Forms::MessageBox::Show(current->GetUser()->lName->ToString());
-		current = current->GetNext();
-	}
+	if (head != nullptr)
+		return head;
+	else
+		return nullptr;
+}
+
+Node^ LinkedList::GetTail()
+{
+	if (tail != nullptr)
+		return tail;
+	else
+		return nullptr;
 }
 
 ///TODO (CRITICAL) ПРОВЕРИТЬ РЕАЛИЗАЦИЮ
