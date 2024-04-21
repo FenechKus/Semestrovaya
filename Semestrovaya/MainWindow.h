@@ -77,10 +77,11 @@ namespace Semestrovaya {
 	private: System::Windows::Forms::Button^ CloseButton;
 	private: System::Windows::Forms::Button^ EditButton;
 	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::Button^ button2;
+
 	private: System::Windows::Forms::ComboBox^ comboBox1;
 	private: System::Windows::Forms::ComboBox^ comboBox2;
 	private: System::Windows::Forms::Button^ button3;
+	private: System::Windows::Forms::Button^ SaveButton;
 
 
 
@@ -117,10 +118,10 @@ namespace Semestrovaya {
 			this->CloseButton = (gcnew System::Windows::Forms::Button());
 			this->EditButton = (gcnew System::Windows::Forms::Button());
 			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
 			this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
 			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->SaveButton = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -213,15 +214,6 @@ namespace Semestrovaya {
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &MainWindow::OnClick_OpenFile);
 			// 
-			// button2
-			// 
-			this->button2->Location = System::Drawing::Point(175, 12);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(137, 26);
-			this->button2->TabIndex = 5;
-			this->button2->Text = L"Сохранить файл";
-			this->button2->UseVisualStyleBackColor = true;
-			// 
 			// comboBox1
 			// 
 			this->comboBox1->FormattingEnabled = true;
@@ -247,15 +239,25 @@ namespace Semestrovaya {
 			this->button3->Text = L"Help";
 			this->button3->UseVisualStyleBackColor = true;
 			// 
+			// SaveButton
+			// 
+			this->SaveButton->Location = System::Drawing::Point(165, 12);
+			this->SaveButton->Name = L"SaveButton";
+			this->SaveButton->Size = System::Drawing::Size(137, 26);
+			this->SaveButton->TabIndex = 9;
+			this->SaveButton->Text = L"Сохранить файл";
+			this->SaveButton->UseVisualStyleBackColor = true;
+			this->SaveButton->Click += gcnew System::EventHandler(this, &MainWindow::OnClick_SaveFile);
+			// 
 			// MainWindow
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(738, 453);
+			this->Controls->Add(this->SaveButton);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->comboBox2);
 			this->Controls->Add(this->comboBox1);
-			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->EditButton);
 			this->Controls->Add(this->CloseButton);
@@ -355,5 +357,16 @@ namespace Semestrovaya {
 		OpenSCVFile();
 		UpdateBindingGridView(list, dataGridView1);
 	}
+private:
+		
+private: System::Void OnClick_SaveFile(System::Object^ sender, System::EventArgs^ e) {
+		SaveFileDialog^ saveFileDialog1 = gcnew SaveFileDialog();
+		saveFileDialog1->Filter = "Text files(*.csv)|*.csv|All files(*.*)|*.*";
+		if (saveFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+		{
+			String^ filename = saveFileDialog1->FileName;
+			Parser::SaveDataInCSV(list, filename);
+		}
+	}
 };
-}
+};

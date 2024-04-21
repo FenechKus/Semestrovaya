@@ -83,6 +83,32 @@ public:
 		inFile.close();
 	}
 
+	static void SaveDataInCSV(LinkedList^ list, String^ path)
+	{
+		std::string savePath = ConvertSystemStringToStdString(path);
+
+		// Открытие файла для записи
+		std::ofstream outFile(savePath);
+
+		if (outFile.is_open()) {
+
+			auto current = list->GetHead();
+			while (current != nullptr) {
+
+				// Форматирование данных для записи
+				outFile << ConvertSystemStringToStdString(current->GetUser()->lName) << ","
+					<< current->GetUser()->year_start_up << ","
+					<< ConvertSystemStringToStdString(current->GetUser()->phone) << ","
+					<< ConvertSystemStringToStdString(current->GetUser()->street) << ","
+					<< current->GetUser()->house << ","
+					<< current->GetUser()->number_apart << ";\n";
+
+				// Переход к следующему узлу
+				current = current->GetNext();
+			}
+			outFile.close();
+		}
+	}
 
 private:
 	// Функция для преобразования std::string в System::String^
