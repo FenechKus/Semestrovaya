@@ -1,12 +1,9 @@
 #pragma once
-//#include "LinkedList.h"
 #include "NewUserPhone.h"
 #include "Parser.h"
-//#include "Parser.h"
 
 ref class Node;
 ref class LinkedList;
-//ref class NewUserPhone;
 ref class UserData;
 ref class Parser;
 

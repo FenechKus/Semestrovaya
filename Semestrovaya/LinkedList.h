@@ -19,13 +19,16 @@ public ref class Node
 {
 private:
 	UserData^ user;
-	Node^ next;
+	Node^ next, ^ prev;
 
 public:
 	Node(UserData^ _user);
 
 	Node^ GetNext();
 	void SetNext(Node^ _next);
+
+	Node^ GetPrev();
+	void SetPrev(Node^ _prev);
 
 	UserData^ GetUser();
 	void SetUser(UserData^ _user);
@@ -49,6 +52,7 @@ public ref class LinkedList
 {
 private:
 	Node^ head;
+	Node^ tail;
 
 public:
 	LinkedList();
@@ -56,8 +60,6 @@ public:
 	Node^ GetHead();
 
 	void PushBack(UserData^ user);
-
-	void printList();
 
 	/*UserData GetUserData(String^ lName);
 
