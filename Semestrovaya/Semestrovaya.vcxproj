@@ -126,6 +126,7 @@
     <ClInclude Include="NewUserPhone.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Parser.h" />
     <ClInclude Include="UserData.h" />
   </ItemGroup>
   <ItemGroup>

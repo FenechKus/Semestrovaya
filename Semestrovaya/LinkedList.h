@@ -15,7 +15,7 @@
 /// GetUser - Получение данных пользователя
 ///	SetUser - Установка данных пользователя
 /// </summary>
-ref class Node
+public ref class Node
 {
 private:
 	UserData^ user;
@@ -45,7 +45,7 @@ public:
 /// PushBack - Добавление элемента в конец списка
 ///  printList - Вывод списка TODO (Low) удалить, если не будет использоваться в дальнейшем
 /// </summary>
-ref class LinkedList
+public ref class LinkedList
 {
 private:
 	Node^ head;
@@ -58,4 +58,8 @@ public:
 	void PushBack(UserData^ user);
 
 	void printList();
+
+	/*UserData GetUserData(String^ lName);
+
+	void SetUserData(UserData^ user);*/
 };

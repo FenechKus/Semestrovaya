@@ -11,6 +11,7 @@ LinkedList::LinkedList() : head(nullptr) {}
 void LinkedList::PushBack(UserData^ user)
 {
 	Node^ newNode = gcnew Node(user);
+
 	if (head == nullptr)
 	{
 		head = newNode;
@@ -24,18 +25,21 @@ void LinkedList::PushBack(UserData^ user)
 	current->SetNext(newNode);
 }
 
-
+/// Ìåòîäû äîñòóïà
 Node^ LinkedList::GetHead()
 {
 	if (head != nullptr)
 		return head;
+	else
+		return nullptr;
 }
-
 
 Node^ Node::GetNext()
 {
 	if (next != nullptr)
 		return next;
+	else
+		return nullptr;
 }
 
 void Node::SetNext(Node^ _next) { next = _next; }
@@ -54,7 +58,29 @@ void LinkedList::printList()
 	Node^ current = head;
 	while (current != nullptr)
 	{
-			Windows::Forms::MessageBox::Show(current->GetUser()->lName->ToString());
-			current = current->GetNext();
+		Windows::Forms::MessageBox::Show(current->GetUser()->lName->ToString());
+		current = current->GetNext();
 	}
 }
+
+///TODO (CRITICAL) ÏĞÎÂÅĞÈÒÜ ĞÅÀËÈÇÀÖÈŞ
+
+//UserData LinkedList::GetUserData(String^ string)
+//{
+//	Node^ current = head;
+//	while (current->GetUser()->lName != string)
+//	{
+//		current = current->GetNext();
+//	}
+//	return *current->GetUser();
+//}
+//
+//void LinkedList::SetUserData(UserData^ user)
+//{
+//	Node^ current = head;
+//	while (current->GetUser()->lName != user->lName)
+//	{
+//		current = current->GetNext();
+//	}
+//	current->SetUser(user);
+//}

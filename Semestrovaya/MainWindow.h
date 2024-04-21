@@ -1,9 +1,14 @@
 #pragma once
-
-#include "LinkedList.h"
+//#include "LinkedList.h"
 #include "NewUserPhone.h"
-#include "UserData.h"
+#include "Parser.h"
+//#include "Parser.h"
 
+ref class Node;
+ref class LinkedList;
+//ref class NewUserPhone;
+ref class UserData;
+ref class Parser;
 
 namespace Semestrovaya {
 
@@ -29,7 +34,23 @@ namespace Semestrovaya {
 		MainWindow(void)
 		{
 			InitializeComponent();
+			this->StartPosition = FormStartPosition::CenterScreen;
+			OpenSCVFile();
+				
+
+		}
+
+		void OpenSCVFile()
+		{
 			list = gcnew LinkedList();
+			OpenFileDialog^ openFileDialog1 = gcnew OpenFileDialog();
+			openFileDialog1->Filter = "Text files(*.csv)|*.csv|All files(*.*)|*.*";
+			if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+			{
+				String^ filename = openFileDialog1->FileName;
+				Parser::GetDataFromCSV(list, filename);
+
+			}
 		}
 
 	protected:
@@ -54,6 +75,13 @@ namespace Semestrovaya {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ House;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Apartament;
 	private: System::Windows::Forms::Button^ CloseButton;
+	private: System::Windows::Forms::Button^ EditButton;
+	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Button^ button2;
+	private: System::Windows::Forms::ComboBox^ comboBox1;
+	private: System::Windows::Forms::ComboBox^ comboBox2;
+	private: System::Windows::Forms::Button^ button3;
+
 
 
 
@@ -69,7 +97,7 @@ namespace Semestrovaya {
 		/// <summary>
 		/// Обязательная переменная конструктора.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -87,18 +115,24 @@ namespace Semestrovaya {
 			this->House = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Apartament = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->CloseButton = (gcnew System::Windows::Forms::Button());
+			this->EditButton = (gcnew System::Windows::Forms::Button());
+			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
+			this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
+			this->button3 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// CreateNewUser
 			// 
-			this->CreateNewUser->Location = System::Drawing::Point(109, 317);
+			this->CreateNewUser->Location = System::Drawing::Point(113, 352);
 			this->CreateNewUser->Name = L"CreateNewUser";
 			this->CreateNewUser->Size = System::Drawing::Size(169, 69);
 			this->CreateNewUser->TabIndex = 0;
 			this->CreateNewUser->Text = L"Новый пользователь";
 			this->CreateNewUser->UseVisualStyleBackColor = true;
-			this->CreateNewUser->Click += gcnew System::EventHandler(this, &MainWindow::button1_Click);
+			this->CreateNewUser->Click += gcnew System::EventHandler(this, &MainWindow::OnClick_NewUserPhone);
 			// 
 			// dataGridView1
 			// 
@@ -107,9 +141,10 @@ namespace Semestrovaya {
 				this->LastName,
 					this->Year, this->Phone, this->Street, this->House, this->Apartament
 			});
-			this->dataGridView1->Location = System::Drawing::Point(37, 90);
+			this->dataGridView1->Location = System::Drawing::Point(41, 70);
 			this->dataGridView1->Name = L"dataGridView1";
-			this->dataGridView1->Size = System::Drawing::Size(643, 150);
+			this->dataGridView1->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
+			this->dataGridView1->Size = System::Drawing::Size(643, 276);
 			this->dataGridView1->TabIndex = 1;
 			// 
 			// LastName
@@ -150,7 +185,7 @@ namespace Semestrovaya {
 			// 
 			// CloseButton
 			// 
-			this->CloseButton->Location = System::Drawing::Point(481, 317);
+			this->CloseButton->Location = System::Drawing::Point(485, 352);
 			this->CloseButton->Name = L"CloseButton";
 			this->CloseButton->Size = System::Drawing::Size(169, 69);
 			this->CloseButton->TabIndex = 2;
@@ -158,11 +193,71 @@ namespace Semestrovaya {
 			this->CloseButton->UseVisualStyleBackColor = true;
 			this->CloseButton->Click += gcnew System::EventHandler(this, &MainWindow::CloseButton_Click);
 			// 
+			// EditButton
+			// 
+			this->EditButton->Location = System::Drawing::Point(298, 352);
+			this->EditButton->Name = L"EditButton";
+			this->EditButton->Size = System::Drawing::Size(169, 69);
+			this->EditButton->TabIndex = 3;
+			this->EditButton->Text = L"Изменить";
+			this->EditButton->UseVisualStyleBackColor = true;
+			this->EditButton->Click += gcnew System::EventHandler(this, &MainWindow::EditButton_Click);
+			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(12, 12);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(137, 26);
+			this->button1->TabIndex = 4;
+			this->button1->Text = L"Открыть файл";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &MainWindow::OnClick_OpenFile);
+			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(175, 12);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(137, 26);
+			this->button2->TabIndex = 5;
+			this->button2->Text = L"Сохранить файл";
+			this->button2->UseVisualStyleBackColor = true;
+			// 
+			// comboBox1
+			// 
+			this->comboBox1->FormattingEnabled = true;
+			this->comboBox1->Location = System::Drawing::Point(335, 12);
+			this->comboBox1->Name = L"comboBox1";
+			this->comboBox1->Size = System::Drawing::Size(121, 21);
+			this->comboBox1->TabIndex = 6;
+			// 
+			// comboBox2
+			// 
+			this->comboBox2->FormattingEnabled = true;
+			this->comboBox2->Location = System::Drawing::Point(474, 12);
+			this->comboBox2->Name = L"comboBox2";
+			this->comboBox2->Size = System::Drawing::Size(121, 21);
+			this->comboBox2->TabIndex = 7;
+			// 
+			// button3
+			// 
+			this->button3->Location = System::Drawing::Point(669, 10);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(57, 23);
+			this->button3->TabIndex = 8;
+			this->button3->Text = L"Help";
+			this->button3->UseVisualStyleBackColor = true;
+			// 
 			// MainWindow
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(738, 435);
+			this->ClientSize = System::Drawing::Size(738, 453);
+			this->Controls->Add(this->button3);
+			this->Controls->Add(this->comboBox2);
+			this->Controls->Add(this->comboBox1);
+			this->Controls->Add(this->button2);
+			this->Controls->Add(this->button1);
+			this->Controls->Add(this->EditButton);
 			this->Controls->Add(this->CloseButton);
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->CreateNewUser);
@@ -179,13 +274,22 @@ namespace Semestrovaya {
 		/// <summary>
 		///	Метод, который обновляет привязку данных к DataGridView, отчистив перед этим все строки
 		///</summary>
-		void UpdateBindingGridView(LinkedList^ list, DataGridView^ dataGridView) {
+		static void UpdateBindingGridView(LinkedList^ list, DataGridView^ dataGridView) {
+			// Очистить все строки в DataGridView
 			dataGridView->Rows->Clear();
 
+			// Начинаем с головы списка
 			Node^ currentNode = list->GetHead();
+
+			// Проходим по каждому узлу в списке
 			while (currentNode != nullptr) {
+				// Создаем новую строку для DataGridView
 				DataGridViewRow^ row = gcnew DataGridViewRow();
+
+				// Создаем ячейки в строке на основе DataGridView
 				row->CreateCells(dataGridView);
+
+				// Устанавливаем значения для каждой ячейки из текущего узла
 				row->Cells[0]->Value = currentNode->GetUser()->lName;
 				row->Cells[1]->Value = currentNode->GetUser()->year_start_up;
 				row->Cells[2]->Value = currentNode->GetUser()->phone;
@@ -193,46 +297,63 @@ namespace Semestrovaya {
 				row->Cells[4]->Value = currentNode->GetUser()->house;
 				row->Cells[5]->Value = currentNode->GetUser()->number_apart;
 
+				// Добавляем строку в DataGridView
 				dataGridView->Rows->Add(row);
+
+				// Переходим к следующему узлу
 				currentNode = currentNode->GetNext();
 			}
 		}
 
+
 	private: System::Void MainWindow_Load(System::Object^ sender, System::EventArgs^ e) {
 
-		//TODO (High) Удалить тестовые данные и вызовы методов
-		UserData^ user1 = gcnew UserData("Smith", 2000, "123-456-789", "Main St", 123, 1);
-		UserData^ user2 = gcnew UserData("Johnson", 2010, "456-789-012", "First St", 456, 2);
-		UserData^ user3 = gcnew UserData("Williams", 2015, "789-012-345", "Second St", 789, 3);
-		
-		
-		list->PushBack(user1);
-		list->PushBack(user2);
-		list->PushBack(user3);
-
-		
 		UpdateBindingGridView(list, dataGridView1);
 	}
 
-		//TODO (Low) Изменить название кнопки
-		/// <summary>
-		/// Метод, который вызывает окно добавления нового пользователя, после чего обновляет привязку данных к DataGridView
-		/// </summary>
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		NewUserPhone^ newUserWindow = gcnew NewUserPhone(list);
+		   //TODO (Low) Изменить название кнопки
+		   /// <summary>
+		   /// Метод, который вызывает окно добавления нового пользователя, после чего обновляет привязку данных к DataGridView
+		   /// </summary>
+	private: System::Void OnClick_NewUserPhone(System::Object^ sender, System::EventArgs^ e) {
+		NewUserPhone^ newUserWindow = gcnew NewUserPhone(list, nullptr);
 		newUserWindow->ShowDialog();
 		UpdateBindingGridView(list, dataGridView1);
 	}
-		
-		/// <summary>
-		/// Метод, закрывающий приложение
-		/// </summary>
+
+		   /// <summary>
+		   /// Метод, закрывающий приложение
+		   /// </summary>
 	private: System::Void CloseButton_Click(System::Object^ sender, System::EventArgs^ e) {
 		auto messResult = MessageBox::Show("Вы уверены, что хотите выйти из приложения?", "Подтверждение",
 			MessageBoxButtons::YesNo, MessageBoxIcon::Question);
 		if (messResult == System::Windows::Forms::DialogResult::Yes)
 			Application::Exit();
-		
+
+	}
+
+	private: System::Void EditButton_Click(System::Object^ sender, System::EventArgs^ e) {
+			if (dataGridView1->SelectedRows->Count > 0) { // Проверяем, есть ли выбранные строки
+				// Начинаем с головы списка
+				Node^ currentNode = list->GetHead();
+				while (currentNode != nullptr) { // Используем цикл для обхода узлов
+					for (int i = 0; i < dataGridView1->SelectedRows->Count; i++) {
+						// Сравниваем имя текущего узла с выбранным именем в dataGridView1
+						if (currentNode->GetUser()->lName == dataGridView1->SelectedRows[i]->Cells[0]->Value->ToString()) {
+							// Создаем окно для редактирования пользователя
+							NewUserPhone^ newUserWindow = gcnew NewUserPhone(list, currentNode->GetUser());
+							newUserWindow->ShowDialog(); // Показываем окно как диалог
+							UpdateBindingGridView(list, dataGridView1); // Обновляем dataGridView после редактирования
+							return; // Выходим из метода после редактирования
+						}
+					}
+					currentNode = currentNode->GetNext(); // Переходим к следующему узлу
+				}
+			}
+		}
+	private: System::Void OnClick_OpenFile(System::Object^ sender, System::EventArgs^ e) {
+		OpenSCVFile();
+		UpdateBindingGridView(list, dataGridView1);
 	}
 };
 }

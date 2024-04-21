@@ -19,11 +19,17 @@ namespace Semestrovaya {
 	{
 		//—оздание ссылки на список, чтобы добавить в него нового пользовател€
 		LinkedList^ list;
+		UserData^ user;
 	public:
-		NewUserPhone(LinkedList^ _list) : list(_list)
+		NewUserPhone(LinkedList^ _list, UserData^ _user) : list(_list), user(_user)
 		{
 			InitializeComponent();
+			isEditMode();
+			if (isEditMode())
+				InsertValueUserData();
+			
 		}
+		
 
 	protected:
 		/// <summary>
@@ -36,6 +42,11 @@ namespace Semestrovaya {
 				delete components;
 			}
 		}
+#pragma region  од, автоматически созданный конструктором форм Windows
+		/// <summary>
+		/// “ребуемый метод дл€ поддержки конструктора Ч не измен€йте 
+		/// содержимое этого метода с помощью редактора кода.
+		/// </summary>
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::TextBox^ LastNameBox;
 	private: System::Windows::Forms::TextBox^ YearBox;
@@ -68,7 +79,6 @@ namespace Semestrovaya {
 		/// </summary>
 		System::ComponentModel::Container^ components;
 
-#pragma region Windows Form Designer generated code
 		/// <summary>
 		/// “ребуемый метод дл€ поддержки конструктора Ч не измен€йте 
 		/// содержимое этого метода с помощью редактора кода.
@@ -256,9 +266,53 @@ namespace Semestrovaya {
 		}
 #pragma endregion
 
+	private:
+		void InsertValueUserData()
+		{
+			if (user != nullptr)
+			{
+				LastNameBox->Text = user->lName;
+				YearBox->Text = Convert::ToString(user->year_start_up);
+				PhoneBox->Text = user->phone;
+				StreetBox->Text = user->street;
+				HouseBox->Text = Convert::ToString(user->house);
+				NumApartamentBox->Text = Convert::ToString(user->number_apart);
+			}
+		}
+
+		bool isEditMode()
+		{
+			if (user != nullptr)
+			{
+				return true;
+			}
+			return false;
+		}
+
 	private: System::Void ApplyButton_Click(System::Object^ sender, System::EventArgs^ e) {
 		try
 		{
+			//TODO дописать, доработать
+			/*if (isEditMode())
+			{
+				user->lName = LastNameBox->Text;
+				user->year_start_up = Convert::ToInt32(YearBox->Text);
+				user->phone = PhoneBox->Text;
+				user->street = StreetBox->Text;
+				user->house = Convert::ToInt32(HouseBox->Text);
+				user->number_apart = Convert::ToInt32(NumApartamentBox->Text);
+				while (list)
+				{
+					if (list->GetUserData(user->lName).lName == user->lName)
+					{
+						list->SetUserData(user);
+						break;
+					}
+					list = list->GetHead()->GetNext();
+				}
+				this->Close();
+				return;
+			}*/
 			UserData^ user = gcnew UserData();
 			user->lName = LastNameBox->Text;
 			user->year_start_up = Convert::ToInt32(YearBox->Text);
