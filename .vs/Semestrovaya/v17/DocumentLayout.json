@@ -3,16 +3,32 @@
   "WorkspaceRootPath": "D:\\source\\C\u002B\u002B\\Desktop\\Semestrovaya\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C4197FF1-BD65-43DE-9720-4D8126C19032}|Semestrovaya\\Semestrovaya.vcxproj|D:\\source\\C\u002B\u002B\\Desktop\\Semestrovaya\\Semestrovaya\\NewUserPhone.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C4197FF1-BD65-43DE-9720-4D8126C19032}|Semestrovaya\\Semestrovaya.vcxproj|solutionrelative:Semestrovaya\\NewUserPhone.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4197FF1-BD65-43DE-9720-4D8126C19032}|Semestrovaya\\Semestrovaya.vcxproj|D:\\source\\C\u002B\u002B\\Desktop\\Semestrovaya\\Semestrovaya\\LinkedList.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C4197FF1-BD65-43DE-9720-4D8126C19032}|Semestrovaya\\Semestrovaya.vcxproj|solutionrelative:Semestrovaya\\LinkedList.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4197FF1-BD65-43DE-9720-4D8126C19032}|Semestrovaya\\Semestrovaya.vcxproj|D:\\source\\C\u002B\u002B\\Desktop\\Semestrovaya\\Semestrovaya\\LinkedList.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C4197FF1-BD65-43DE-9720-4D8126C19032}|Semestrovaya\\Semestrovaya.vcxproj|solutionrelative:Semestrovaya\\LinkedList.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4197FF1-BD65-43DE-9720-4D8126C19032}|Semestrovaya\\Semestrovaya.vcxproj|D:\\source\\C\u002B\u002B\\Desktop\\Semestrovaya\\Semestrovaya\\NewUserPhone.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form",
+      "RelativeMoniker": "D:0:0:{C4197FF1-BD65-43DE-9720-4D8126C19032}|Semestrovaya\\Semestrovaya.vcxproj|solutionrelative:Semestrovaya\\NewUserPhone.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C4197FF1-BD65-43DE-9720-4D8126C19032}|Semestrovaya\\Semestrovaya.vcxproj|D:\\source\\C\u002B\u002B\\Desktop\\Semestrovaya\\Semestrovaya\\MainWindow.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{C4197FF1-BD65-43DE-9720-4D8126C19032}|Semestrovaya\\Semestrovaya.vcxproj|solutionrelative:Semestrovaya\\MainWindow.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C4197FF1-BD65-43DE-9720-4D8126C19032}|Semestrovaya\\Semestrovaya.vcxproj|D:\\source\\C\u002B\u002B\\Desktop\\Semestrovaya\\Semestrovaya\\Parser.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{C4197FF1-BD65-43DE-9720-4D8126C19032}|Semestrovaya\\Semestrovaya.vcxproj|solutionrelative:Semestrovaya\\Parser.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C4197FF1-BD65-43DE-9720-4D8126C19032}|Semestrovaya\\Semestrovaya.vcxproj|D:\\source\\C\u002B\u002B\\Desktop\\Semestrovaya\\Semestrovaya\\MainWindow.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form",
       "RelativeMoniker": "D:0:0:{C4197FF1-BD65-43DE-9720-4D8126C19032}|Semestrovaya\\Semestrovaya.vcxproj|solutionrelative:Semestrovaya\\MainWindow.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4197FF1-BD65-43DE-9720-4D8126C19032}|Semestrovaya\\Semestrovaya.vcxproj|D:\\source\\C\u002B\u002B\\Desktop\\Semestrovaya\\Semestrovaya\\Parser.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C4197FF1-BD65-43DE-9720-4D8126C19032}|Semestrovaya\\Semestrovaya.vcxproj|solutionrelative:Semestrovaya\\Parser.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -37,34 +53,89 @@
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "NewUserPhone.h",
+              "DocumentMoniker": "D:\\source\\C\u002B\u002B\\Desktop\\Semestrovaya\\Semestrovaya\\NewUserPhone.h",
+              "RelativeDocumentMoniker": "Semestrovaya\\NewUserPhone.h",
+              "ToolTip": "D:\\source\\C\u002B\u002B\\Desktop\\Semestrovaya\\Semestrovaya\\NewUserPhone.h*",
+              "RelativeToolTip": "Semestrovaya\\NewUserPhone.h*",
+              "ViewState": "AQIAAB0BAAAAAAAAAAAAADoBAAAGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-04-21T16:23:09.549Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "NewUserPhone.h [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "DocumentMoniker": "D:\\source\\C\u002B\u002B\\Desktop\\Semestrovaya\\Semestrovaya\\NewUserPhone.h",
+              "RelativeDocumentMoniker": "Semestrovaya\\NewUserPhone.h",
+              "ToolTip": "D:\\source\\C\u002B\u002B\\Desktop\\Semestrovaya\\Semestrovaya\\NewUserPhone.h [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]*",
+              "RelativeToolTip": "Semestrovaya\\NewUserPhone.h [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-04-21T16:23:07.697Z",
+              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LinkedList.cpp",
+              "DocumentMoniker": "D:\\source\\C\u002B\u002B\\Desktop\\Semestrovaya\\Semestrovaya\\LinkedList.cpp",
+              "RelativeDocumentMoniker": "Semestrovaya\\LinkedList.cpp",
+              "ToolTip": "D:\\source\\C\u002B\u002B\\Desktop\\Semestrovaya\\Semestrovaya\\LinkedList.cpp",
+              "RelativeToolTip": "Semestrovaya\\LinkedList.cpp",
+              "ViewState": "AQIAADIAAAAAAAAAAAAkwEYAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-04-21T13:02:46.039Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LinkedList.h",
+              "DocumentMoniker": "D:\\source\\C\u002B\u002B\\Desktop\\Semestrovaya\\Semestrovaya\\LinkedList.h",
+              "RelativeDocumentMoniker": "Semestrovaya\\LinkedList.h",
+              "ToolTip": "D:\\source\\C\u002B\u002B\\Desktop\\Semestrovaya\\Semestrovaya\\LinkedList.h",
+              "RelativeToolTip": "Semestrovaya\\LinkedList.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAD8AAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-04-21T12:57:24.386Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "MainWindow.h",
               "DocumentMoniker": "D:\\source\\C\u002B\u002B\\Desktop\\Semestrovaya\\Semestrovaya\\MainWindow.h",
               "RelativeDocumentMoniker": "Semestrovaya\\MainWindow.h",
               "ToolTip": "D:\\source\\C\u002B\u002B\\Desktop\\Semestrovaya\\Semestrovaya\\MainWindow.h",
               "RelativeToolTip": "Semestrovaya\\MainWindow.h",
-              "ViewState": "AQIAACIBAAAAAAAAAAAAACwBAAAAAAAA",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAAA8AAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-04-21T12:26:04.939Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "Parser.h",
               "DocumentMoniker": "D:\\source\\C\u002B\u002B\\Desktop\\Semestrovaya\\Semestrovaya\\Parser.h",
               "RelativeDocumentMoniker": "Semestrovaya\\Parser.h",
               "ToolTip": "D:\\source\\C\u002B\u002B\\Desktop\\Semestrovaya\\Semestrovaya\\Parser.h",
               "RelativeToolTip": "Semestrovaya\\Parser.h",
-              "ViewState": "AQIAAAEAAAAAAAAAAAAIwFUAAAAaAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAHIAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-04-21T11:59:03.698Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "MainWindow.h [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "DocumentMoniker": "D:\\source\\C\u002B\u002B\\Desktop\\Semestrovaya\\Semestrovaya\\MainWindow.h",
               "RelativeDocumentMoniker": "Semestrovaya\\MainWindow.h",
