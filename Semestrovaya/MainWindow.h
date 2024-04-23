@@ -36,7 +36,7 @@ namespace Semestrovaya {
 			InitializeComponent();
 			this->StartPosition = FormStartPosition::CenterScreen;
 			OpenSCVFile();
-				
+
 
 		}
 
@@ -77,11 +77,15 @@ namespace Semestrovaya {
 	private: System::Windows::Forms::Button^ CloseButton;
 	private: System::Windows::Forms::Button^ EditButton;
 	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::ComboBox^ SortBox1;
 
-	private: System::Windows::Forms::ComboBox^ comboBox1;
-	private: System::Windows::Forms::ComboBox^ comboBox2;
-	private: System::Windows::Forms::Button^ button3;
+
+	private: System::Windows::Forms::ComboBox^ SortBox2;
+
+	private: System::Windows::Forms::Button^ HelpButton;
+
 	private: System::Windows::Forms::Button^ SaveButton;
+	private: System::Windows::Forms::Button^ RemoveButton;
 
 
 
@@ -118,16 +122,17 @@ namespace Semestrovaya {
 			this->CloseButton = (gcnew System::Windows::Forms::Button());
 			this->EditButton = (gcnew System::Windows::Forms::Button());
 			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
-			this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
-			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->SortBox1 = (gcnew System::Windows::Forms::ComboBox());
+			this->SortBox2 = (gcnew System::Windows::Forms::ComboBox());
+			this->HelpButton = (gcnew System::Windows::Forms::Button());
 			this->SaveButton = (gcnew System::Windows::Forms::Button());
+			this->RemoveButton = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// CreateNewUser
 			// 
-			this->CreateNewUser->Location = System::Drawing::Point(113, 352);
+			this->CreateNewUser->Location = System::Drawing::Point(41, 352);
 			this->CreateNewUser->Name = L"CreateNewUser";
 			this->CreateNewUser->Size = System::Drawing::Size(169, 69);
 			this->CreateNewUser->TabIndex = 0;
@@ -186,9 +191,9 @@ namespace Semestrovaya {
 			// 
 			// CloseButton
 			// 
-			this->CloseButton->Location = System::Drawing::Point(485, 352);
+			this->CloseButton->Location = System::Drawing::Point(597, 352);
 			this->CloseButton->Name = L"CloseButton";
-			this->CloseButton->Size = System::Drawing::Size(169, 69);
+			this->CloseButton->Size = System::Drawing::Size(87, 69);
 			this->CloseButton->TabIndex = 2;
 			this->CloseButton->Text = L"Выход";
 			this->CloseButton->UseVisualStyleBackColor = true;
@@ -196,7 +201,7 @@ namespace Semestrovaya {
 			// 
 			// EditButton
 			// 
-			this->EditButton->Location = System::Drawing::Point(298, 352);
+			this->EditButton->Location = System::Drawing::Point(216, 352);
 			this->EditButton->Name = L"EditButton";
 			this->EditButton->Size = System::Drawing::Size(169, 69);
 			this->EditButton->TabIndex = 3;
@@ -214,30 +219,31 @@ namespace Semestrovaya {
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &MainWindow::OnClick_OpenFile);
 			// 
-			// comboBox1
+			// SortBox1
 			// 
-			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Location = System::Drawing::Point(335, 12);
-			this->comboBox1->Name = L"comboBox1";
-			this->comboBox1->Size = System::Drawing::Size(121, 21);
-			this->comboBox1->TabIndex = 6;
+			this->SortBox1->FormattingEnabled = true;
+			this->SortBox1->Location = System::Drawing::Point(335, 12);
+			this->SortBox1->Name = L"SortBox1";
+			this->SortBox1->Size = System::Drawing::Size(121, 21);
+			this->SortBox1->TabIndex = 6;
 			// 
-			// comboBox2
+			// SortBox2
 			// 
-			this->comboBox2->FormattingEnabled = true;
-			this->comboBox2->Location = System::Drawing::Point(474, 12);
-			this->comboBox2->Name = L"comboBox2";
-			this->comboBox2->Size = System::Drawing::Size(121, 21);
-			this->comboBox2->TabIndex = 7;
+			this->SortBox2->FormattingEnabled = true;
+			this->SortBox2->Location = System::Drawing::Point(474, 12);
+			this->SortBox2->Name = L"SortBox2";
+			this->SortBox2->Size = System::Drawing::Size(121, 21);
+			this->SortBox2->TabIndex = 7;
 			// 
-			// button3
+			// HelpButton
 			// 
-			this->button3->Location = System::Drawing::Point(669, 10);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(57, 23);
-			this->button3->TabIndex = 8;
-			this->button3->Text = L"Help";
-			this->button3->UseVisualStyleBackColor = true;
+			this->HelpButton->Location = System::Drawing::Point(669, 10);
+			this->HelpButton->Name = L"HelpButton";
+			this->HelpButton->Size = System::Drawing::Size(57, 23);
+			this->HelpButton->TabIndex = 8;
+			this->HelpButton->Text = L"Help";
+			this->HelpButton->UseVisualStyleBackColor = true;
+			this->HelpButton->Click += gcnew System::EventHandler(this, &MainWindow::Debug_Click);
 			// 
 			// SaveButton
 			// 
@@ -249,15 +255,26 @@ namespace Semestrovaya {
 			this->SaveButton->UseVisualStyleBackColor = true;
 			this->SaveButton->Click += gcnew System::EventHandler(this, &MainWindow::OnClick_SaveFile);
 			// 
+			// RemoveButton
+			// 
+			this->RemoveButton->Location = System::Drawing::Point(391, 352);
+			this->RemoveButton->Name = L"RemoveButton";
+			this->RemoveButton->Size = System::Drawing::Size(169, 69);
+			this->RemoveButton->TabIndex = 10;
+			this->RemoveButton->Text = L"Удалить";
+			this->RemoveButton->UseVisualStyleBackColor = true;
+			this->RemoveButton->Click += gcnew System::EventHandler(this, &MainWindow::RemoveButton_Click);
+			// 
 			// MainWindow
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(738, 453);
+			this->Controls->Add(this->RemoveButton);
 			this->Controls->Add(this->SaveButton);
-			this->Controls->Add(this->button3);
-			this->Controls->Add(this->comboBox2);
-			this->Controls->Add(this->comboBox1);
+			this->Controls->Add(this->HelpButton);
+			this->Controls->Add(this->SortBox2);
+			this->Controls->Add(this->SortBox1);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->EditButton);
 			this->Controls->Add(this->CloseButton);
@@ -277,6 +294,7 @@ namespace Semestrovaya {
 		///	Метод, который обновляет привязку данных к DataGridView, отчистив перед этим все строки
 		///</summary>
 		static void UpdateBindingGridView(LinkedList^ list, DataGridView^ dataGridView) {
+
 			// Очистить все строки в DataGridView
 			dataGridView->Rows->Clear();
 
@@ -288,7 +306,7 @@ namespace Semestrovaya {
 				// Создаем новую строку для DataGridView
 				DataGridViewRow^ row = gcnew DataGridViewRow();
 
-				// Создаем ячейки в строке на основе DataGridView
+				// Создаем ячейки в строке
 				row->CreateCells(dataGridView);
 
 				// Устанавливаем значения для каждой ячейки из текущего узла
@@ -306,6 +324,7 @@ namespace Semestrovaya {
 				currentNode = currentNode->GetNext();
 			}
 		}
+
 
 
 	private: System::Void MainWindow_Load(System::Object^ sender, System::EventArgs^ e) {
@@ -335,31 +354,48 @@ namespace Semestrovaya {
 	}
 
 	private: System::Void EditButton_Click(System::Object^ sender, System::EventArgs^ e) {
-			if (dataGridView1->SelectedRows->Count > 0) { // Проверяем, есть ли выбранные строки
-				// Начинаем с головы списка
-				Node^ currentNode = list->GetHead();
-				while (currentNode != nullptr) { // Используем цикл для обхода узлов
-					for (int i = 0; i < dataGridView1->SelectedRows->Count; i++) {
-						// Сравниваем имя текущего узла с выбранным именем в dataGridView1
-						if (currentNode->GetUser()->lName == dataGridView1->SelectedRows[i]->Cells[0]->Value->ToString()) {
-							// Создаем окно для редактирования пользователя
-							NewUserPhone^ newUserWindow = gcnew NewUserPhone(list, currentNode->GetUser());
-							newUserWindow->ShowDialog(); // Показываем окно как диалог
-							UpdateBindingGridView(list, dataGridView1); // Обновляем dataGridView после редактирования
-							return; // Выходим из метода после редактирования
-						}
+		if (dataGridView1->SelectedRows->Count > 0) { // Проверяем, есть ли выбранные строки
+			// Начинаем с головы списка
+			Node^ currentNode = list->GetHead();
+			while (currentNode != nullptr) { // Используем цикл для обхода узлов
+				for (int i = 0; i < dataGridView1->SelectedRows->Count; i++) {
+					// Сравниваем имя текущего узла с выбранным именем в dataGridView1
+					if (currentNode->GetUser()->lName == dataGridView1->SelectedRows[i]->Cells[0]->Value->ToString()) {
+						// Создаем окно для редактирования пользователя
+						NewUserPhone^ newUserWindow = gcnew NewUserPhone(list, currentNode->GetUser());
+						newUserWindow->ShowDialog(); // Показываем окно как диалог
+						UpdateBindingGridView(list, dataGridView1); // Обновляем dataGridView после редактирования
+						return; // Выходим из метода после редактирования
 					}
-					currentNode = currentNode->GetNext(); // Переходим к следующему узлу
 				}
+				currentNode = currentNode->GetNext(); // Переходим к следующему узлу
 			}
 		}
+	}
+
+	private: System::Void RemoveButton_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (dataGridView1->SelectedRows->Count > 0)
+		{
+			
+			for (int i = 0; i < dataGridView1->SelectedRows->Count; i++)
+			{
+				if (dataGridView1->SelectedRows[i]->Cells[0]->Value != nullptr)
+				{
+					list->RemoveNode(dataGridView1->SelectedRows[i]->Cells[0]->Value->ToString());
+				}
+			}
+			UpdateBindingGridView(list, dataGridView1);
+		}
+		
+	}
+
 	private: System::Void OnClick_OpenFile(System::Object^ sender, System::EventArgs^ e) {
 		OpenSCVFile();
 		UpdateBindingGridView(list, dataGridView1);
 	}
-private:
-		
-private: System::Void OnClick_SaveFile(System::Object^ sender, System::EventArgs^ e) {
+	private:
+
+	private: System::Void OnClick_SaveFile(System::Object^ sender, System::EventArgs^ e) {
 		SaveFileDialog^ saveFileDialog1 = gcnew SaveFileDialog();
 		saveFileDialog1->Filter = "Text files(*.csv)|*.csv|All files(*.*)|*.*";
 		if (saveFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK)
@@ -368,5 +404,9 @@ private: System::Void OnClick_SaveFile(System::Object^ sender, System::EventArgs
 			Parser::SaveDataInCSV(list, filename);
 		}
 	}
+	
+private: System::Void Debug_Click(System::Object^ sender, System::EventArgs^ e) {
+	list->DEBUG_PrintListConsoleLinkedRelation();
+}
 };
 };

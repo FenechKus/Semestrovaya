@@ -60,8 +60,12 @@ public:
 	Node^ GetHead();
 
 	Node^ GetTail();
+	void DEBUG_PrintListConsoleLinkedRelation();
+	void DEBUG_PrintListToConsoleList();
 
 	void PushBack(UserData^ user);
+
+	void RemoveNode(String^ lastName);
 
 
 	/*UserData GetUserData(String^ lName);

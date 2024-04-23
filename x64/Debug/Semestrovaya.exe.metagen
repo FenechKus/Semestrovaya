@@ -39,7 +39,10 @@ Class LinkedList: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Methods:
     GetHead(): PrivateScope, Public, HideBySig
     GetTail(): PrivateScope, Public, HideBySig
+    DEBUG_PrintListConsoleLinkedRelation(): PrivateScope, Public, HideBySig
+    DEBUG_PrintListToConsoleList(): PrivateScope, Public, HideBySig
     PushBack(UserData): PrivateScope, Public, HideBySig
+    RemoveNode(String): PrivateScope, Public, HideBySig
 Class Semestrovaya.NewUserPhone: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(LinkedList, UserData): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
