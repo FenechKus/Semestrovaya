@@ -4,7 +4,7 @@
 
 
 
-Node::Node(UserData^ _user) : user(_user), next(nullptr) {}
+Node::Node(UserData^ _user) : user(_user), next(nullptr), prev(nullptr) {}
 
 LinkedList::LinkedList() : head(nullptr), tail(nullptr) {}
 
@@ -12,21 +12,44 @@ void LinkedList::PushBack(UserData^ user)
 {
 	Node^ newNode = gcnew Node(user);
 
+    newNode->SetPrev(this->tail);
+	if (tail != nullptr)
+	{
+        tail->SetNext(newNode);
+	}
 	if (head == nullptr)
-	{
-		head = newNode;
-		tail = newNode;
+    {
+        head = newNode;
+    }
+    tail = newNode;
+}
 
-        newNode->SetNext(nullptr);
-        newNode->SetPrev(nullptr);
-	}
-	else
-	{
-		tail->SetNext(newNode);
-		newNode->SetPrev(tail);
-		tail = newNode;
-	}
+void LinkedList::PopBack()
+{
+	Node^ newTail = tail->GetPrev();
 
+	if (newTail != nullptr) {
+		newTail->SetNext(nullptr);
+	}
+	else {
+		head = newTail;
+	}
+	delete tail;
+	tail = newTail;
+}
+
+void LinkedList::PopFront()
+{
+	Node^ newHead = head->GetNext();
+
+	if (newHead != nullptr) {
+		newHead->SetPrev(nullptr);
+	}
+	else {
+		tail = newHead;
+	}
+	delete head;
+	head = newHead;
 }
 
 void LinkedList::RemoveNode(String^ lastName)
@@ -38,46 +61,30 @@ void LinkedList::RemoveNode(String^ lastName)
         if (current->GetUser()->lName == lastName) {
 
             if (current == head) {
-        
-                head = current->GetNext();
-
-                if (head != nullptr) {
-                    head->SetPrev(nullptr);
-                }
+				this->PopFront();
+                return;
             }
-            else if (current == tail) {
+
+            if (current == tail) {
 
                 System::Diagnostics::Debug::WriteLine("prevNode До " + current->GetPrev()->GetUser()->lName);
                 System::Diagnostics::Debug::WriteLine("tail До " + tail->GetUser()->lName);
 
-                tail = current->GetPrev();
+                this->PopBack();
 
-                if (tail != nullptr) {
-                    tail->SetNext(nullptr);
-                }
-
-                System::Diagnostics::Debug::WriteLine("prevNode До " + current->GetPrev()->GetUser()->lName);
-                System::Diagnostics::Debug::WriteLine("tail До " + tail->GetUser()->lName);
-            }
-            else {
-                Node^ prevNode = current->GetPrev();
-                Node^ nextNode = current->GetNext();
-
-                if (prevNode != nullptr) {
-                    prevNode->SetNext(nextNode);
-                }
-
-                if (nextNode != nullptr) {
-                    nextNode->SetPrev(prevNode);
-                }
-
+                System::Diagnostics::Debug::WriteLine("prevNode После " + current->GetPrev()->GetUser()->lName);
+                System::Diagnostics::Debug::WriteLine("tail После " + tail->GetUser()->lName);
+                return;
             }
 
-            
-            delete current;
+            Node^ prevNode = current->GetPrev();
+            Node^ nextNode = current->GetNext();
 
-            
-            return;
+            prevNode->SetNext(nextNode);
+            nextNode->SetPrev(prevNode);
+
+			delete current;
+			return;
         }
 
         current = current->GetNext();
@@ -87,20 +94,14 @@ void LinkedList::RemoveNode(String^ lastName)
 /// Методы доступа
 Node^ Node::GetNext()
 {
-	if (next != nullptr)
-		return next;
-	else
-		return nullptr;
+	return next;
 }
 
 void Node::SetNext(Node^ _next) { next = _next; }
 
 Node^ Node::GetPrev()
 {
-	if (next != nullptr)
-		return prev;
-	else
-		return nullptr;
+	return prev;
 }
 
 void Node::SetPrev(Node^ _prev) { prev = _prev; }
@@ -115,18 +116,12 @@ void Node::SetUser(UserData^ _user) { user = _user; }
 
 Node^ LinkedList::GetHead()
 {
-	if (head != nullptr)
-		return head;
-	else
-		return nullptr;
+	return head;
 }
 
 Node^ LinkedList::GetTail()
 {
-	if (tail != nullptr)
-		return tail;
-	else
-		return nullptr;
+	return tail;
 }
 
 void LinkedList::DEBUG_PrintListConsoleLinkedRelation()
