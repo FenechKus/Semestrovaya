@@ -17,6 +17,7 @@ void LinkedList::PushBack(UserData^ user)
 		head = newNode;
 		tail = newNode;
 
+        newNode->SetNext(nullptr);
         newNode->SetPrev(nullptr);
 	}
 	else

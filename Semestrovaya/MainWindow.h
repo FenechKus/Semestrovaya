@@ -66,26 +66,66 @@ namespace Semestrovaya {
 		}
 	private: System::Windows::Forms::Button^ CreateNewUser;
 	protected:
-
-	private: System::Windows::Forms::DataGridView^ dataGridView1;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ LastName;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Year;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Phone;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Street;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ House;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Apartament;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ House;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Street;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Phone;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Year;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ LastName;
+	private: System::Windows::Forms::DataGridView^ dataGridView1;
 	private: System::Windows::Forms::Button^ CloseButton;
 	private: System::Windows::Forms::Button^ EditButton;
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::ComboBox^ SortBox1;
-
-
 	private: System::Windows::Forms::ComboBox^ SortBox2;
-
 	private: System::Windows::Forms::Button^ HelpButton;
-
 	private: System::Windows::Forms::Button^ SaveButton;
 	private: System::Windows::Forms::Button^ RemoveButton;
+	private: System::Windows::Forms::Button^ button2;
+	private: System::Windows::Forms::Button^ button3;
+
+	protected:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	protected:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -112,13 +152,13 @@ namespace Semestrovaya {
 		void InitializeComponent(void)
 		{
 			this->CreateNewUser = (gcnew System::Windows::Forms::Button());
-			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			this->LastName = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Year = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Phone = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Street = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->House = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Apartament = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->House = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Street = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Phone = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Year = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->LastName = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->CloseButton = (gcnew System::Windows::Forms::Button());
 			this->EditButton = (gcnew System::Windows::Forms::Button());
 			this->button1 = (gcnew System::Windows::Forms::Button());
@@ -127,21 +167,65 @@ namespace Semestrovaya {
 			this->HelpButton = (gcnew System::Windows::Forms::Button());
 			this->SaveButton = (gcnew System::Windows::Forms::Button());
 			this->RemoveButton = (gcnew System::Windows::Forms::Button());
+			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->button3 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// CreateNewUser
 			// 
-			this->CreateNewUser->Location = System::Drawing::Point(41, 352);
+			this->CreateNewUser->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
+			this->CreateNewUser->Location = System::Drawing::Point(94, 399);
 			this->CreateNewUser->Name = L"CreateNewUser";
-			this->CreateNewUser->Size = System::Drawing::Size(169, 69);
+			this->CreateNewUser->Size = System::Drawing::Size(169, 41);
 			this->CreateNewUser->TabIndex = 0;
 			this->CreateNewUser->Text = L"Новый пользователь";
 			this->CreateNewUser->UseVisualStyleBackColor = true;
 			this->CreateNewUser->Click += gcnew System::EventHandler(this, &MainWindow::OnClick_NewUserPhone);
 			// 
+			// Apartament
+			// 
+			this->Apartament->HeaderText = L"Квартира";
+			this->Apartament->Name = L"Apartament";
+			this->Apartament->ReadOnly = true;
+			// 
+			// House
+			// 
+			this->House->HeaderText = L"Дом";
+			this->House->Name = L"House";
+			this->House->ReadOnly = true;
+			// 
+			// Street
+			// 
+			this->Street->HeaderText = L"Улица";
+			this->Street->Name = L"Street";
+			this->Street->ReadOnly = true;
+			// 
+			// Phone
+			// 
+			this->Phone->HeaderText = L"Телефон";
+			this->Phone->Name = L"Phone";
+			this->Phone->ReadOnly = true;
+			// 
+			// Year
+			// 
+			this->Year->HeaderText = L"Год установки телефона";
+			this->Year->Name = L"Year";
+			this->Year->ReadOnly = true;
+			// 
+			// LastName
+			// 
+			this->LastName->HeaderText = L"Фамилия";
+			this->LastName->Name = L"LastName";
+			this->LastName->ReadOnly = true;
+			// 
 			// dataGridView1
 			// 
+			this->dataGridView1->AllowUserToAddRows = false;
+			this->dataGridView1->AllowUserToDeleteRows = false;
+			this->dataGridView1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
+			this->dataGridView1->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
+			this->dataGridView1->AutoSizeRowsMode = System::Windows::Forms::DataGridViewAutoSizeRowsMode::DisplayedCells;
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(6) {
 				this->LastName,
@@ -153,47 +237,12 @@ namespace Semestrovaya {
 			this->dataGridView1->Size = System::Drawing::Size(643, 276);
 			this->dataGridView1->TabIndex = 1;
 			// 
-			// LastName
-			// 
-			this->LastName->HeaderText = L"Фамилия";
-			this->LastName->Name = L"LastName";
-			this->LastName->ReadOnly = true;
-			// 
-			// Year
-			// 
-			this->Year->HeaderText = L"Год установки телефона";
-			this->Year->Name = L"Year";
-			this->Year->ReadOnly = true;
-			// 
-			// Phone
-			// 
-			this->Phone->HeaderText = L"Телефон";
-			this->Phone->Name = L"Phone";
-			this->Phone->ReadOnly = true;
-			// 
-			// Street
-			// 
-			this->Street->HeaderText = L"Улица";
-			this->Street->Name = L"Street";
-			this->Street->ReadOnly = true;
-			// 
-			// House
-			// 
-			this->House->HeaderText = L"Дом";
-			this->House->Name = L"House";
-			this->House->ReadOnly = true;
-			// 
-			// Apartament
-			// 
-			this->Apartament->HeaderText = L"Квартира";
-			this->Apartament->Name = L"Apartament";
-			this->Apartament->ReadOnly = true;
-			// 
 			// CloseButton
 			// 
-			this->CloseButton->Location = System::Drawing::Point(597, 352);
+			this->CloseButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
+			this->CloseButton->Location = System::Drawing::Point(444, 399);
 			this->CloseButton->Name = L"CloseButton";
-			this->CloseButton->Size = System::Drawing::Size(87, 69);
+			this->CloseButton->Size = System::Drawing::Size(169, 41);
 			this->CloseButton->TabIndex = 2;
 			this->CloseButton->Text = L"Выход";
 			this->CloseButton->UseVisualStyleBackColor = true;
@@ -201,9 +250,10 @@ namespace Semestrovaya {
 			// 
 			// EditButton
 			// 
-			this->EditButton->Location = System::Drawing::Point(216, 352);
+			this->EditButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
+			this->EditButton->Location = System::Drawing::Point(94, 352);
 			this->EditButton->Name = L"EditButton";
-			this->EditButton->Size = System::Drawing::Size(169, 69);
+			this->EditButton->Size = System::Drawing::Size(169, 41);
 			this->EditButton->TabIndex = 3;
 			this->EditButton->Text = L"Изменить";
 			this->EditButton->UseVisualStyleBackColor = true;
@@ -257,19 +307,43 @@ namespace Semestrovaya {
 			// 
 			// RemoveButton
 			// 
-			this->RemoveButton->Location = System::Drawing::Point(391, 352);
+			this->RemoveButton->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
+			this->RemoveButton->Location = System::Drawing::Point(269, 399);
 			this->RemoveButton->Name = L"RemoveButton";
-			this->RemoveButton->Size = System::Drawing::Size(169, 69);
+			this->RemoveButton->Size = System::Drawing::Size(169, 41);
 			this->RemoveButton->TabIndex = 10;
 			this->RemoveButton->Text = L"Удалить";
 			this->RemoveButton->UseVisualStyleBackColor = true;
 			this->RemoveButton->Click += gcnew System::EventHandler(this, &MainWindow::RemoveButton_Click);
+			// 
+			// button2
+			// 
+			this->button2->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
+			this->button2->AutoSize = true;
+			this->button2->Location = System::Drawing::Point(269, 351);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(169, 41);
+			this->button2->TabIndex = 11;
+			this->button2->Text = L"Поиск по Фамилии";
+			this->button2->UseVisualStyleBackColor = true;
+			// 
+			// button3
+			// 
+			this->button3->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
+			this->button3->Location = System::Drawing::Point(444, 352);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(169, 41);
+			this->button3->TabIndex = 12;
+			this->button3->Text = L"Поиск по Номеру";
+			this->button3->UseVisualStyleBackColor = true;
 			// 
 			// MainWindow
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(738, 453);
+			this->Controls->Add(this->button3);
+			this->Controls->Add(this->button2);
 			this->Controls->Add(this->RemoveButton);
 			this->Controls->Add(this->SaveButton);
 			this->Controls->Add(this->HelpButton);
@@ -280,11 +354,13 @@ namespace Semestrovaya {
 			this->Controls->Add(this->CloseButton);
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->CreateNewUser);
+			this->MinimumSize = System::Drawing::Size(754, 492);
 			this->Name = L"MainWindow";
 			this->Text = L"MainWindow";
 			this->Load += gcnew System::EventHandler(this, &MainWindow::MainWindow_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 #pragma endregion
@@ -324,7 +400,6 @@ namespace Semestrovaya {
 				currentNode = currentNode->GetNext();
 			}
 		}
-
 
 
 	private: System::Void MainWindow_Load(System::Object^ sender, System::EventArgs^ e) {
