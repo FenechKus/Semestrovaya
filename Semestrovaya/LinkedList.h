@@ -64,7 +64,9 @@ public:
 	void DEBUG_PrintListToConsoleList();
 
 	void PushBack(UserData^ user);
+	void PopBack();
 
+	void PopFront();
 	void RemoveNode(String^ lastName);
 
 

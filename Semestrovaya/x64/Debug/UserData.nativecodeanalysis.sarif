@@ -8,7 +8,7 @@
         "driver": {
           "name": "PREfast",
           "fullName": "PREfast Code Analysis",
-          "version": "14.39.33523.0",
+          "version": "14.36.32545.0",
           "informationUri": "https://aka.ms/cpp/ca"
         }
       },
@@ -26,7 +26,7 @@
             "analysisTarget"
           ],
           "hashes": {
-            "sha-256": "0bfab5c02df69102ac367b1a0a3f19974cf36e326f99586a003613ff3d8f6101"
+            "sha-256": "22368ed4cbb5e736f8245c20013af9f4c4aa382dc44de7147303525d86bea66a"
           }
         },
         {
@@ -34,7 +34,7 @@
             "uri": "file:///d:/source/c++/desktop/semestrovaya/semestrovaya/userdata.h"
           },
           "hashes": {
-            "sha-256": "08e57a33f5f7655dc5ee71a49925332379caa4e65b5c9f1d00453b53d28320ca"
+            "sha-256": "6db47adc705c92c5045b50d2fc198d77c8a200ae5114df90077943594babd024"
           }
         }
       ]
