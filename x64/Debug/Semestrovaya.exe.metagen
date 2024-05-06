@@ -42,6 +42,8 @@ Class LinkedList: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     DEBUG_PrintListConsoleLinkedRelation(): PrivateScope, Public, HideBySig
     DEBUG_PrintListToConsoleList(): PrivateScope, Public, HideBySig
     PushBack(UserData): PrivateScope, Public, HideBySig
+    PopBack(): PrivateScope, Public, HideBySig
+    PopFront(): PrivateScope, Public, HideBySig
     RemoveNode(String): PrivateScope, Public, HideBySig
 Class Semestrovaya.NewUserPhone: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form

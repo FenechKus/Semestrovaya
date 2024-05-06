@@ -223,7 +223,9 @@ namespace Semestrovaya {
 			// 
 			this->dataGridView1->AllowUserToAddRows = false;
 			this->dataGridView1->AllowUserToDeleteRows = false;
-			this->dataGridView1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Left | System::Windows::Forms::AnchorStyles::Right));
+			this->dataGridView1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
 			this->dataGridView1->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
 			this->dataGridView1->AutoSizeRowsMode = System::Windows::Forms::DataGridViewAutoSizeRowsMode::DisplayedCells;
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
@@ -231,16 +233,16 @@ namespace Semestrovaya {
 				this->LastName,
 					this->Year, this->Phone, this->Street, this->House, this->Apartament
 			});
-			this->dataGridView1->Location = System::Drawing::Point(41, 70);
+			this->dataGridView1->Location = System::Drawing::Point(12, 12);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-			this->dataGridView1->Size = System::Drawing::Size(643, 276);
+			this->dataGridView1->Size = System::Drawing::Size(661, 321);
 			this->dataGridView1->TabIndex = 1;
 			// 
 			// CloseButton
 			// 
 			this->CloseButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
-			this->CloseButton->Location = System::Drawing::Point(444, 399);
+			this->CloseButton->Location = System::Drawing::Point(507, 399);
 			this->CloseButton->Name = L"CloseButton";
 			this->CloseButton->Size = System::Drawing::Size(169, 41);
 			this->CloseButton->TabIndex = 2;
@@ -261,9 +263,10 @@ namespace Semestrovaya {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(12, 12);
+			this->button1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->button1->Location = System::Drawing::Point(687, 39);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(137, 26);
+			this->button1->Size = System::Drawing::Size(102, 26);
 			this->button1->TabIndex = 4;
 			this->button1->Text = L"Открыть файл";
 			this->button1->UseVisualStyleBackColor = true;
@@ -271,25 +274,28 @@ namespace Semestrovaya {
 			// 
 			// SortBox1
 			// 
+			this->SortBox1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->SortBox1->FormattingEnabled = true;
-			this->SortBox1->Location = System::Drawing::Point(335, 12);
+			this->SortBox1->Location = System::Drawing::Point(687, 113);
 			this->SortBox1->Name = L"SortBox1";
-			this->SortBox1->Size = System::Drawing::Size(121, 21);
+			this->SortBox1->Size = System::Drawing::Size(102, 21);
 			this->SortBox1->TabIndex = 6;
 			// 
 			// SortBox2
 			// 
+			this->SortBox2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->SortBox2->FormattingEnabled = true;
-			this->SortBox2->Location = System::Drawing::Point(474, 12);
+			this->SortBox2->Location = System::Drawing::Point(687, 158);
 			this->SortBox2->Name = L"SortBox2";
-			this->SortBox2->Size = System::Drawing::Size(121, 21);
+			this->SortBox2->Size = System::Drawing::Size(102, 21);
 			this->SortBox2->TabIndex = 7;
 			// 
 			// HelpButton
 			// 
-			this->HelpButton->Location = System::Drawing::Point(669, 10);
+			this->HelpButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->HelpButton->Location = System::Drawing::Point(687, 10);
 			this->HelpButton->Name = L"HelpButton";
-			this->HelpButton->Size = System::Drawing::Size(57, 23);
+			this->HelpButton->Size = System::Drawing::Size(102, 23);
 			this->HelpButton->TabIndex = 8;
 			this->HelpButton->Text = L"Help";
 			this->HelpButton->UseVisualStyleBackColor = true;
@@ -297,9 +303,10 @@ namespace Semestrovaya {
 			// 
 			// SaveButton
 			// 
-			this->SaveButton->Location = System::Drawing::Point(165, 12);
+			this->SaveButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->SaveButton->Location = System::Drawing::Point(687, 71);
 			this->SaveButton->Name = L"SaveButton";
-			this->SaveButton->Size = System::Drawing::Size(137, 26);
+			this->SaveButton->Size = System::Drawing::Size(102, 26);
 			this->SaveButton->TabIndex = 9;
 			this->SaveButton->Text = L"Сохранить файл";
 			this->SaveButton->UseVisualStyleBackColor = true;
@@ -308,7 +315,7 @@ namespace Semestrovaya {
 			// RemoveButton
 			// 
 			this->RemoveButton->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
-			this->RemoveButton->Location = System::Drawing::Point(269, 399);
+			this->RemoveButton->Location = System::Drawing::Point(300, 399);
 			this->RemoveButton->Name = L"RemoveButton";
 			this->RemoveButton->Size = System::Drawing::Size(169, 41);
 			this->RemoveButton->TabIndex = 10;
@@ -320,7 +327,7 @@ namespace Semestrovaya {
 			// 
 			this->button2->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
 			this->button2->AutoSize = true;
-			this->button2->Location = System::Drawing::Point(269, 351);
+			this->button2->Location = System::Drawing::Point(300, 351);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(169, 41);
 			this->button2->TabIndex = 11;
@@ -330,7 +337,7 @@ namespace Semestrovaya {
 			// button3
 			// 
 			this->button3->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
-			this->button3->Location = System::Drawing::Point(444, 352);
+			this->button3->Location = System::Drawing::Point(507, 352);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(169, 41);
 			this->button3->TabIndex = 12;
@@ -341,7 +348,7 @@ namespace Semestrovaya {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(738, 453);
+			this->ClientSize = System::Drawing::Size(801, 453);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->RemoveButton);
@@ -354,7 +361,7 @@ namespace Semestrovaya {
 			this->Controls->Add(this->CloseButton);
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->CreateNewUser);
-			this->MinimumSize = System::Drawing::Size(754, 492);
+			this->MinimumSize = System::Drawing::Size(817, 492);
 			this->Name = L"MainWindow";
 			this->Text = L"MainWindow";
 			this->Load += gcnew System::EventHandler(this, &MainWindow::MainWindow_Load);
