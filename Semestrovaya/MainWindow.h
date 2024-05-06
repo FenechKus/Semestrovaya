@@ -81,10 +81,16 @@ namespace Semestrovaya {
 	private: System::Windows::Forms::Button^ HelpButton;
 	private: System::Windows::Forms::Button^ SaveButton;
 	private: System::Windows::Forms::Button^ RemoveButton;
-	private: System::Windows::Forms::Button^ button2;
-	private: System::Windows::Forms::Button^ button3;
+
+
 	private: System::Windows::Forms::RadioButton^ FrontListRadioButton;
 	private: System::Windows::Forms::RadioButton^ ReverseListButton;
+	private: System::Windows::Forms::RichTextBox^ RichBoxLastname;
+	private: System::Windows::Forms::RichTextBox^ RichBoxPhone;
+	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::Label^ label4;
 
 	protected:
 
@@ -169,19 +175,23 @@ namespace Semestrovaya {
 			this->HelpButton = (gcnew System::Windows::Forms::Button());
 			this->SaveButton = (gcnew System::Windows::Forms::Button());
 			this->RemoveButton = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->FrontListRadioButton = (gcnew System::Windows::Forms::RadioButton());
 			this->ReverseListButton = (gcnew System::Windows::Forms::RadioButton());
+			this->RichBoxLastname = (gcnew System::Windows::Forms::RichTextBox());
+			this->RichBoxPhone = (gcnew System::Windows::Forms::RichTextBox());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->label4 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// CreateNewUser
 			// 
 			this->CreateNewUser->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
-			this->CreateNewUser->Location = System::Drawing::Point(94, 399);
+			this->CreateNewUser->Location = System::Drawing::Point(12, 365);
 			this->CreateNewUser->Name = L"CreateNewUser";
-			this->CreateNewUser->Size = System::Drawing::Size(169, 41);
+			this->CreateNewUser->Size = System::Drawing::Size(169, 60);
 			this->CreateNewUser->TabIndex = 0;
 			this->CreateNewUser->Text = L"Новый пользователь";
 			this->CreateNewUser->UseVisualStyleBackColor = true;
@@ -246,9 +256,9 @@ namespace Semestrovaya {
 			// CloseButton
 			// 
 			this->CloseButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
-			this->CloseButton->Location = System::Drawing::Point(507, 399);
+			this->CloseButton->Location = System::Drawing::Point(706, 365);
 			this->CloseButton->Name = L"CloseButton";
-			this->CloseButton->Size = System::Drawing::Size(169, 41);
+			this->CloseButton->Size = System::Drawing::Size(79, 60);
 			this->CloseButton->TabIndex = 2;
 			this->CloseButton->Text = L"Выход";
 			this->CloseButton->UseVisualStyleBackColor = true;
@@ -257,9 +267,9 @@ namespace Semestrovaya {
 			// EditButton
 			// 
 			this->EditButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
-			this->EditButton->Location = System::Drawing::Point(94, 352);
+			this->EditButton->Location = System::Drawing::Point(187, 365);
 			this->EditButton->Name = L"EditButton";
-			this->EditButton->Size = System::Drawing::Size(169, 41);
+			this->EditButton->Size = System::Drawing::Size(169, 60);
 			this->EditButton->TabIndex = 3;
 			this->EditButton->Text = L"Изменить";
 			this->EditButton->UseVisualStyleBackColor = true;
@@ -268,7 +278,7 @@ namespace Semestrovaya {
 			// button1
 			// 
 			this->button1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
-			this->button1->Location = System::Drawing::Point(687, 39);
+			this->button1->Location = System::Drawing::Point(683, 39);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(102, 26);
 			this->button1->TabIndex = 4;
@@ -280,7 +290,7 @@ namespace Semestrovaya {
 			// 
 			this->SortBox1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->SortBox1->FormattingEnabled = true;
-			this->SortBox1->Location = System::Drawing::Point(687, 113);
+			this->SortBox1->Location = System::Drawing::Point(683, 121);
 			this->SortBox1->Name = L"SortBox1";
 			this->SortBox1->Size = System::Drawing::Size(102, 21);
 			this->SortBox1->TabIndex = 6;
@@ -289,7 +299,7 @@ namespace Semestrovaya {
 			// 
 			this->SortBox2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->SortBox2->FormattingEnabled = true;
-			this->SortBox2->Location = System::Drawing::Point(687, 158);
+			this->SortBox2->Location = System::Drawing::Point(683, 162);
 			this->SortBox2->Name = L"SortBox2";
 			this->SortBox2->Size = System::Drawing::Size(102, 21);
 			this->SortBox2->TabIndex = 7;
@@ -297,7 +307,7 @@ namespace Semestrovaya {
 			// HelpButton
 			// 
 			this->HelpButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
-			this->HelpButton->Location = System::Drawing::Point(687, 10);
+			this->HelpButton->Location = System::Drawing::Point(683, 10);
 			this->HelpButton->Name = L"HelpButton";
 			this->HelpButton->Size = System::Drawing::Size(102, 23);
 			this->HelpButton->TabIndex = 8;
@@ -308,7 +318,7 @@ namespace Semestrovaya {
 			// SaveButton
 			// 
 			this->SaveButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
-			this->SaveButton->Location = System::Drawing::Point(687, 71);
+			this->SaveButton->Location = System::Drawing::Point(683, 71);
 			this->SaveButton->Name = L"SaveButton";
 			this->SaveButton->Size = System::Drawing::Size(102, 26);
 			this->SaveButton->TabIndex = 9;
@@ -318,38 +328,18 @@ namespace Semestrovaya {
 			// 
 			// RemoveButton
 			// 
-			this->RemoveButton->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
-			this->RemoveButton->Location = System::Drawing::Point(300, 399);
+			this->RemoveButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
+			this->RemoveButton->Location = System::Drawing::Point(362, 365);
 			this->RemoveButton->Name = L"RemoveButton";
-			this->RemoveButton->Size = System::Drawing::Size(169, 41);
+			this->RemoveButton->Size = System::Drawing::Size(169, 60);
 			this->RemoveButton->TabIndex = 10;
 			this->RemoveButton->Text = L"Удалить";
 			this->RemoveButton->UseVisualStyleBackColor = true;
 			this->RemoveButton->Click += gcnew System::EventHandler(this, &MainWindow::RemoveButton_Click);
 			// 
-			// button2
-			// 
-			this->button2->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
-			this->button2->AutoSize = true;
-			this->button2->Location = System::Drawing::Point(300, 351);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(169, 41);
-			this->button2->TabIndex = 11;
-			this->button2->Text = L"Поиск по Фамилии";
-			this->button2->UseVisualStyleBackColor = true;
-			// 
-			// button3
-			// 
-			this->button3->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
-			this->button3->Location = System::Drawing::Point(507, 352);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(169, 41);
-			this->button3->TabIndex = 12;
-			this->button3->Text = L"Поиск по Номеру";
-			this->button3->UseVisualStyleBackColor = true;
-			// 
 			// FrontListRadioButton
 			// 
+			this->FrontListRadioButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->FrontListRadioButton->AutoSize = true;
 			this->FrontListRadioButton->Checked = true;
 			this->FrontListRadioButton->Location = System::Drawing::Point(679, 202);
@@ -363,6 +353,7 @@ namespace Semestrovaya {
 			// 
 			// ReverseListButton
 			// 
+			this->ReverseListButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->ReverseListButton->AutoSize = true;
 			this->ReverseListButton->Location = System::Drawing::Point(679, 225);
 			this->ReverseListButton->Name = L"ReverseListButton";
@@ -373,15 +364,79 @@ namespace Semestrovaya {
 			this->ReverseListButton->UseVisualStyleBackColor = true;
 			this->ReverseListButton->CheckedChanged += gcnew System::EventHandler(this, &MainWindow::ReverseListButton_CheckedChanged);
 			// 
+			// RichBoxLastname
+			// 
+			this->RichBoxLastname->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->RichBoxLastname->Location = System::Drawing::Point(679, 265);
+			this->RichBoxLastname->Name = L"RichBoxLastname";
+			this->RichBoxLastname->Size = System::Drawing::Size(106, 33);
+			this->RichBoxLastname->TabIndex = 15;
+			this->RichBoxLastname->Text = L"";
+			this->RichBoxLastname->TextChanged += gcnew System::EventHandler(this, &MainWindow::OnTextChangedFindLastname);
+			// 
+			// RichBoxPhone
+			// 
+			this->RichBoxPhone->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->RichBoxPhone->Location = System::Drawing::Point(679, 313);
+			this->RichBoxPhone->Name = L"RichBoxPhone";
+			this->RichBoxPhone->Size = System::Drawing::Size(106, 33);
+			this->RichBoxPhone->TabIndex = 16;
+			this->RichBoxPhone->Text = L"";
+			this->RichBoxPhone->TextChanged += gcnew System::EventHandler(this, &MainWindow::OnTextChangedFindPhone);
+			// 
+			// label1
+			// 
+			this->label1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(680, 249);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(91, 13);
+			this->label1->TabIndex = 17;
+			this->label1->Text = L"Поиск Фамилия";
+			// 
+			// label2
+			// 
+			this->label2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(680, 297);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(87, 13);
+			this->label2->TabIndex = 18;
+			this->label2->Text = L"Поиск Телефон";
+			// 
+			// label3
+			// 
+			this->label3->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(680, 105);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(67, 13);
+			this->label3->TabIndex = 19;
+			this->label3->Text = L"Сортировка";
+			// 
+			// label4
+			// 
+			this->label4->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(680, 146);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(67, 13);
+			this->label4->TabIndex = 20;
+			this->label4->Text = L"Сортировка";
+			// 
 			// MainWindow
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(801, 453);
+			this->Controls->Add(this->label4);
+			this->Controls->Add(this->label3);
+			this->Controls->Add(this->label2);
+			this->Controls->Add(this->label1);
+			this->Controls->Add(this->RichBoxPhone);
+			this->Controls->Add(this->RichBoxLastname);
 			this->Controls->Add(this->ReverseListButton);
 			this->Controls->Add(this->FrontListRadioButton);
-			this->Controls->Add(this->button3);
-			this->Controls->Add(this->button2);
 			this->Controls->Add(this->RemoveButton);
 			this->Controls->Add(this->SaveButton);
 			this->Controls->Add(this->HelpButton);
@@ -534,5 +589,83 @@ private: System::Void FrontListRadioButton_CheckedChanged(System::Object^ sender
 private: System::Void ReverseListButton_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 	UpdateBindingGridView(list, dataGridView1, "reverse");
 }
+
+	   private: System::Void OnTextChangedFindLastname(System::Object^ sender, System::EventArgs^ e)
+	   {
+		   if (RichBoxLastname->Text->Length != 0)
+		   {
+			   //отсчистка DataGridView от старых данных
+			   dataGridView1->Rows->Clear();
+
+			   dataGridView1->Columns[1]->Visible = false;
+
+			   Node^ currentNode = list->GetHead();
+			   while (currentNode != nullptr)
+			   {
+				   if (currentNode->GetUser()->lName == RichBoxLastname->Text)
+				   {
+
+					   // Создаем новую строку для DataGridView
+					   DataGridViewRow^ row = gcnew DataGridViewRow();
+
+					   // Создаем ячейки в строке
+					   row->CreateCells(dataGridView1);
+
+					   // Устанавливаем значения для каждой ячейки из текущего узла
+					   row->Cells[0]->Value = currentNode->GetUser()->lName;
+					   row->Cells[1]->Value = currentNode->GetUser()->year_start_up;
+					   row->Cells[2]->Value = currentNode->GetUser()->phone;
+					   row->Cells[3]->Value = currentNode->GetUser()->street;
+					   row->Cells[4]->Value = currentNode->GetUser()->house;
+					   row->Cells[5]->Value = currentNode->GetUser()->number_apart;
+
+					   // Добавляем строку в DataGridView
+					   dataGridView1->Rows->Add(row);
+				   }
+				   currentNode = currentNode->GetNext();
+			   }
+		   }
+		   else
+		   {
+			   UpdateBindingGridView(list, dataGridView1, "front");
+		   }
+	   }
+	private: System::Void OnTextChangedFindPhone(System::Object^ sender, System::EventArgs^ e) {
+		if (RichBoxPhone->Text->Length != 0)
+		{
+			//отсчистка DataGridView от старых данных
+			dataGridView1->Rows->Clear();
+
+			Node^ currentNode = list->GetHead();
+			while (currentNode != nullptr)
+			{
+				if (currentNode->GetUser()->phone == RichBoxPhone->Text)
+				{
+					// Создаем новую строку для DataGridView
+					DataGridViewRow^ row = gcnew DataGridViewRow();
+
+					// Создаем ячейки в строке
+					row->CreateCells(dataGridView1);
+
+					// Устанавливаем значения для каждой ячейки из текущего узла
+					row->Cells[0]->Value = currentNode->GetUser()->lName;
+					row->Cells[1]->Value = currentNode->GetUser()->year_start_up;
+					row->Cells[2]->Value = currentNode->GetUser()->phone;
+					row->Cells[3]->Value = currentNode->GetUser()->street;
+					row->Cells[4]->Value = currentNode->GetUser()->house;
+					row->Cells[5]->Value = currentNode->GetUser()->number_apart;
+
+					// Добавляем строку в DataGridView
+					dataGridView1->Rows->Add(row);
+				}
+				currentNode = currentNode->GetNext();
+			}
+		}
+		else
+		{
+			UpdateBindingGridView(list, dataGridView1, "front");
+		}
+
+	}
 };
 };
