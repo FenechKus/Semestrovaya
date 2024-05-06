@@ -31,3 +31,9 @@
 *.out
 *.app
 /.vs/Semestrovaya/v17/Browse.VC.opendb
+*.vsidx
+/.vs/Semestrovaya/v17/ipch/AutoPCH/cc6ab7c4dfef84a3/MAINWINDOW.ipch
+/.vs/Semestrovaya/v17/.suo
+/.vs/Semestrovaya/v17/Browse.VC.db
+/.vs/Semestrovaya/v17/Browse.VC.db-shm
+/.vs/Semestrovaya/v17/Browse.VC.db-wal
