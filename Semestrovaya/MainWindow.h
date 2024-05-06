@@ -83,6 +83,8 @@ namespace Semestrovaya {
 	private: System::Windows::Forms::Button^ RemoveButton;
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::Button^ button3;
+	private: System::Windows::Forms::RadioButton^ FrontListRadioButton;
+	private: System::Windows::Forms::RadioButton^ ReverseListButton;
 
 	protected:
 
@@ -169,6 +171,8 @@ namespace Semestrovaya {
 			this->RemoveButton = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->FrontListRadioButton = (gcnew System::Windows::Forms::RadioButton());
+			this->ReverseListButton = (gcnew System::Windows::Forms::RadioButton());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -344,11 +348,38 @@ namespace Semestrovaya {
 			this->button3->Text = L"Поиск по Номеру";
 			this->button3->UseVisualStyleBackColor = true;
 			// 
+			// FrontListRadioButton
+			// 
+			this->FrontListRadioButton->AutoSize = true;
+			this->FrontListRadioButton->Checked = true;
+			this->FrontListRadioButton->Location = System::Drawing::Point(679, 202);
+			this->FrontListRadioButton->Name = L"FrontListRadioButton";
+			this->FrontListRadioButton->Size = System::Drawing::Size(104, 17);
+			this->FrontListRadioButton->TabIndex = 13;
+			this->FrontListRadioButton->TabStop = true;
+			this->FrontListRadioButton->Text = L"Прямой список";
+			this->FrontListRadioButton->UseVisualStyleBackColor = true;
+			this->FrontListRadioButton->CheckedChanged += gcnew System::EventHandler(this, &MainWindow::FrontListRadioButton_CheckedChanged);
+			// 
+			// ReverseListButton
+			// 
+			this->ReverseListButton->AutoSize = true;
+			this->ReverseListButton->Location = System::Drawing::Point(679, 225);
+			this->ReverseListButton->Name = L"ReverseListButton";
+			this->ReverseListButton->Size = System::Drawing::Size(116, 17);
+			this->ReverseListButton->TabIndex = 14;
+			this->ReverseListButton->TabStop = true;
+			this->ReverseListButton->Text = L"Обратный Список";
+			this->ReverseListButton->UseVisualStyleBackColor = true;
+			this->ReverseListButton->CheckedChanged += gcnew System::EventHandler(this, &MainWindow::ReverseListButton_CheckedChanged);
+			// 
 			// MainWindow
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(801, 453);
+			this->Controls->Add(this->ReverseListButton);
+			this->Controls->Add(this->FrontListRadioButton);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->RemoveButton);
@@ -376,13 +407,17 @@ namespace Semestrovaya {
 		/// <summary>
 		///	Метод, который обновляет привязку данных к DataGridView, отчистив перед этим все строки
 		///</summary>
-		static void UpdateBindingGridView(LinkedList^ list, DataGridView^ dataGridView) {
-
+		static void UpdateBindingGridView(LinkedList^ list, DataGridView^ dataGridView, String^ mode) {
 			// Очистить все строки в DataGridView
 			dataGridView->Rows->Clear();
 
 			// Начинаем с головы списка
-			Node^ currentNode = list->GetHead();
+			Node^ currentNode;
+			if(mode == "front" or mode == nullptr)
+			currentNode = list->GetHead();
+			else
+			currentNode = list->GetTail();
+
 
 			// Проходим по каждому узлу в списке
 			while (currentNode != nullptr) {
@@ -404,14 +439,17 @@ namespace Semestrovaya {
 				dataGridView->Rows->Add(row);
 
 				// Переходим к следующему узлу
-				currentNode = currentNode->GetNext();
+				if(mode == "front" or mode == nullptr)
+					currentNode = currentNode->GetNext();
+				else
+					currentNode = currentNode->GetPrev();
 			}
 		}
 
 
 	private: System::Void MainWindow_Load(System::Object^ sender, System::EventArgs^ e) {
 
-		UpdateBindingGridView(list, dataGridView1);
+		UpdateBindingGridView(list, dataGridView1, "front");
 	}
 
 		   //TODO (Low) Изменить название кнопки
@@ -421,7 +459,7 @@ namespace Semestrovaya {
 	private: System::Void OnClick_NewUserPhone(System::Object^ sender, System::EventArgs^ e) {
 		NewUserPhone^ newUserWindow = gcnew NewUserPhone(list, nullptr);
 		newUserWindow->ShowDialog();
-		UpdateBindingGridView(list, dataGridView1);
+		UpdateBindingGridView(list, dataGridView1, "front");
 	}
 
 		   /// <summary>
@@ -446,7 +484,7 @@ namespace Semestrovaya {
 						// Создаем окно для редактирования пользователя
 						NewUserPhone^ newUserWindow = gcnew NewUserPhone(list, currentNode->GetUser());
 						newUserWindow->ShowDialog(); // Показываем окно как диалог
-						UpdateBindingGridView(list, dataGridView1); // Обновляем dataGridView после редактирования
+						UpdateBindingGridView(list, dataGridView1, "front"); // Обновляем dataGridView после редактирования
 						return; // Выходим из метода после редактирования
 					}
 				}
@@ -466,14 +504,14 @@ namespace Semestrovaya {
 					list->RemoveNode(dataGridView1->SelectedRows[i]->Cells[0]->Value->ToString());
 				}
 			}
-			UpdateBindingGridView(list, dataGridView1);
+			UpdateBindingGridView(list, dataGridView1, "front");
 		}
 		
 	}
 
 	private: System::Void OnClick_OpenFile(System::Object^ sender, System::EventArgs^ e) {
 		OpenSCVFile();
-		UpdateBindingGridView(list, dataGridView1);
+		UpdateBindingGridView(list, dataGridView1, "front");
 	}
 	private:
 
@@ -489,6 +527,12 @@ namespace Semestrovaya {
 	
 private: System::Void Debug_Click(System::Object^ sender, System::EventArgs^ e) {
 	list->DEBUG_PrintListConsoleLinkedRelation();
+}
+private: System::Void FrontListRadioButton_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	UpdateBindingGridView(list, dataGridView1, "front");
+}
+private: System::Void ReverseListButton_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	UpdateBindingGridView(list, dataGridView1, "reverse");
 }
 };
 };

@@ -1,3 +1,6 @@
-﻿  LinkedList.cpp
+﻿  MainWindow.cpp
   LinkedList.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
+LinkedList.obj : warning LNK4099: "" PDB не найден с "LinkedList.obj" или на ""; компоновка объекта выполняется как при отсутствии отладочных данных
+LinkedList.obj : warning LNK4099: "" PDB не найден с "LinkedList.obj" или на ""; компоновка объекта выполняется как при отсутствии отладочных данных
+NewUserPhone.obj : warning LNK4099: "" PDB не найден с "NewUserPhone.obj" или на ""; компоновка объекта выполняется как при отсутствии отладочных данных
   Semestrovaya.vcxproj -> D:\source\C++\Desktop\Semestrovaya\x64\Debug\Semestrovaya.exe
