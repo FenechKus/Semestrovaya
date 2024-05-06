@@ -1,8 +1,6 @@
 ﻿  MainWindow.cpp
-D:\source\C++\Desktop\Semestrovaya\Semestrovaya\NewUserPhone.h(22,15): warning C4677: NewUserPhone: сигнатура члена, не являющегося частным, содержит частный тип сборки "LinkedList"
-  (компиляция исходного файла "MainWindow.cpp")
-  D:\source\C++\Desktop\Semestrovaya\Semestrovaya\LinkedList.h(22,11):
-   см. объявление "LinkedList"
-  
   LinkedList.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
+LinkedList.obj : warning LNK4099: "" PDB не найден с "LinkedList.obj" или на ""; компоновка объекта выполняется как при отсутствии отладочных данных
+LinkedList.obj : warning LNK4099: "" PDB не найден с "LinkedList.obj" или на ""; компоновка объекта выполняется как при отсутствии отладочных данных
+NewUserPhone.obj : warning LNK4099: "" PDB не найден с "NewUserPhone.obj" или на ""; компоновка объекта выполняется как при отсутствии отладочных данных
   Semestrovaya.vcxproj -> D:\source\C++\Desktop\Semestrovaya\x64\Debug\Semestrovaya.exe

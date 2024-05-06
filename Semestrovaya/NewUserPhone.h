@@ -17,15 +17,19 @@ namespace Semestrovaya {
 	/// </summary>
 	public ref class NewUserPhone : public System::Windows::Forms::Form
 	{
+		//Создание ссылки на список, чтобы добавить в него нового пользователя
 		LinkedList^ list;
+		UserData^ user;
 	public:
-		NewUserPhone(LinkedList^ _list) : list(_list)
+		NewUserPhone(LinkedList^ _list, UserData^ _user) : list(_list), user(_user)
 		{
 			InitializeComponent();
-			//
-			//TODO: добавьте код конструктора
-			//
+			isEditMode();
+			if (isEditMode())
+				InsertValueUserData();
+			
 		}
+		
 
 	protected:
 		/// <summary>
@@ -38,6 +42,11 @@ namespace Semestrovaya {
 				delete components;
 			}
 		}
+#pragma region Код, автоматически созданный конструктором форм Windows
+		/// <summary>
+		/// Требуемый метод для поддержки конструктора — не изменяйте 
+		/// содержимое этого метода с помощью редактора кода.
+		/// </summary>
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::TextBox^ LastNameBox;
 	private: System::Windows::Forms::TextBox^ YearBox;
@@ -68,9 +77,8 @@ namespace Semestrovaya {
 		/// <summary>
 		/// Обязательная переменная конструктора.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
-#pragma region Windows Form Designer generated code
 		/// <summary>
 		/// Требуемый метод для поддержки конструктора — не изменяйте 
 		/// содержимое этого метода с помощью редактора кода.
@@ -257,29 +265,75 @@ namespace Semestrovaya {
 
 		}
 #pragma endregion
+
+	private:
+		void InsertValueUserData()
+		{
+			if (user != nullptr)
+			{
+				LastNameBox->Text = user->lName;
+				YearBox->Text = Convert::ToString(user->year_start_up);
+				PhoneBox->Text = user->phone;
+				StreetBox->Text = user->street;
+				HouseBox->Text = Convert::ToString(user->house);
+				NumApartamentBox->Text = Convert::ToString(user->number_apart);
+			}
+		}
+
+		bool isEditMode()
+		{
+			if (user != nullptr)
+			{
+				return true;
+			}
+			return false;
+		}
+
 	private: System::Void ApplyButton_Click(System::Object^ sender, System::EventArgs^ e) {
-			try
-			{
-				UserData^ user = gcnew UserData();
-				user->l_name = LastNameBox->Text;
-				user->year_start_up = Convert::ToInt32(YearBox->Text);
-				user->phone = PhoneBox->Text;
-				user->street = StreetBox->Text;
-				user->house = Convert::ToInt32(HouseBox->Text);
-				user->number_apart = Convert::ToInt32(NumApartamentBox->Text);
-				list->PushBack(user);
-				this->Close();
-			}
-			catch (Exception^ e)
-			{
-				MessageBox::Show(e->Message + "\nПроверьте корректность данных в поле ввода", "Error!", MessageBoxButtons::OK, MessageBoxIcon::Error);
-			}
+		try
+		{
+			////TODO дописать, доработать
+			//if (isEditMode())
+			//{
+			//	user->lName = LastNameBox->Text;
+			//	user->year_start_up = Convert::ToInt32(YearBox->Text);
+			//	user->phone = PhoneBox->Text;
+			//	user->street = StreetBox->Text;
+			//	user->house = Convert::ToInt32(HouseBox->Text);
+			//	user->number_apart = Convert::ToInt32(NumApartamentBox->Text);
+			//	while (list)
+			//	{
+			//		if (list->GetUserData(user->lName).lName == user->lName)
+			//		{
+			//			list->SetUserData(user);
+			//			break;
+			//		}
+			//		list = list->GetHead()->GetNext();
+			//	}
+			//	this->Close();
+			//	return;
+			//}
+			UserData^ user = gcnew UserData();
+			user->lName = LastNameBox->Text;
+			user->year_start_up = Convert::ToInt32(YearBox->Text);
+			user->phone = PhoneBox->Text;
+			user->street = StreetBox->Text;
+			user->house = Convert::ToInt32(HouseBox->Text);
+			user->number_apart = Convert::ToInt32(NumApartamentBox->Text);
+			list->PushBack(user);
+			this->Close();
+		}
+		catch (Exception^ e)
+		{
+			MessageBox::Show(e->Message + "\nПроверьте корректность данных в поле ввода", "Error!", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
 
 	}
-private: System::Void CancelButton_Click(System::Object^ sender, System::EventArgs^ e) {
-	auto messResult = MessageBox::Show("Вы уверены, что хотите закрыть окно?", "Подтверждение", MessageBoxButtons::YesNo, MessageBoxIcon::Question);
-		if(messResult == System::Windows::Forms::DialogResult::Yes)
-			this->Close();
-}
-};
+		private: System::Void CancelButton_Click(System::Object^ sender, System::EventArgs^ e) {
+			auto messResult = MessageBox::Show("Вы уверены, что хотите закрыть окно?", "Подтверждение", 
+				MessageBoxButtons::YesNo, MessageBoxIcon::Question);
+			if (messResult == System::Windows::Forms::DialogResult::Yes)
+				this->Close();
+		}
+	};
 }

@@ -78,12 +78,18 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalDependencies />
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>main</EntryPointSymbol>
     </Link>
+    <Xdcmake>
+      <AdditionalDocumentFile>
+      </AdditionalDocumentFile>
+      <SuppressStartupBanner>false</SuppressStartupBanner>
+    </Xdcmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -120,6 +126,7 @@
     <ClInclude Include="NewUserPhone.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Parser.h" />
     <ClInclude Include="UserData.h" />
   </ItemGroup>
   <ItemGroup>

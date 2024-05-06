@@ -1,23 +1,34 @@
-// UserData.h
 #pragma once
-
-#include <string> // Для использования строк в конструкторе
 
 using namespace System;
 
+/// <summary>
+/// Класс характеризующий данные пользователя телефона
+/// 
+/// Поля:
+/// l_name - фамилия
+/// year_start_up - год подключения
+/// phone - номер телефона
+/// street - улица
+/// house - дом
+/// number_apart - номер квартиры
+/// 
+/// Методы:
+///
+/// </summary>
 public ref class UserData sealed
 {
 public:
-	String^ l_name;
+	String^ lName;
 	int year_start_up;
 	String^ phone;
 
-	// Адрес
+	
 	String^ street;
 	int house;
 	int number_apart;
 
-	// Конструкторы
+	
 	UserData();
 	UserData(String^ l_name, int year_start_up, String^ phone, String^ street, int house, int number_apart);
 };

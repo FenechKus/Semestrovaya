@@ -1,0 +1,67 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.39.33523.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///d:/source/c++/desktop/semestrovaya/semestrovaya/mainwindow.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "df2c95d7f66f95c1780341a02de24219d12b633743e58c461875767a84f1f888"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/source/c++/desktop/semestrovaya/semestrovaya/mainwindow.h"
+          },
+          "hashes": {
+            "sha-256": "831c080970508d322570bef00ca6ebbe8912ba992027b6c4fd141ab3f8cea21f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/source/c++/desktop/semestrovaya/semestrovaya/linkedlist.h"
+          },
+          "hashes": {
+            "sha-256": "91e9a48e6d35364edd7fc68123dbe80ff306781095b3a0258e715c2722cba7fb"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/source/c++/desktop/semestrovaya/semestrovaya/userdata.h"
+          },
+          "hashes": {
+            "sha-256": "08e57a33f5f7655dc5ee71a49925332379caa4e65b5c9f1d00453b53d28320ca"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/source/c++/desktop/semestrovaya/semestrovaya/newuserphone.h"
+          },
+          "hashes": {
+            "sha-256": "200f1465ea08dd4690312732224c8773ae6463e874531ebfd8fb5968a984f2b2"
+          }
+        }
+      ]
+    }
+  ]
+}
