@@ -91,6 +91,7 @@ void LinkedList::RemoveNode(String^ lastName)
     }
 }
 
+
 /// Методы доступа
 Node^ Node::GetNext()
 {
@@ -114,6 +115,7 @@ UserData^ Node::GetUser()
 void Node::SetUser(UserData^ _user) { user = _user; }
 
 
+
 Node^ LinkedList::GetHead()
 {
 	return head;
@@ -122,6 +124,67 @@ Node^ LinkedList::GetHead()
 Node^ LinkedList::GetTail()
 {
 	return tail;
+}
+
+void LinkedList::UpdateBindingGridView(LinkedList^ list, DataGridView^ dataGridView, String^ mode)
+{
+    // Очистить все строки в DataGridView
+    dataGridView->Rows->Clear();
+
+    // Начинаем с головы списка
+    Node^ currentNode;
+    if (mode == "front" or mode == nullptr)
+        currentNode = list->GetHead();
+    else
+        currentNode = list->GetTail();
+
+
+    // Проходим по каждому узлу в списке
+    while (currentNode != nullptr) {
+        // Создаем новую строку для DataGridView
+        DataGridViewRow^ row = gcnew DataGridViewRow();
+
+        // Создаем ячейки в строке
+        row->CreateCells(dataGridView);
+
+        // Устанавливаем значения для каждой ячейки из текущего узла
+        row->Cells[0]->Value = currentNode->GetUser()->lName;
+        row->Cells[1]->Value = currentNode->GetUser()->year_start_up;
+        row->Cells[2]->Value = currentNode->GetUser()->phone;
+        row->Cells[3]->Value = currentNode->GetUser()->street;
+        row->Cells[4]->Value = currentNode->GetUser()->house;
+        row->Cells[5]->Value = currentNode->GetUser()->number_apart;
+
+        // Добавляем строку в DataGridView
+        dataGridView->Rows->Add(row);
+
+        // Переходим к следующему узлу
+        if (mode == "front" or mode == nullptr)
+            currentNode = currentNode->GetNext();
+        else
+            currentNode = currentNode->GetPrev();
+    }
+}
+
+UserData^ LinkedList::FindNode(String^ param, String^ senderName)
+{
+    Node^ curentNode = head;
+
+    while (curentNode != nullptr)
+    {
+	    if (curentNode->GetUser()->lName == param && senderName == "RichBoxLastname")
+	    {
+		    return curentNode->GetUser();
+	    }
+        else if (curentNode->GetUser()->phone == param && senderName == "RichBoxPhone")
+        {
+            return curentNode->GetUser();
+        }
+        curentNode = curentNode->GetNext();
+    }
+    return nullptr;
+
+
 }
 
 void LinkedList::DEBUG_PrintListConsoleLinkedRelation()

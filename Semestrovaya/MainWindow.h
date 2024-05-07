@@ -40,6 +40,19 @@ namespace Semestrovaya {
 
 		}
 
+
+	protected:
+		/// <summary>
+		/// Освободить все используемые ресурсы.
+		/// </summary>
+		~MainWindow()
+		{
+			if (components)
+			{
+				delete components;
+			}
+		}
+
 		void OpenSCVFile()
 		{
 			list = gcnew LinkedList();
@@ -53,17 +66,7 @@ namespace Semestrovaya {
 			}
 		}
 
-	protected:
-		/// <summary>
-		/// Освободить все используемые ресурсы.
-		/// </summary>
-		~MainWindow()
-		{
-			if (components)
-			{
-				delete components;
-			}
-		}
+#pragma region Windows Form Designer generated code
 	private: System::Windows::Forms::Button^ CreateNewUser;
 	protected:
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Apartament;
@@ -72,7 +75,8 @@ namespace Semestrovaya {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Phone;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Year;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ LastName;
-	private: System::Windows::Forms::DataGridView^ dataGridView1;
+	private: System::Windows::Forms::DataGridView^ GridViewAbonents;
+
 	private: System::Windows::Forms::Button^ CloseButton;
 	private: System::Windows::Forms::Button^ EditButton;
 	private: System::Windows::Forms::Button^ button1;
@@ -92,67 +96,12 @@ namespace Semestrovaya {
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label4;
 
-	protected:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	protected:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	protected:
-
-	protected:
-
 	private:
 		/// <summary>
 		/// Обязательная переменная конструктора.
 		/// </summary>
 		System::ComponentModel::Container^ components;
 
-#pragma region Windows Form Designer generated code
 		/// <summary>
 		/// Требуемый метод для поддержки конструктора — не изменяйте 
 		/// содержимое этого метода с помощью редактора кода.
@@ -166,7 +115,7 @@ namespace Semestrovaya {
 			this->Phone = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Year = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->LastName = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->GridViewAbonents = (gcnew System::Windows::Forms::DataGridView());
 			this->CloseButton = (gcnew System::Windows::Forms::Button());
 			this->EditButton = (gcnew System::Windows::Forms::Button());
 			this->button1 = (gcnew System::Windows::Forms::Button());
@@ -183,7 +132,7 @@ namespace Semestrovaya {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->GridViewAbonents))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// CreateNewUser
@@ -233,25 +182,25 @@ namespace Semestrovaya {
 			this->LastName->Name = L"LastName";
 			this->LastName->ReadOnly = true;
 			// 
-			// dataGridView1
+			// GridViewAbonents
 			// 
-			this->dataGridView1->AllowUserToAddRows = false;
-			this->dataGridView1->AllowUserToDeleteRows = false;
-			this->dataGridView1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+			this->GridViewAbonents->AllowUserToAddRows = false;
+			this->GridViewAbonents->AllowUserToDeleteRows = false;
+			this->GridViewAbonents->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->dataGridView1->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
-			this->dataGridView1->AutoSizeRowsMode = System::Windows::Forms::DataGridViewAutoSizeRowsMode::DisplayedCells;
-			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(6) {
+			this->GridViewAbonents->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
+			this->GridViewAbonents->AutoSizeRowsMode = System::Windows::Forms::DataGridViewAutoSizeRowsMode::DisplayedCells;
+			this->GridViewAbonents->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->GridViewAbonents->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(6) {
 				this->LastName,
 					this->Year, this->Phone, this->Street, this->House, this->Apartament
 			});
-			this->dataGridView1->Location = System::Drawing::Point(12, 12);
-			this->dataGridView1->Name = L"dataGridView1";
-			this->dataGridView1->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-			this->dataGridView1->Size = System::Drawing::Size(661, 321);
-			this->dataGridView1->TabIndex = 1;
+			this->GridViewAbonents->Location = System::Drawing::Point(12, 12);
+			this->GridViewAbonents->Name = L"GridViewAbonents";
+			this->GridViewAbonents->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
+			this->GridViewAbonents->Size = System::Drawing::Size(661, 321);
+			this->GridViewAbonents->TabIndex = 1;
 			// 
 			// CloseButton
 			// 
@@ -372,7 +321,7 @@ namespace Semestrovaya {
 			this->RichBoxLastname->Size = System::Drawing::Size(106, 33);
 			this->RichBoxLastname->TabIndex = 15;
 			this->RichBoxLastname->Text = L"";
-			this->RichBoxLastname->TextChanged += gcnew System::EventHandler(this, &MainWindow::OnTextChangedFindLastname);
+			this->RichBoxLastname->TextChanged += gcnew System::EventHandler(this, &MainWindow::OnTextChangedFind);
 			// 
 			// RichBoxPhone
 			// 
@@ -382,7 +331,7 @@ namespace Semestrovaya {
 			this->RichBoxPhone->Size = System::Drawing::Size(106, 33);
 			this->RichBoxPhone->TabIndex = 16;
 			this->RichBoxPhone->Text = L"";
-			this->RichBoxPhone->TextChanged += gcnew System::EventHandler(this, &MainWindow::OnTextChangedFindPhone);
+			this->RichBoxPhone->TextChanged += gcnew System::EventHandler(this, &MainWindow::OnTextChangedFind);
 			// 
 			// label1
 			// 
@@ -445,13 +394,13 @@ namespace Semestrovaya {
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->EditButton);
 			this->Controls->Add(this->CloseButton);
-			this->Controls->Add(this->dataGridView1);
+			this->Controls->Add(this->GridViewAbonents);
 			this->Controls->Add(this->CreateNewUser);
 			this->MinimumSize = System::Drawing::Size(817, 492);
 			this->Name = L"MainWindow";
 			this->Text = L"MainWindow";
 			this->Load += gcnew System::EventHandler(this, &MainWindow::MainWindow_Load);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->GridViewAbonents))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -459,66 +408,25 @@ namespace Semestrovaya {
 #pragma endregion
 
 
-		/// <summary>
-		///	Метод, который обновляет привязку данных к DataGridView, отчистив перед этим все строки
-		///</summary>
-		static void UpdateBindingGridView(LinkedList^ list, DataGridView^ dataGridView, String^ mode) {
-			// Очистить все строки в DataGridView
-			dataGridView->Rows->Clear();
-
-			// Начинаем с головы списка
-			Node^ currentNode;
-			if(mode == "front" or mode == nullptr)
-			currentNode = list->GetHead();
-			else
-			currentNode = list->GetTail();
-
-
-			// Проходим по каждому узлу в списке
-			while (currentNode != nullptr) {
-				// Создаем новую строку для DataGridView
-				DataGridViewRow^ row = gcnew DataGridViewRow();
-
-				// Создаем ячейки в строке
-				row->CreateCells(dataGridView);
-
-				// Устанавливаем значения для каждой ячейки из текущего узла
-				row->Cells[0]->Value = currentNode->GetUser()->lName;
-				row->Cells[1]->Value = currentNode->GetUser()->year_start_up;
-				row->Cells[2]->Value = currentNode->GetUser()->phone;
-				row->Cells[3]->Value = currentNode->GetUser()->street;
-				row->Cells[4]->Value = currentNode->GetUser()->house;
-				row->Cells[5]->Value = currentNode->GetUser()->number_apart;
-
-				// Добавляем строку в DataGridView
-				dataGridView->Rows->Add(row);
-
-				// Переходим к следующему узлу
-				if(mode == "front" or mode == nullptr)
-					currentNode = currentNode->GetNext();
-				else
-					currentNode = currentNode->GetPrev();
-			}
-		}
-
-
+		   /// <summary>	
+		   /// Событийный метод, который открывает файл и загружает данные в список при запуске приложения
+		   /// </summary>
 	private: System::Void MainWindow_Load(System::Object^ sender, System::EventArgs^ e) {
 
-		UpdateBindingGridView(list, dataGridView1, "front");
+		LinkedList::UpdateBindingGridView(list, GridViewAbonents, "front");
 	}
 
-		   //TODO (Low) Изменить название кнопки
 		   /// <summary>
-		   /// Метод, который вызывает окно добавления нового пользователя, после чего обновляет привязку данных к DataGridView
+		   /// Событийный метод, который вызывает окно добавления нового пользователя, после чего обновляет привязку данных к DataGridView
 		   /// </summary>
 	private: System::Void OnClick_NewUserPhone(System::Object^ sender, System::EventArgs^ e) {
 		NewUserPhone^ newUserWindow = gcnew NewUserPhone(list, nullptr);
 		newUserWindow->ShowDialog();
-		UpdateBindingGridView(list, dataGridView1, "front");
+		LinkedList::UpdateBindingGridView(list, GridViewAbonents, "front");
 	}
 
 		   /// <summary>
-		   /// Метод, закрывающий приложение
+		   /// Событийный метод, закрывающий приложение
 		   /// </summary>
 	private: System::Void CloseButton_Click(System::Object^ sender, System::EventArgs^ e) {
 		auto messResult = MessageBox::Show("Вы уверены, что хотите выйти из приложения?", "Подтверждение",
@@ -528,18 +436,20 @@ namespace Semestrovaya {
 
 	}
 
+		//TODO: (HIGH) Перенести реализацию работы с списком в LinkedList
+
 	private: System::Void EditButton_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (dataGridView1->SelectedRows->Count > 0) { // Проверяем, есть ли выбранные строки
+		if (GridViewAbonents->SelectedRows->Count > 0) { // Проверяем, есть ли выбранные строки
 			// Начинаем с головы списка
 			Node^ currentNode = list->GetHead();
 			while (currentNode != nullptr) { // Используем цикл для обхода узлов
-				for (int i = 0; i < dataGridView1->SelectedRows->Count; i++) {
-					// Сравниваем имя текущего узла с выбранным именем в dataGridView1
-					if (currentNode->GetUser()->lName == dataGridView1->SelectedRows[i]->Cells[0]->Value->ToString()) {
+				for (int i = 0; i < GridViewAbonents->SelectedRows->Count; i++) {
+					// Сравниваем имя текущего узла с выбранным именем в GridViewAbonents
+					if (currentNode->GetUser()->lName == GridViewAbonents->SelectedRows[i]->Cells[0]->Value->ToString()) {
 						// Создаем окно для редактирования пользователя
 						NewUserPhone^ newUserWindow = gcnew NewUserPhone(list, currentNode->GetUser());
 						newUserWindow->ShowDialog(); // Показываем окно как диалог
-						UpdateBindingGridView(list, dataGridView1, "front"); // Обновляем dataGridView после редактирования
+						LinkedList::UpdateBindingGridView(list, GridViewAbonents, "front"); // Обновляем dataGridView после редактирования
 						return; // Выходим из метода после редактирования
 					}
 				}
@@ -549,26 +459,25 @@ namespace Semestrovaya {
 	}
 
 	private: System::Void RemoveButton_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (dataGridView1->SelectedRows->Count > 0)
+		if (GridViewAbonents->SelectedRows->Count > 0)
 		{
 			
-			for (int i = 0; i < dataGridView1->SelectedRows->Count; i++)
+			for (int i = 0; i < GridViewAbonents->SelectedRows->Count; i++)
 			{
-				if (dataGridView1->SelectedRows[i]->Cells[0]->Value != nullptr)
+				if (GridViewAbonents->SelectedRows[i]->Cells[0]->Value != nullptr)
 				{
-					list->RemoveNode(dataGridView1->SelectedRows[i]->Cells[0]->Value->ToString());
+					list->RemoveNode(GridViewAbonents->SelectedRows[i]->Cells[0]->Value->ToString());
 				}
 			}
-			UpdateBindingGridView(list, dataGridView1, "front");
+			LinkedList::UpdateBindingGridView(list, GridViewAbonents, "front");
 		}
 		
 	}
 
 	private: System::Void OnClick_OpenFile(System::Object^ sender, System::EventArgs^ e) {
 		OpenSCVFile();
-		UpdateBindingGridView(list, dataGridView1, "front");
+		LinkedList::UpdateBindingGridView(list, GridViewAbonents, "front");
 	}
-	private:
 
 	private: System::Void OnClick_SaveFile(System::Object^ sender, System::EventArgs^ e) {
 		SaveFileDialog^ saveFileDialog1 = gcnew SaveFileDialog();
@@ -584,86 +493,42 @@ private: System::Void Debug_Click(System::Object^ sender, System::EventArgs^ e) 
 	list->DEBUG_PrintListConsoleLinkedRelation();
 }
 private: System::Void FrontListRadioButton_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-	UpdateBindingGridView(list, dataGridView1, "front");
+	LinkedList::UpdateBindingGridView(list, GridViewAbonents, "front");
 }
 private: System::Void ReverseListButton_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-	UpdateBindingGridView(list, dataGridView1, "reverse");
+	LinkedList::UpdateBindingGridView(list, GridViewAbonents, "reverse");
 }
-
-	   private: System::Void OnTextChangedFindLastname(System::Object^ sender, System::EventArgs^ e)
-	   {
-		   if (RichBoxLastname->Text->Length != 0)
-		   {
-			   //отсчистка DataGridView от старых данных
-			   dataGridView1->Rows->Clear();
-
-			   dataGridView1->Columns[1]->Visible = false;
-
-			   Node^ currentNode = list->GetHead();
-			   while (currentNode != nullptr)
-			   {
-				   if (currentNode->GetUser()->lName == RichBoxLastname->Text)
-				   {
-
-					   // Создаем новую строку для DataGridView
-					   DataGridViewRow^ row = gcnew DataGridViewRow();
-
-					   // Создаем ячейки в строке
-					   row->CreateCells(dataGridView1);
-
-					   // Устанавливаем значения для каждой ячейки из текущего узла
-					   row->Cells[0]->Value = currentNode->GetUser()->lName;
-					   row->Cells[1]->Value = currentNode->GetUser()->year_start_up;
-					   row->Cells[2]->Value = currentNode->GetUser()->phone;
-					   row->Cells[3]->Value = currentNode->GetUser()->street;
-					   row->Cells[4]->Value = currentNode->GetUser()->house;
-					   row->Cells[5]->Value = currentNode->GetUser()->number_apart;
-
-					   // Добавляем строку в DataGridView
-					   dataGridView1->Rows->Add(row);
-				   }
-				   currentNode = currentNode->GetNext();
-			   }
-		   }
-		   else
-		   {
-			   UpdateBindingGridView(list, dataGridView1, "front");
-		   }
-	   }
-	private: System::Void OnTextChangedFindPhone(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void OnTextChangedFind(System::Object^ sender, System::EventArgs^ e) {
+		RichTextBox^ richBox = dynamic_cast<RichTextBox^>(sender);
 		if (RichBoxPhone->Text->Length != 0)
 		{
 			//отсчистка DataGridView от старых данных
-			dataGridView1->Rows->Clear();
-
-			Node^ currentNode = list->GetHead();
-			while (currentNode != nullptr)
-			{
-				if (currentNode->GetUser()->phone == RichBoxPhone->Text)
+			GridViewAbonents->Rows->Clear();
+			UserData^ user = list->FindNode(richBox->Text, richBox->Name);
+			
+				if (user != nullptr)
 				{
 					// Создаем новую строку для DataGridView
 					DataGridViewRow^ row = gcnew DataGridViewRow();
 
 					// Создаем ячейки в строке
-					row->CreateCells(dataGridView1);
+					row->CreateCells(GridViewAbonents);
 
 					// Устанавливаем значения для каждой ячейки из текущего узла
-					row->Cells[0]->Value = currentNode->GetUser()->lName;
-					row->Cells[1]->Value = currentNode->GetUser()->year_start_up;
-					row->Cells[2]->Value = currentNode->GetUser()->phone;
-					row->Cells[3]->Value = currentNode->GetUser()->street;
-					row->Cells[4]->Value = currentNode->GetUser()->house;
-					row->Cells[5]->Value = currentNode->GetUser()->number_apart;
+					row->Cells[0]->Value = user->lName;
+					row->Cells[1]->Value = user->year_start_up;
+					row->Cells[2]->Value = user->phone;
+					row->Cells[3]->Value = user->street;
+					row->Cells[4]->Value = user->house;
+					row->Cells[5]->Value = user->number_apart;
 
 					// Добавляем строку в DataGridView
-					dataGridView1->Rows->Add(row);
+					GridViewAbonents->Rows->Add(row);
 				}
-				currentNode = currentNode->GetNext();
-			}
 		}
 		else
 		{
-			UpdateBindingGridView(list, dataGridView1, "front");
+			LinkedList::UpdateBindingGridView(list, GridViewAbonents, "front");
 		}
 
 	}

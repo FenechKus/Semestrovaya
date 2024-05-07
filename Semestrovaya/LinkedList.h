@@ -1,6 +1,8 @@
 #pragma once
 #include "UserData.h"
 
+using namespace System::Windows::Forms;
+
 /// <summary>
 /// Суммарная информация: Node
 /// Класс характеризующий узел списка
@@ -34,19 +36,16 @@ public:
 	void SetUser(UserData^ _user);
 };
 
-///TODO (CRITICAL!!) ПЕРЕПИСАТЬ С ОДНОСВЯЗНОГО НА ДВУХСВЯЗНЫЙ СПИСОК!!!
 /// <summary>
 /// Суммарная информация: LinkedList
 /// Класс характеризующий связный список
 ///
 /// Поля:
 /// head - указатель на начало списка
-///	TODO (High) Добавить tail - указатель на конец списка
 ///
 /// Методы:
 /// GetHead - Получение начала списка
 /// PushBack - Добавление элемента в конец списка
-///  printList - Вывод списка TODO (Low) удалить, если не будет использоваться в дальнейшем
 /// </summary>
 public ref class LinkedList
 {
@@ -69,8 +68,7 @@ public:
 	void PopFront();
 	void RemoveNode(String^ lastName);
 
+	static void UpdateBindingGridView(LinkedList^ list, DataGridView^ dataGridView, String^ mode);
+	UserData^ FindNode(String^ lastName, String^ senderName);
 
-	/*UserData GetUserData(String^ lName);
-
-	void SetUserData(UserData^ user);*/
 };
