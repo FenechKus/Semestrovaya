@@ -19,7 +19,7 @@ Class UserData: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
     Void .ctor(System.String, Int32, System.String, System.String, Int32, Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Fields:
-    System.String lName : Public
+    System.String l_name : Public
     Int32 year_start_up : Public
     System.String phone : Public
     System.String street : Public
@@ -45,6 +45,10 @@ Class LinkedList: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     PopBack(): PrivateScope, Public, HideBySig
     PopFront(): PrivateScope, Public, HideBySig
     RemoveNode(String): PrivateScope, Public, HideBySig
+    UpdateBindingGridView(LinkedList, DataGridView, String): PrivateScope, Public, Static, HideBySig
+    FindNode(String): PrivateScope, Public, HideBySig
+    FindNode(Int32): PrivateScope, Public, HideBySig
+    FindNode(String, String): PrivateScope, Public, HideBySig
 Class Semestrovaya.NewUserPhone: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(LinkedList, UserData): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -52,4 +56,5 @@ Class Semestrovaya.MainWindow: AutoLayout, AnsiClass, Class, Public, BeforeField
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
-    OpenSCVFile(): PrivateScope, Public, HideBySig
+    dataGridView_RowsAdded(Object, DataGridViewRowsAddedEventArgs): PrivateScope, Public, HideBySig
+    dataGridView_RowsRemoved(Object, DataGridViewRowsRemovedEventArgs): PrivateScope, Public, HideBySig

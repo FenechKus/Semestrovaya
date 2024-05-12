@@ -38,17 +38,20 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MainWindow.cpp">
-      <Filter>Исходные файлы\Views</Filter>
-    </ClCompile>
     <ClCompile Include="UserData.cpp">
       <Filter>Исходные файлы\Model</Filter>
     </ClCompile>
     <ClCompile Include="LinkedList.cpp">
       <Filter>Исходные файлы\Model</Filter>
     </ClCompile>
+    <ClCompile Include="Parser.cpp">
+      <Filter>Исходные файлы\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="MainWindow.cpp">
+      <Filter>Исходные файлы\Model</Filter>
+    </ClCompile>
     <ClCompile Include="NewUserPhone.cpp">
-      <Filter>Исходные файлы\Views</Filter>
+      <Filter>Исходные файлы\Model</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

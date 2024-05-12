@@ -8,7 +8,7 @@
         "driver": {
           "name": "PREfast",
           "fullName": "PREfast Code Analysis",
-          "version": "14.39.33523.0",
+          "version": "14.36.32545.0",
           "informationUri": "https://aka.ms/cpp/ca"
         }
       },
@@ -20,7 +20,7 @@
       "artifacts": [
         {
           "location": {
-            "uri": "file:///d:/source/c++/desktop/semestrovaya/semestrovaya/x64/debug/.netframework,version=v4.7.2.assemblyattributes.cpp"
+            "uri": "file:///d:/source/c++/desktop/semka/fenechkus/semestrovaya/semestrovaya/x64/debug/.netframework,version=v4.7.2.assemblyattributes.cpp"
           },
           "roles": [
             "analysisTarget"

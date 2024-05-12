@@ -20,21 +20,21 @@
       "artifacts": [
         {
           "location": {
-            "uri": "file:///d:/source/c++/desktop/semka/fenechkus/semestrovaya/semestrovaya/newuserphone.cpp"
+            "uri": "file:///d:/source/c++/desktop/semka/fenechkus/semestrovaya/semestrovaya/parser.cpp"
           },
           "roles": [
             "analysisTarget"
           ],
           "hashes": {
-            "sha-256": "dc293e0b1a3074cbf497fa59f87f5c616ddc3b1573b49aa3e08401ce5b94f81f"
+            "sha-256": "de87087f937b470404adbc5d89fb59f8956dcb4f4d3f0f428e375e1f77e74a78"
           }
         },
         {
           "location": {
-            "uri": "file:///d:/source/c++/desktop/semka/fenechkus/semestrovaya/semestrovaya/newuserphone.h"
+            "uri": "file:///d:/source/c++/desktop/semka/fenechkus/semestrovaya/semestrovaya/parser.h"
           },
           "hashes": {
-            "sha-256": "177777e781905bbdb891a4575c2801808e214ae4d91a72816b28e070dda86ec8"
+            "sha-256": "5ba823dad2ffc186ae5751e592a0f28df1af3c3f292c0759c56bcf6e14af515f"
           }
         },
         {

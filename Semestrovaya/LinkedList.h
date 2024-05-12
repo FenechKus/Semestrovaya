@@ -4,71 +4,71 @@
 using namespace System::Windows::Forms;
 
 /// <summary>
-/// Суммарная информация: Node
 /// Класс характеризующий узел списка
-///
-/// Поля:
-/// user - данные пользователя
-///	next - указатель на следующий узел
-///
-///	Методы:
-///	GetNext - Получение следующего узла
-///	SetNext - Установка следующего узла
-/// GetUser - Получение данных пользователя
-///	SetUser - Установка данных пользователя
 /// </summary>
 public ref class Node
 {
 private:
-	UserData^ user;
-	Node^ next;
-	Node^ prev;
+	///Поля:
+	UserData^ user; // - данные пользователя
+	Node^ next; // - указатель на следующий узел
+	Node^ prev; // - указатель на предыдущий узел
 
 public:
+	///Конструктор класса
 	Node(UserData^ _user);
 
+	///Методы доступа к узлам:
 	Node^ GetNext();
-	void SetNext(Node^ _next);
-	Node^ GetPrev();
-	void SetPrev(Node^ _prev);
+	void SetNext(Node^ _next); 
+	Node^ GetPrev(); 
+	void SetPrev(Node^ _prev); 
 
+	///Методы доступа к данным пользователя:
 	UserData^ GetUser();
 	void SetUser(UserData^ _user);
 };
 
+
+///--------------------------------------------------------------------------------------------
+///--------------------------------------------------------------------------------------------
+///-----------------------------------Linked-List----------------------------------------------
+///--------------------------------------------------------------------------------------------
+///--------------------------------------------------------------------------------------------
+
 /// <summary>
-/// Суммарная информация: LinkedList
 /// Класс характеризующий связный список
-///
-/// Поля:
-/// head - указатель на начало списка
-///
-/// Методы:
-/// GetHead - Получение начала списка
-/// PushBack - Добавление элемента в конец списка
 /// </summary>
 public ref class LinkedList
 {
 private:
-	Node^ head;
-	Node^ tail;
+	/// Поля:
+	Node^ head; // - указатель на начало списка
+	Node^ tail; // - указатель на конец списка
 
 public:
+	/// Конструктор класса
 	LinkedList();
 
+	/// Методы доступа к списку:
 	Node^ GetHead();
-
 	Node^ GetTail();
+
+	/// Методы для отладки списка:
 	void DEBUG_PrintListConsoleLinkedRelation();
 	void DEBUG_PrintListToConsoleList();
 
+	/// Методы для работы со списком:
 	void PushBack(UserData^ user);
 	void PopBack();
-
 	void PopFront();
 	void RemoveNode(String^ lastName);
 
+	//// Методы для работы с DataGridView из WinForms:
 	static void UpdateBindingGridView(LinkedList^ list, DataGridView^ dataGridView, String^ mode);
-	UserData^ FindNode(String^ lastName, String^ senderName);
+	LinkedList^ FindNode(String^ lastName, String^ senderName);
+	LinkedList^ FindNode(int yearStartup);
+	LinkedList^ FindNode(String^ street);
+	
 
 };

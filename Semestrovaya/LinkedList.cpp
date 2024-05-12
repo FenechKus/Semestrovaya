@@ -58,7 +58,7 @@ void LinkedList::RemoveNode(String^ lastName)
 
     while (current != nullptr) {
         
-        if (current->GetUser()->lName == lastName) {
+        if (current->GetUser()->l_name == lastName) {
 
             if (current == head) {
 				this->PopFront();
@@ -67,13 +67,13 @@ void LinkedList::RemoveNode(String^ lastName)
 
             if (current == tail) {
 
-                System::Diagnostics::Debug::WriteLine("prevNode До " + current->GetPrev()->GetUser()->lName);
-                System::Diagnostics::Debug::WriteLine("tail До " + tail->GetUser()->lName);
+                System::Diagnostics::Debug::WriteLine("prevNode До " + current->GetPrev()->GetUser()->l_name);
+                System::Diagnostics::Debug::WriteLine("tail До " + tail->GetUser()->l_name);
 
                 this->PopBack();
 
-                System::Diagnostics::Debug::WriteLine("prevNode После " + current->GetPrev()->GetUser()->lName);
-                System::Diagnostics::Debug::WriteLine("tail После " + tail->GetUser()->lName);
+                System::Diagnostics::Debug::WriteLine("prevNode После " + current->GetPrev()->GetUser()->l_name);
+                System::Diagnostics::Debug::WriteLine("tail После " + tail->GetUser()->l_name);
                 return;
             }
 
@@ -115,6 +115,12 @@ UserData^ Node::GetUser()
 void Node::SetUser(UserData^ _user) { user = _user; }
 
 
+///--------------------------------------------------------------------------------------------
+///--------------------------------------------------------------------------------------------
+///------------------------------------Linked List---------------------------------------------
+///--------------------------------------------------------------------------------------------
+///--------------------------------------------------------------------------------------------
+
 
 Node^ LinkedList::GetHead()
 {
@@ -128,9 +134,10 @@ Node^ LinkedList::GetTail()
 
 void LinkedList::UpdateBindingGridView(LinkedList^ list, DataGridView^ dataGridView, String^ mode)
 {
+    int counterNotes = 0;
     // Очистить все строки в DataGridView
     dataGridView->Rows->Clear();
-
+    
     // Начинаем с головы списка
     Node^ currentNode;
     if (mode == "front" or mode == nullptr)
@@ -148,7 +155,7 @@ void LinkedList::UpdateBindingGridView(LinkedList^ list, DataGridView^ dataGridV
         row->CreateCells(dataGridView);
 
         // Устанавливаем значения для каждой ячейки из текущего узла
-        row->Cells[0]->Value = currentNode->GetUser()->lName;
+        row->Cells[0]->Value = currentNode->GetUser()->l_name;
         row->Cells[1]->Value = currentNode->GetUser()->year_start_up;
         row->Cells[2]->Value = currentNode->GetUser()->phone;
         row->Cells[3]->Value = currentNode->GetUser()->street;
@@ -157,6 +164,7 @@ void LinkedList::UpdateBindingGridView(LinkedList^ list, DataGridView^ dataGridV
 
         // Добавляем строку в DataGridView
         dataGridView->Rows->Add(row);
+        counterNotes++;
 
         // Переходим к следующему узлу
         if (mode == "front" or mode == nullptr)
@@ -166,25 +174,56 @@ void LinkedList::UpdateBindingGridView(LinkedList^ list, DataGridView^ dataGridV
     }
 }
 
-UserData^ LinkedList::FindNode(String^ param, String^ senderName)
+LinkedList^ LinkedList::FindNode(String^ param, String^ senderName)
 {
+    LinkedList^ findList = gcnew LinkedList();
     Node^ curentNode = head;
 
     while (curentNode != nullptr)
     {
-	    if (curentNode->GetUser()->lName == param && senderName == "RichBoxLastname")
+	    if (curentNode->GetUser()->l_name == param && senderName == "RichBoxLastname")
 	    {
-		    return curentNode->GetUser();
+            findList->PushBack(curentNode->GetUser());
 	    }
         else if (curentNode->GetUser()->phone == param && senderName == "RichBoxPhone")
         {
-            return curentNode->GetUser();
+            findList->PushBack(curentNode->GetUser());
         }
         curentNode = curentNode->GetNext();
     }
-    return nullptr;
+    return findList;
+}
 
+LinkedList^ LinkedList::FindNode(int yearStartup)
+{
+    LinkedList^ findList = gcnew LinkedList();
+    Node^ curentNode = head;
 
+    while (curentNode != nullptr)
+    {
+        if (curentNode->GetUser()->year_start_up == yearStartup)
+        {
+        	findList->PushBack(curentNode->GetUser());
+        }
+        curentNode = curentNode->GetNext();
+    }
+    return findList;
+}
+
+LinkedList^ LinkedList::FindNode(String^ street)
+{
+    LinkedList^ findlist = gcnew LinkedList();
+    Node^ curentNode = head;
+
+	while (curentNode != nullptr)
+    {
+	    if (curentNode->GetUser()->street == street)
+	    {
+			findlist->PushBack(curentNode->GetUser());
+	    }
+        curentNode = curentNode->GetNext();
+    }
+    return findlist;
 }
 
 void LinkedList::DEBUG_PrintListConsoleLinkedRelation()
@@ -195,13 +234,13 @@ void LinkedList::DEBUG_PrintListConsoleLinkedRelation()
     {
         UserData^ user = currentNode->GetUser();
 
-        System::Diagnostics::Debug::WriteLine("Фамилия: ", user->lName);
+        System::Diagnostics::Debug::WriteLine("Фамилия: ", user->l_name);
         if(currentNode->GetPrev())
-			System::Diagnostics::Debug::WriteLine("Фамилия предыдущего по списку ", currentNode->GetPrev()->GetUser()->lName);
+			System::Diagnostics::Debug::WriteLine("Фамилия предыдущего по списку ", currentNode->GetPrev()->GetUser()->l_name);
         else
             System::Diagnostics::Debug::WriteLine("Фамилия предыдущего по списку NULL");
         if (currentNode->GetNext())
-            System::Diagnostics::Debug::WriteLine("Фамилия следующего по списку ", currentNode->GetNext()->GetUser()->lName);
+            System::Diagnostics::Debug::WriteLine("Фамилия следующего по списку ", currentNode->GetNext()->GetUser()->l_name);
         else
             System::Diagnostics::Debug::WriteLine("Фамилия следующего по списку NULL");
 
@@ -225,7 +264,7 @@ void LinkedList::DEBUG_PrintListToConsoleList()
 
         // Выводим данные пользователя в консоль
         System::Diagnostics::Debug::WriteLine(""); // Пустая строка для разделения записей
-        System::Diagnostics::Debug::WriteLine("Фамилия: {0}", user->lName);
+        System::Diagnostics::Debug::WriteLine("Фамилия: {0}", user->l_name);
         System::Diagnostics::Debug::WriteLine("Год установки: {0}", user->year_start_up);
         System::Diagnostics::Debug::WriteLine("Телефон: {0}", user->phone);
         System::Diagnostics::Debug::WriteLine("Улица: {0}", user->street);

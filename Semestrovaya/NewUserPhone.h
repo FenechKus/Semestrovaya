@@ -1,4 +1,6 @@
 #pragma once
+#include <functional>
+
 #include "LinkedList.h"
 #include "UserData.h"
 
@@ -13,7 +15,7 @@ namespace Semestrovaya {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// Сводка для NewUserPhone
+	/// Класс формы для добавления нового пользователя
 	/// </summary>
 	public ref class NewUserPhone : public System::Windows::Forms::Form
 	{
@@ -27,7 +29,6 @@ namespace Semestrovaya {
 			isEditMode();
 			if (isEditMode())
 				InsertValueUserData();
-			
 		}
 		
 
@@ -40,6 +41,15 @@ namespace Semestrovaya {
 			if (components)
 			{
 				delete components;
+			}
+
+			if (list)
+			{
+				delete list;
+			}
+			if (user)
+			{
+				delete user;
 			}
 		}
 #pragma region Код, автоматически созданный конструктором форм Windows
@@ -271,7 +281,7 @@ namespace Semestrovaya {
 		{
 			if (user != nullptr)
 			{
-				LastNameBox->Text = user->lName;
+				LastNameBox->Text = user->l_name;
 				YearBox->Text = Convert::ToString(user->year_start_up);
 				PhoneBox->Text = user->phone;
 				StreetBox->Text = user->street;
@@ -289,43 +299,71 @@ namespace Semestrovaya {
 			return false;
 		}
 
+		static bool isValidInformation(UserData^ user)
+		{
+			if (user->l_name == "" || user->year_start_up == 0 || user->phone == "" || user->street == "" || user->house == 0 || user->number_apart == 0)
+			{
+				return false;
+			}
+			return true;
+		}
+
 	private: System::Void ApplyButton_Click(System::Object^ sender, System::EventArgs^ e) {
 		try
 		{
-			////TODO дописать, доработать
-			//if (isEditMode())
-			//{
-			//	user->lName = LastNameBox->Text;
-			//	user->year_start_up = Convert::ToInt32(YearBox->Text);
-			//	user->phone = PhoneBox->Text;
-			//	user->street = StreetBox->Text;
-			//	user->house = Convert::ToInt32(HouseBox->Text);
-			//	user->number_apart = Convert::ToInt32(NumApartamentBox->Text);
-			//	while (list)
-			//	{
-			//		if (list->GetUserData(user->lName).lName == user->lName)
-			//		{
-			//			list->SetUserData(user);
-			//			break;
-			//		}
-			//		list = list->GetHead()->GetNext();
-			//	}
-			//	this->Close();
-			//	return;
-			//}
+			if (isEditMode())
+			{
+
+				Node^ currentNode = list->GetHead();
+				if (isValidInformation(user))
+				{
+					while (currentNode != nullptr)
+					{
+
+						if (user->phone == currentNode->GetUser()->phone)
+						{
+							user->l_name = LastNameBox->Text;
+							user->year_start_up = Convert::ToInt32(YearBox->Text);
+							user->phone = PhoneBox->Text;
+							user->street = StreetBox->Text;
+							user->house = Convert::ToInt32(HouseBox->Text);
+							user->number_apart = Convert::ToInt32(NumApartamentBox->Text);
+
+							currentNode->SetUser(user);
+							break;
+						}
+						currentNode = currentNode->GetNext();
+					}
+				}
+				else
+				{
+					throw gcnew InvalidOperationException("Некорректные данные");
+				}
+
+				this->Close();
+				return;
+			}
+
 			UserData^ user = gcnew UserData();
-			user->lName = LastNameBox->Text;
+			user->l_name = LastNameBox->Text;
 			user->year_start_up = Convert::ToInt32(YearBox->Text);
 			user->phone = PhoneBox->Text;
 			user->street = StreetBox->Text;
 			user->house = Convert::ToInt32(HouseBox->Text);
 			user->number_apart = Convert::ToInt32(NumApartamentBox->Text);
-			list->PushBack(user);
-			this->Close();
+			if (isValidInformation(user))
+			{
+				list->PushBack(user);
+				this->Close();
+			}
+			else
+			{
+				throw gcnew InvalidOperationException("Некорректные данные");
+			}
 		}
 		catch (Exception^ e)
 		{
-			MessageBox::Show(e->Message + "\nПроверьте корректность данных в поле ввода", "Error!", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			MessageBox::Show(e->Message, "Ошибка!", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
 
 	}
