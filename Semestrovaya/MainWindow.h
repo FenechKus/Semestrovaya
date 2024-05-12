@@ -519,7 +519,7 @@ namespace Semestrovaya {
 			while (currentNode != nullptr) { // Используем цикл для обхода узлов
 				for (int i = 0; i < GridViewAbonents->SelectedRows->Count; i++) {
 					// Сравниваем имя текущего узла с выбранным именем в GridViewAbonents
-					if (currentNode->GetUser()->l_name == GridViewAbonents->SelectedRows[i]->Cells[0]->Value->ToString()) {
+					if (currentNode->GetUser()->phone == GridViewAbonents->SelectedRows[i]->Cells[2]->Value->ToString()) {
 						// Создаем окно для редактирования пользователя
 						NewUserPhone^ newUserWindow = gcnew NewUserPhone(list, currentNode->GetUser());
 						newUserWindow->ShowDialog(); // Показываем окно как диалог
