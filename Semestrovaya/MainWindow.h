@@ -1,18 +1,21 @@
 #pragma once
-//#include "LinkedList.h"
+
 #include "NewUserPhone.h"
 #include "Parser.h"
-//#include "Parser.h"
+
+
+// Объявление управляемых CLI классов для решения циклических зависимостей
 
 ref class Node;
 ref class LinkedList;
-//ref class NewUserPhone;
-ref class UserData;
 ref class Parser;
+ref class UserData;
 
 namespace Semestrovaya {
 
-
+	/// <summary>
+	///	Подключение пространства имен для работы с формами и средой CLI
+	/// </summary>
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
@@ -22,39 +25,48 @@ namespace Semestrovaya {
 
 
 
-	/// <summary>
-	/// Сводка для MainWindow
-	/// </summary>
+	///<summary>
+	///Класс, характеризующий главное окно приложения
+	///</summary>
 	public ref class MainWindow : public System::Windows::Forms::Form
 	{
 	private:
 		LinkedList^ list;
 
 	public:
-		MainWindow(void)
+		///<summary>
+		///Конструктор инициализации компонентов формы,
+		///открытия файла и инициализации поля сортировки
+		///</summary>
+		MainWindow(void) : GridViewAbonents()
 		{
 			InitializeComponent();
 			this->StartPosition = FormStartPosition::CenterScreen;
-			InitilizeSortBox();
 			OpenSCVFile();
+			InitilizeSortBox();
 
-			
-			GridViewAbonents->RowsAdded += gcnew DataGridViewRowsAddedEventHandler(this, &MainWindow::dataGridView_RowsAdded);
-			GridViewAbonents->RowsRemoved += gcnew DataGridViewRowsRemovedEventHandler(this, &MainWindow::dataGridView_RowsRemoved);
+			// События для обновления счетчика строк
+			GridViewAbonents->RowsAdded += gcnew DataGridViewRowsAddedEventHandler(
+				this, &MainWindow::dataGridView_RowsAdded);
+			GridViewAbonents->RowsRemoved += gcnew DataGridViewRowsRemovedEventHandler(
+				this, &MainWindow::dataGridView_RowsRemoved);
+
 		}
 
-
-		
+		///<summary>
+		/// Методы обработчика события, который обновляет счетчик строк в списке
+		///</summary>
+#pragma region Обработчики событий подсчета строк в списке
 		void dataGridView_RowsAdded(Object^ sender, DataGridViewRowsAddedEventArgs^ e)
 		{
 			CounterLabel->Text = "Строк: " + GridViewAbonents->Rows->Count;
 		}
 
-		
 		void dataGridView_RowsRemoved(Object^ sender, DataGridViewRowsRemovedEventArgs^ e)
 		{
 			CounterLabel->Text = "Строк: " + GridViewAbonents->Rows->Count;
 		}
+#pragma endregion
 
 	protected:
 
@@ -69,66 +81,53 @@ namespace Semestrovaya {
 			}
 		}
 
-		void OpenSCVFile()
-		{
-			list = gcnew LinkedList();
-			OpenFileDialog^ openFileDialog = gcnew OpenFileDialog();
-			openFileDialog->Filter = "Text files(*.csv)|*.csv|All files(*.*)|*.*";
-			if (openFileDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK)
-			{
-				String^ filename = openFileDialog->FileName;
-				Parser::GetDataFromCSV(list, filename);
-
-			}
-		}
-
 #pragma region Windows Form Designer generated code
-	private: System::Windows::Forms::Button^ CreateNewUser;
-	protected:
 
+	private:
 
+	System::Windows::Forms::Button^ CreateNewUser;
 
+	System::Windows::Forms::DataGridView^ GridViewAbonents;
 
+	System::Windows::Forms::Button^ CloseButton;
+	System::Windows::Forms::Button^ EditButton;
+	System::Windows::Forms::Button^ button1;
+	System::Windows::Forms::ComboBox^ SortDataGrid;
 
+	System::Windows::Forms::Button^ SaveButton;
+	System::Windows::Forms::Button^ RemoveButton;
+	System::Windows::Forms::RadioButton^ FrontListButton;
 
-	private: System::Windows::Forms::DataGridView^ GridViewAbonents;
+	System::Windows::Forms::RadioButton^ ReverseListButton;
+	System::Windows::Forms::RichTextBox^ RichBoxLastname;
+	System::Windows::Forms::RichTextBox^ RichBoxPhone;
+	System::Windows::Forms::Label^ label1;
+	System::Windows::Forms::Label^ label2;
+	System::Windows::Forms::Label^ label3;
 
-	private: System::Windows::Forms::Button^ CloseButton;
-	private: System::Windows::Forms::Button^ EditButton;
-	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::ComboBox^ SortDataGrid;
+	System::Windows::Forms::DataGridViewTextBoxColumn^ LastName;
+	System::Windows::Forms::DataGridViewTextBoxColumn^ Year;
+	System::Windows::Forms::DataGridViewTextBoxColumn^ Phone;
+	System::Windows::Forms::DataGridViewTextBoxColumn^ Street;
+	System::Windows::Forms::DataGridViewTextBoxColumn^ House;
+	System::Windows::Forms::DataGridViewTextBoxColumn^ Apartament;
+	System::Windows::Forms::Panel^ panel1;
+	System::Windows::Forms::Label^ label5;
+	System::Windows::Forms::Panel^ panel2;
+	System::Windows::Forms::Label^ label6;
 
+	System::Windows::Forms::Label^ CounterLabel;
+	System::Windows::Forms::Label^ label7;
+	System::Windows::Forms::Label^ label4;
 
+	System::Windows::Forms::RichTextBox^ RichBoxYearFind;
 
-	private: System::Windows::Forms::Button^ SaveButton;
-	private: System::Windows::Forms::Button^ RemoveButton;
-	private: System::Windows::Forms::RadioButton^ FrontListButton;
-
-
-
-	private: System::Windows::Forms::RadioButton^ ReverseListButton;
-	private: System::Windows::Forms::RichTextBox^ RichBoxLastname;
-	private: System::Windows::Forms::RichTextBox^ RichBoxPhone;
-	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::Label^ label3;
-
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ LastName;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Year;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Phone;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Street;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ House;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Apartament;
-	private: System::Windows::Forms::Panel^ panel1;
-	private: System::Windows::Forms::Label^ label5;
-	private: System::Windows::Forms::Panel^ panel2;
-	private: System::Windows::Forms::Label^ label6;
-
-	private: System::Windows::Forms::Label^ CounterLabel;
+	System::Windows::Forms::RichTextBox^ RichBoxStreetFind;
 
 
 
 	private:
+
 		/// <summary>
 		/// Обязательная переменная конструктора.
 		/// </summary>
@@ -163,6 +162,10 @@ namespace Semestrovaya {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->RichBoxYearFind = (gcnew System::Windows::Forms::RichTextBox());
+			this->RichBoxStreetFind = (gcnew System::Windows::Forms::RichTextBox());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->CounterLabel = (gcnew System::Windows::Forms::Label());
@@ -198,10 +201,10 @@ namespace Semestrovaya {
 				this->LastName,
 					this->Year, this->Phone, this->Street, this->House, this->Apartament
 			});
-			this->GridViewAbonents->Location = System::Drawing::Point(12, 12);
+			this->GridViewAbonents->Location = System::Drawing::Point(12, 5);
 			this->GridViewAbonents->Name = L"GridViewAbonents";
 			this->GridViewAbonents->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-			this->GridViewAbonents->Size = System::Drawing::Size(661, 321);
+			this->GridViewAbonents->Size = System::Drawing::Size(661, 386);
 			this->GridViewAbonents->TabIndex = 1;
 			// 
 			// LastName
@@ -251,7 +254,7 @@ namespace Semestrovaya {
 			this->CloseButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
 			this->CloseButton->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(227)), static_cast<System::Int32>(static_cast<System::Byte>(227)),
 				static_cast<System::Int32>(static_cast<System::Byte>(227)));
-			this->CloseButton->Location = System::Drawing::Point(714, 375);
+			this->CloseButton->Location = System::Drawing::Point(714, 433);
 			this->CloseButton->Name = L"CloseButton";
 			this->CloseButton->Size = System::Drawing::Size(79, 60);
 			this->CloseButton->TabIndex = 2;
@@ -322,7 +325,7 @@ namespace Semestrovaya {
 			this->FrontListButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->FrontListButton->AutoSize = true;
 			this->FrontListButton->Checked = true;
-			this->FrontListButton->Location = System::Drawing::Point(12, 146);
+			this->FrontListButton->Location = System::Drawing::Point(12, 137);
 			this->FrontListButton->Name = L"FrontListButton";
 			this->FrontListButton->Size = System::Drawing::Size(104, 17);
 			this->FrontListButton->TabIndex = 13;
@@ -335,7 +338,7 @@ namespace Semestrovaya {
 			// 
 			this->ReverseListButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->ReverseListButton->AutoSize = true;
-			this->ReverseListButton->Location = System::Drawing::Point(12, 169);
+			this->ReverseListButton->Location = System::Drawing::Point(12, 160);
 			this->ReverseListButton->Name = L"ReverseListButton";
 			this->ReverseListButton->Size = System::Drawing::Size(116, 17);
 			this->ReverseListButton->TabIndex = 14;
@@ -347,7 +350,7 @@ namespace Semestrovaya {
 			// RichBoxLastname
 			// 
 			this->RichBoxLastname->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
-			this->RichBoxLastname->Location = System::Drawing::Point(12, 209);
+			this->RichBoxLastname->Location = System::Drawing::Point(8, 196);
 			this->RichBoxLastname->Name = L"RichBoxLastname";
 			this->RichBoxLastname->Size = System::Drawing::Size(106, 33);
 			this->RichBoxLastname->TabIndex = 15;
@@ -357,7 +360,7 @@ namespace Semestrovaya {
 			// RichBoxPhone
 			// 
 			this->RichBoxPhone->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
-			this->RichBoxPhone->Location = System::Drawing::Point(12, 257);
+			this->RichBoxPhone->Location = System::Drawing::Point(8, 244);
 			this->RichBoxPhone->Name = L"RichBoxPhone";
 			this->RichBoxPhone->Size = System::Drawing::Size(106, 33);
 			this->RichBoxPhone->TabIndex = 16;
@@ -368,7 +371,7 @@ namespace Semestrovaya {
 			// 
 			this->label1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(13, 193);
+			this->label1->Location = System::Drawing::Point(9, 180);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(91, 13);
 			this->label1->TabIndex = 17;
@@ -378,7 +381,7 @@ namespace Semestrovaya {
 			// 
 			this->label2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(13, 241);
+			this->label2->Location = System::Drawing::Point(9, 228);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(87, 13);
 			this->label2->TabIndex = 18;
@@ -396,22 +399,27 @@ namespace Semestrovaya {
 			// 
 			// panel1
 			// 
-			this->panel1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->panel1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Right));
 			this->panel1->BackColor = System::Drawing::Color::LightGray;
 			this->panel1->Controls->Add(this->label5);
 			this->panel1->Controls->Add(this->ReverseListButton);
 			this->panel1->Controls->Add(this->button1);
 			this->panel1->Controls->Add(this->label3);
 			this->panel1->Controls->Add(this->SortDataGrid);
+			this->panel1->Controls->Add(this->label7);
 			this->panel1->Controls->Add(this->label2);
+			this->panel1->Controls->Add(this->label4);
 			this->panel1->Controls->Add(this->label1);
 			this->panel1->Controls->Add(this->SaveButton);
+			this->panel1->Controls->Add(this->RichBoxYearFind);
 			this->panel1->Controls->Add(this->RichBoxPhone);
+			this->panel1->Controls->Add(this->RichBoxStreetFind);
 			this->panel1->Controls->Add(this->FrontListButton);
 			this->panel1->Controls->Add(this->RichBoxLastname);
 			this->panel1->Location = System::Drawing::Point(675, 5);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(124, 328);
+			this->panel1->Size = System::Drawing::Size(124, 386);
 			this->panel1->TabIndex = 21;
 			// 
 			// label5
@@ -423,6 +431,46 @@ namespace Semestrovaya {
 			this->label5->TabIndex = 21;
 			this->label5->Text = L"Работа с данными";
 			// 
+			// label7
+			// 
+			this->label7->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->label7->AutoSize = true;
+			this->label7->Location = System::Drawing::Point(11, 325);
+			this->label7->Name = L"label7";
+			this->label7->Size = System::Drawing::Size(79, 13);
+			this->label7->TabIndex = 18;
+			this->label7->Text = L"Поиск по году";
+			// 
+			// label4
+			// 
+			this->label4->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(11, 277);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(86, 13);
+			this->label4->TabIndex = 17;
+			this->label4->Text = L"Поиск по улице";
+			// 
+			// RichBoxYearFind
+			// 
+			this->RichBoxYearFind->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->RichBoxYearFind->Location = System::Drawing::Point(10, 341);
+			this->RichBoxYearFind->Name = L"RichBoxYearFind";
+			this->RichBoxYearFind->Size = System::Drawing::Size(106, 33);
+			this->RichBoxYearFind->TabIndex = 16;
+			this->RichBoxYearFind->Text = L"";
+			this->RichBoxYearFind->TextChanged += gcnew System::EventHandler(this, &MainWindow::OnTextChangedFindYear);
+			// 
+			// RichBoxStreetFind
+			// 
+			this->RichBoxStreetFind->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->RichBoxStreetFind->Location = System::Drawing::Point(10, 293);
+			this->RichBoxStreetFind->Name = L"RichBoxStreetFind";
+			this->RichBoxStreetFind->Size = System::Drawing::Size(106, 33);
+			this->RichBoxStreetFind->TabIndex = 15;
+			this->RichBoxStreetFind->Text = L"";
+			this->RichBoxStreetFind->TextChanged += gcnew System::EventHandler(this, &MainWindow::OnTextChangedFindToStreet);
+			// 
 			// panel2
 			// 
 			this->panel2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
@@ -431,7 +479,7 @@ namespace Semestrovaya {
 			this->panel2->Controls->Add(this->CreateNewUser);
 			this->panel2->Controls->Add(this->EditButton);
 			this->panel2->Controls->Add(this->RemoveButton);
-			this->panel2->Location = System::Drawing::Point(12, 350);
+			this->panel2->Location = System::Drawing::Point(12, 408);
 			this->panel2->Name = L"panel2";
 			this->panel2->Size = System::Drawing::Size(541, 91);
 			this->panel2->TabIndex = 22;
@@ -447,8 +495,9 @@ namespace Semestrovaya {
 			// 
 			// CounterLabel
 			// 
+			this->CounterLabel->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
 			this->CounterLabel->AutoSize = true;
-			this->CounterLabel->Location = System::Drawing::Point(23, 334);
+			this->CounterLabel->Location = System::Drawing::Point(12, 392);
 			this->CounterLabel->Name = L"CounterLabel";
 			this->CounterLabel->Size = System::Drawing::Size(49, 13);
 			this->CounterLabel->TabIndex = 24;
@@ -459,7 +508,7 @@ namespace Semestrovaya {
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::Silver;
-			this->ClientSize = System::Drawing::Size(801, 453);
+			this->ClientSize = System::Drawing::Size(801, 511);
 			this->Controls->Add(this->CounterLabel);
 			this->Controls->Add(this->panel2);
 			this->Controls->Add(this->panel1);
@@ -480,187 +529,273 @@ namespace Semestrovaya {
 		}
 #pragma endregion
 
-		
 
-		   /// <summary>	
-		   /// Событийный метод, который открывает файл и загружает данные в список при запуске приложения
-		   /// </summary>
-	private: System::Void MainWindow_Load(System::Object^ sender, System::EventArgs^ e) {
+	private:
+
+		///<summary>
+		/// Метод, который открывает диалоговое окно выбора файла и загружает данные из файла в список
+		///</summary>
+		System::Void OpenSCVFile()
+		{
+			list = gcnew LinkedList();
+			OpenFileDialog^ openFileDialog = gcnew OpenFileDialog();
+			openFileDialog->Filter = "Text files(*.csv)|*.csv|All files(*.*)|*.*";
+			if (openFileDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+			{
+				String^ filename = openFileDialog->FileName;
+				Parser::GetDataFromCSV(list, filename);
+
+			}
+		}
+
+		/// <summary>
+		/// Метод обработчика события кнопки, который загружает в GridViewAbonents данные из спска абонентов
+		/// </summary>
+		System::Void OnClick_OpenFile(System::Object^ sender, System::EventArgs^ e) {
+			OpenSCVFile();
+			FrontListButton->Checked = true;
+			LinkedList::UpdateBindingGridView(list, GridViewAbonents, "front");
+		}
+
+		/// <summary>
+		/// Метод обработчика события кнопки, который сохраняет данные из списка в файл
+		/// </summary>
+		System::Void OnClick_SaveFile(System::Object^ sender, System::EventArgs^ e) {
+			SaveFileDialog^ saveFileDialog1 = gcnew SaveFileDialog();
+			saveFileDialog1->Filter = "Text files(*.csv)|*.csv|All files(*.*)|*.*";
+			if (saveFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+			{
+				String^ filename = saveFileDialog1->FileName;
+				Parser::SaveDataInCSV(list, filename);
+			}
+		}
+
+		/// <summary>
+		/// Метод добавления строки в DataGridView
+		/// </summary>
+		System::Void AddRowToDataGridView(LinkedList^ findUser)
+		{
+			Node^ current = findUser->GetHead();
+			
+			//отсчистка DataGridView от старых данных
+			GridViewAbonents->Rows->Clear();
+			
+
+			while (current != nullptr)
+			{
+				// Создаем новую строку для DataGridView
+				DataGridViewRow^ row = gcnew DataGridViewRow();
+
+				// Создаем ячейки в строке
+				row->CreateCells(GridViewAbonents);
+
+				// Привязывание к ячейкам данных из списка
+				row->Cells[0]->Value = current->GetUser()->l_name;
+				row->Cells[1]->Value = current->GetUser()->year_start_up;
+				row->Cells[2]->Value = current->GetUser()->phone;
+				row->Cells[3]->Value = current->GetUser()->street;
+				row->Cells[4]->Value = current->GetUser()->house;
+				row->Cells[5]->Value = current->GetUser()->number_apart;
+
+				GridViewAbonents->Rows->Add(row);
+				current = current->GetNext();
+			}
+		}
+
+		////<summary>
+		///Метод инициализации списка сортировки
+		///</summary>
+		System::Void InitilizeSortBox()
+		{
+			SortDataGrid->DropDownStyle = ComboBoxStyle::DropDownList;
+			auto tmp = GridViewAbonents->Columns;
+			SortDataGrid->Items->Add("Все");
+			for (int i = 0; i < GridViewAbonents->Columns->Count; i++)
+			{
+				SortDataGrid->Items->Add(tmp[i]->HeaderText);
+			}
+
+			if (SortDataGrid->Items->Count != 0)
+			{
+				SortDataGrid->SelectedIndex = 0;
+			}
+		}
+
+		///<summary>	
+		///Метод обработчика события, который выполняет привязку данных при первом запуске приложения
+		///</summary>
+		System::Void MainWindow_Load(System::Object^ sender, System::EventArgs^ e) {
 
 		LinkedList::UpdateBindingGridView(list, GridViewAbonents, "front");
 	}
 
 		   /// <summary>
-		   /// Событийный метод, который вызывает окно добавления нового пользователя, после чего обновляет привязку данных к DataGridView
+		   /// Метод обработчика события кнопки, который вызывает окно добавления нового пользователя, после чего обновляет привязку данных к DataGridView
 		   /// </summary>
-	private: System::Void OnClick_NewUserPhone(System::Object^ sender, System::EventArgs^ e) {
+		System::Void OnClick_NewUserPhone(System::Object^ sender, System::EventArgs^ e) {
+
 		NewUserPhone^ newUserWindow = gcnew NewUserPhone(list, nullptr);
 		newUserWindow->ShowDialog();
 		LinkedList::UpdateBindingGridView(list, GridViewAbonents, "front");
 	}
 
 		   /// <summary>
-		   /// Событийный метод, закрывающий приложение
+		   /// Метод обработчика события кнопки, закрывающий приложение
 		   /// </summary>
-	private: System::Void CloseButton_Click(System::Object^ sender, System::EventArgs^ e) {
-		auto messResult = MessageBox::Show("Вы уверены, что хотите выйти из приложения?", "Подтверждение",
-			MessageBoxButtons::YesNo, MessageBoxIcon::Question);
-		if (messResult == System::Windows::Forms::DialogResult::Yes)
-			Application::Exit();
+		System::Void CloseButton_Click(System::Object^ sender, System::EventArgs^ e) {
 
-	}
+			auto messResult = MessageBox::Show("Вы уверены, что хотите выйти из приложения?", "Подтверждение",
+				MessageBoxButtons::YesNo, MessageBoxIcon::Question);
+
+			if (messResult == System::Windows::Forms::DialogResult::Yes)
+				Application::Exit();
+
+		}
 
 		//TODO: (HIGH) Перенести реализацию работы с списком в LinkedList
 
-	private: System::Void EditButton_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (GridViewAbonents->SelectedRows->Count > 0) { // Проверяем, есть ли выбранные строки
-			// Начинаем с головы списка
-			Node^ currentNode = list->GetHead();
-			while (currentNode != nullptr) { // Используем цикл для обхода узлов
-				for (int i = 0; i < GridViewAbonents->SelectedRows->Count; i++) {
-					// Сравниваем имя текущего узла с выбранным именем в GridViewAbonents
-					if (currentNode->GetUser()->phone == GridViewAbonents->SelectedRows[i]->Cells[2]->Value->ToString()) {
-						// Создаем окно для редактирования пользователя
-						NewUserPhone^ newUserWindow = gcnew NewUserPhone(list, currentNode->GetUser());
-						newUserWindow->ShowDialog(); // Показываем окно как диалог
-						LinkedList::UpdateBindingGridView(list, GridViewAbonents, "front"); // Обновляем dataGridView после редактирования
-						return; // Выходим из метода после редактирования
+		///<summary>
+		///Метод обработчика события кнопки, который вызывает окно редактирования нового пользователя
+		///</summary>
+		System::Void EditButton_Click(System::Object^ sender, System::EventArgs^ e) {
+
+			if (GridViewAbonents->SelectedRows->Count > 0) { // Проверяем, есть ли выбранные строки
+
+				Node^ currentNode = list->GetHead();
+				while (currentNode != nullptr) {
+
+					for (int i = 0; i < GridViewAbonents->SelectedRows->Count; i++) {
+						// Сравниваем имя текущего узла с выбранным именем в GridViewAbonents
+						if (currentNode->GetUser()->phone == GridViewAbonents->SelectedRows[i]->Cells[2]->Value->ToString()) {
+							
+							NewUserPhone^ newUserWindow = gcnew NewUserPhone(list, currentNode->GetUser());
+							newUserWindow->ShowDialog(); // Показываем окно как диалог
+							LinkedList::UpdateBindingGridView(list, GridViewAbonents, "front"); // Обновляем dataGridView после редактирования
+							return; // Выходим из метода после редактирования
+						}
 					}
+					currentNode = currentNode->GetNext(); // Переходим к следующему узлу
 				}
-				currentNode = currentNode->GetNext(); // Переходим к следующему узлу
 			}
 		}
-	}
 
-	private: System::Void RemoveButton_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (GridViewAbonents->SelectedRows->Count > 0)
-		{
-			
-			for (int i = 0; i < GridViewAbonents->SelectedRows->Count; i++)
+		System::Void RemoveButton_Click(System::Object^ sender, System::EventArgs^ e) {
+			if (GridViewAbonents->SelectedRows->Count > 0)
 			{
-				if (GridViewAbonents->SelectedRows[i]->Cells[0]->Value != nullptr)
+
+				for (int i = 0; i < GridViewAbonents->SelectedRows->Count; i++)
 				{
-					list->RemoveNode(GridViewAbonents->SelectedRows[i]->Cells[0]->Value->ToString());
-				}
-			}
-			LinkedList::UpdateBindingGridView(list, GridViewAbonents, "front");
-		}
-		
-	}
-
-	private: System::Void OnClick_OpenFile(System::Object^ sender, System::EventArgs^ e) {
-		OpenSCVFile();
-		LinkedList::UpdateBindingGridView(list, GridViewAbonents, "front");
-	}
-
-	private: System::Void OnClick_SaveFile(System::Object^ sender, System::EventArgs^ e) {
-		SaveFileDialog^ saveFileDialog1 = gcnew SaveFileDialog();
-		saveFileDialog1->Filter = "Text files(*.csv)|*.csv|All files(*.*)|*.*";
-		if (saveFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK)
-		{
-			String^ filename = saveFileDialog1->FileName;
-			Parser::SaveDataInCSV(list, filename);
-		}
-	}
-
-private: System::Void WayListRadioButton_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-	
-	RadioButton^ rb = dynamic_cast<RadioButton^>(sender);
-	if(rb->Name == "FrontListButton")
-	{
-		LinkedList::UpdateBindingGridView(list, GridViewAbonents, "front");
-	}
-	else if(rb->Name == "ReverseListButton")
-	{
-		LinkedList::UpdateBindingGridView(list, GridViewAbonents, "reverse");
-	}
-}
-private: System::Void ReverseListButton_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-	
-}
-	private: System::Void OnTextChangedFind(System::Object^ sender, System::EventArgs^ e) {
-		RichTextBox^ richBox = dynamic_cast<RichTextBox^>(sender);
-		if (richBox->Text->Length != 0)
-		{
-			LinkedList^ findUser = list->FindNode(richBox->Text, richBox->Name);
-			Node^ current = findUser->GetHead();
-
-			if (findUser != nullptr)
-			{
-				//отсчистка DataGridView от старых данных
-				GridViewAbonents->Rows->Clear();
-			}
-				
-					while (current !=nullptr)
+					if (GridViewAbonents->SelectedRows[i]->Cells[0]->Value != nullptr)
 					{
-						// Создаем новую строку для DataGridView
-						DataGridViewRow^ row = gcnew DataGridViewRow();
-
-						// Создаем ячейки в строке
-						row->CreateCells(GridViewAbonents);
-
-						// Устанавливаем значения для каждой ячейки из текущего узла
-						row->Cells[0]->Value = current->GetUser()->l_name;
-						row->Cells[1]->Value = current->GetUser()->year_start_up;
-						row->Cells[2]->Value = current->GetUser()->phone;
-						row->Cells[3]->Value = current->GetUser()->street;
-						row->Cells[4]->Value = current->GetUser()->house;
-						row->Cells[5]->Value = current->GetUser()->number_apart;
-
-						// Добавляем строку в DataGridView
-						GridViewAbonents->Rows->Add(row);
-						current = current->GetNext();
+						list->RemoveNode(GridViewAbonents->SelectedRows[i]->Cells[0]->Value->ToString());
 					}
-					
-		}
-		else
-		{
-			LinkedList::UpdateBindingGridView(list, GridViewAbonents, "front");
-		}
-
-	}
-
-			void InitilizeSortBox()
-		   {
-				SortDataGrid->DropDownStyle = ComboBoxStyle::DropDownList;
-				auto tmp = GridViewAbonents->Columns;
-				SortDataGrid->Items->Add("Все");
-			   for (int i = 0; i < GridViewAbonents->Columns->Count; i++)
-			   {
-				   SortDataGrid->Items->Add(tmp[i]->HeaderText);
-			   }
-				
-				if (SortDataGrid->Items->Count != 0)
-				{
-					SortDataGrid->SelectedIndex = 0;
 				}
-		   }
+				FrontListButton->Checked = true;
+				LinkedList::UpdateBindingGridView(list, GridViewAbonents, "front");
+			}
 
-private: System::Void SelectedValueChangedSortBox(System::Object^ sender, System::EventArgs^ e) {
-	
-	switch (SortDataGrid->SelectedIndex)
-	{
-	case 0:
+		}
 
-		break;
+		/// <summary>
+		/// Метод обработчика событи RadioButton, который обновляет привязку данных к DataGridView в зависимости от выбранного RadioButton
+		/// </summary>
+		System::Void WayListRadioButton_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 
-	case 1:
+			RadioButton^ rb = dynamic_cast<RadioButton^>(sender);
+			if (rb->Name == "FrontListButton")
+			{
+				LinkedList::UpdateBindingGridView(list, GridViewAbonents, "front");
+			}
+			else if (rb->Name == "ReverseListButton")
+			{
+				LinkedList::UpdateBindingGridView(list, GridViewAbonents, "reverse");
+			}
+		}
 
-		break;
-	case 2:
+		/// <summary>
+		/// Методы обработчика события, которые производят поиск по списку
+		/// OnTextChangedFind - поиск по фамилии и телефону
+		/// OnTextChangedFindToStreet - поиск по улице
+		/// OnTextChangedFindYear - поиск по году
+		/// </summary>
 
-		break;
-	case 3:
+		System::Void OnTextChangedFind(System::Object^ sender, System::EventArgs^ e) {
+			RichTextBox^ richBox = dynamic_cast<RichTextBox^>(sender);
+			if (richBox->Text->Length != 0)
+			{
+				LinkedList^ findUser = list->FindNode(richBox->Text, richBox->Name);
+					AddRowToDataGridView(findUser);
+			}
+			else
+			{
+				FrontListButton->Checked = true;
+				LinkedList::UpdateBindingGridView(list, GridViewAbonents, "front");
+			}
 
-		break;
-	case 4:
+		}
 
-		break;
-	case 5:
+		System::Void OnTextChangedFindToStreet(System::Object^ sender, System::EventArgs^ e) {
 
-		break;
-	}
+			if (RichBoxStreetFind->Text->Length != 0)
+			{
+				LinkedList^ findUser = list->FindNode(RichBoxStreetFind->Text);
+				AddRowToDataGridView(findUser);
 
-}
+			}
+			else
+			{
+				FrontListButton->Checked = true;
+				LinkedList::UpdateBindingGridView(list, GridViewAbonents, "front");
+			}
+
+		}
+
+		System::Void OnTextChangedFindYear(System::Object^ sender, System::EventArgs^ e) {
+
+			if (RichBoxYearFind->Text->Length != 0)
+			{
+				LinkedList^ findUser = list->FindNode(Convert::ToInt32(RichBoxYearFind->Text));
+				AddRowToDataGridView(findUser);
+
+			}
+			else
+			{
+				FrontListButton->Checked = true;
+				LinkedList::UpdateBindingGridView(list, GridViewAbonents, "front");
+			}
+		}
+
+		/// <summary>
+		/// Метод обработчика события, который обновляет привязку данных к DataGridView в зависимости от выбранного элемента в SortDataGrid
+		///	выполняя тем самым сортироввку данных
+		/// </summary>
+		System::Void SelectedValueChangedSortBox(System::Object^ sender, System::EventArgs^ e) {
+
+			switch (SortDataGrid->SelectedIndex)
+			{
+			case 0:
+				FrontListButton->Checked = true;
+				LinkedList::UpdateBindingGridView(list, GridViewAbonents, "front");
+				break;
+
+			case 1:
+
+				break;
+			case 2:
+
+				break;
+			case 3:
+
+				break;
+			case 4:
+
+				break;
+			case 5:
+
+				break;
+			}
+
+		}
+
 };
 };

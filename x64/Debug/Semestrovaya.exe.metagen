@@ -29,22 +29,21 @@ Class Node: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(UserData): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
     GetNext(): PrivateScope, Public, HideBySig
-    SetNext(Node): PrivateScope, Public, HideBySig
     GetPrev(): PrivateScope, Public, HideBySig
-    SetPrev(Node): PrivateScope, Public, HideBySig
     GetUser(): PrivateScope, Public, HideBySig
+    SetNext(Node): PrivateScope, Public, HideBySig
+    SetPrev(Node): PrivateScope, Public, HideBySig
     SetUser(UserData): PrivateScope, Public, HideBySig
 Class LinkedList: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
     GetHead(): PrivateScope, Public, HideBySig
     GetTail(): PrivateScope, Public, HideBySig
-    DEBUG_PrintListConsoleLinkedRelation(): PrivateScope, Public, HideBySig
-    DEBUG_PrintListToConsoleList(): PrivateScope, Public, HideBySig
     PushBack(UserData): PrivateScope, Public, HideBySig
     PopBack(): PrivateScope, Public, HideBySig
     PopFront(): PrivateScope, Public, HideBySig
     RemoveNode(String): PrivateScope, Public, HideBySig
+    IsExistAbonent(UserData): PrivateScope, Public, HideBySig
     UpdateBindingGridView(LinkedList, DataGridView, String): PrivateScope, Public, Static, HideBySig
     FindNode(String): PrivateScope, Public, HideBySig
     FindNode(Int32): PrivateScope, Public, HideBySig

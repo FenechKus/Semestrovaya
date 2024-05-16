@@ -20,15 +20,15 @@ public:
 
 	///Методы доступа к узлам:
 	Node^ GetNext();
+	Node^ GetPrev();
+	UserData^ GetUser();
+
 	void SetNext(Node^ _next); 
-	Node^ GetPrev(); 
 	void SetPrev(Node^ _prev); 
 
 	///Методы доступа к данным пользователя:
-	UserData^ GetUser();
 	void SetUser(UserData^ _user);
 };
-
 
 ///--------------------------------------------------------------------------------------------
 ///--------------------------------------------------------------------------------------------
@@ -54,21 +54,17 @@ public:
 	Node^ GetHead();
 	Node^ GetTail();
 
-	/// Методы для отладки списка:
-	void DEBUG_PrintListConsoleLinkedRelation();
-	void DEBUG_PrintListToConsoleList();
-
 	/// Методы для работы со списком:
-	void PushBack(UserData^ user);
+	void PushBack(UserData^ _user);
 	void PopBack();
 	void PopFront();
-	void RemoveNode(String^ lastName);
+	void RemoveNode(String^ _lastName);
+	bool IsExistAbonent(UserData^ _user);
 
 	//// Методы для работы с DataGridView из WinForms:
-	static void UpdateBindingGridView(LinkedList^ list, DataGridView^ dataGridView, String^ mode);
-	LinkedList^ FindNode(String^ lastName, String^ senderName);
-	LinkedList^ FindNode(int yearStartup);
-	LinkedList^ FindNode(String^ street);
-	
+	static void UpdateBindingGridView(LinkedList^ _list, DataGridView^ _dataGridView, String^ _mode);
+	LinkedList^ FindNode(String^ _lastName, String^ _senderName);
+	LinkedList^ FindNode(int _yearStartup);
+	LinkedList^ FindNode(String^ _street);
 
 };

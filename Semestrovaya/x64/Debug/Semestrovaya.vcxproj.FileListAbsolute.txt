@@ -6,6 +6,3 @@ D:\source\C++\Desktop\Semka\FenechKus\Semestrovaya\Semestrovaya\x64\Debug\Semest
 D:\source\C++\Desktop\Semka\FenechKus\Semestrovaya\Semestrovaya\x64\Debug\Semestrovaya.MainWindow.resources
 D:\source\C++\Desktop\Semka\FenechKus\Semestrovaya\Semestrovaya\x64\Debug\Semestrovaya.NewUserPhone.resources
 D:\source\C++\Desktop\Semka\FenechKus\Semestrovaya\Semestrovaya\x64\Debug\Semestrovaya.vcxproj.GenerateResource.cache
-D:\source\C++\Desktop\Semka\FenechKus\Semestrovaya\x64\Debug\Semestrovaya.exe.lastcodeanalysissucceeded
-D:\source\C++\Desktop\Semka\FenechKus\Semestrovaya\x64\Debug\Semestrovaya.exe.CodeAnalysisLog.xml
-D:\source\C++\Desktop\Semka\FenechKus\Semestrovaya\Semestrovaya\x64\Debug\NativeCodeAnalysis.read.1.tlog

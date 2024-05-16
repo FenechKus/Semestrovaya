@@ -28,9 +28,12 @@ namespace Semestrovaya {
 			InitializeComponent();
 			isEditMode();
 			if (isEditMode())
+			{
+				this->Text = "Редактирование данных абонента " + user->l_name;
 				InsertValueUserData();
+			}
 		}
-		
+
 
 	protected:
 		/// <summary>
@@ -269,7 +272,7 @@ namespace Semestrovaya {
 			this->Controls->Add(this->LastNameBox);
 			this->Controls->Add(this->label1);
 			this->Name = L"NewUserPhone";
-			this->Text = L"NewUserPhone";
+			this->Text = L"Новый пользователь";
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -277,7 +280,10 @@ namespace Semestrovaya {
 #pragma endregion
 
 	private:
-		void InsertValueUserData()
+		///<summary>
+		///Метод для вставки данных пользователя в поля формы
+		///</summary>
+		System::Void InsertValueUserData()
 		{
 			if (user != nullptr)
 			{
@@ -299,76 +305,74 @@ namespace Semestrovaya {
 			return false;
 		}
 
-		static bool isValidInformation(UserData^ user)
-		{
-			if (user->l_name == "" || user->year_start_up == 0 || user->phone == "" || user->street == "" || user->house == 0 || user->number_apart == 0)
+		///<summary>
+		///Метод обработчика события, применяющий изменение пользователя или создающий нового пользователя
+		///</summary>
+		System::Void ApplyButton_Click(System::Object^ sender, System::EventArgs^ e) {
+			try
 			{
-				return false;
-			}
-			return true;
-		}
-
-	private: System::Void ApplyButton_Click(System::Object^ sender, System::EventArgs^ e) {
-		try
-		{
-			if (isEditMode())
-			{
-
-				Node^ currentNode = list->GetHead();
-				if (isValidInformation(user))
+				// Определение режима работы формы
+				if (isEditMode())
 				{
-					while (currentNode != nullptr)
-					{
-
-						if (user->phone == currentNode->GetUser()->phone)
+						Node^ currentNode = list->GetHead();
+						while (currentNode != nullptr)
 						{
-							user->l_name = LastNameBox->Text;
-							user->year_start_up = Convert::ToInt32(YearBox->Text);
-							user->phone = PhoneBox->Text;
-							user->street = StreetBox->Text;
-							user->house = Convert::ToInt32(HouseBox->Text);
-							user->number_apart = Convert::ToInt32(NumApartamentBox->Text);
 
-							currentNode->SetUser(user);
-							break;
+							if (user->phone == currentNode->GetUser()->phone)
+							{
+								UserData^ user = gcnew UserData();
+								user->l_name = LastNameBox->Text;
+								user->year_start_up = Convert::ToInt32(YearBox->Text);
+								user->phone = PhoneBox->Text;
+								user->street = StreetBox->Text;
+								user->house = Convert::ToInt32(HouseBox->Text);
+								if(NumApartamentBox->Text != "")
+								user->number_apart = Convert::ToInt32(NumApartamentBox->Text);
+								else
+									user->number_apart = 0;
+
+									currentNode->SetUser(user);
+									break;
+								
+							}
+							currentNode = currentNode->GetNext();
 						}
-						currentNode = currentNode->GetNext();
-					}
+
+					this->Close();
 				}
 				else
 				{
-					throw gcnew InvalidOperationException("Некорректные данные");
+					UserData^ user = gcnew UserData();
+					user->l_name = LastNameBox->Text;
+					user->year_start_up = Convert::ToInt32(YearBox->Text);
+					user->phone = PhoneBox->Text;
+					user->street = StreetBox->Text;
+					user->house = Convert::ToInt32(HouseBox->Text);
+					if (NumApartamentBox->Text != "")
+						user->number_apart = Convert::ToInt32(NumApartamentBox->Text);
+					else
+						user->number_apart = 0;
+
+					if (list->IsExistAbonent(user))
+					{
+						list->PushBack(user);
+						this->Close();
+					}
+					
 				}
-
-				this->Close();
-				return;
 			}
-
-			UserData^ user = gcnew UserData();
-			user->l_name = LastNameBox->Text;
-			user->year_start_up = Convert::ToInt32(YearBox->Text);
-			user->phone = PhoneBox->Text;
-			user->street = StreetBox->Text;
-			user->house = Convert::ToInt32(HouseBox->Text);
-			user->number_apart = Convert::ToInt32(NumApartamentBox->Text);
-			if (isValidInformation(user))
+			catch (Exception^ e)
 			{
-				list->PushBack(user);
-				this->Close();
+				MessageBox::Show(e->Message, "Ошибка!", MessageBoxButtons::OK, MessageBoxIcon::Error);
 			}
-			else
-			{
-				throw gcnew InvalidOperationException("Некорректные данные");
-			}
-		}
-		catch (Exception^ e)
-		{
-			MessageBox::Show(e->Message, "Ошибка!", MessageBoxButtons::OK, MessageBoxIcon::Error);
+
 		}
 
-	}
-		private: System::Void CancelButton_Click(System::Object^ sender, System::EventArgs^ e) {
-			auto messResult = MessageBox::Show("Вы уверены, что хотите закрыть окно?", "Подтверждение", 
+		///<summary>
+		///Метод обработчика события, который закрывает данное окно
+		///</summary>
+		System::Void CancelButton_Click(System::Object^ sender, System::EventArgs^ e) {
+			auto messResult = MessageBox::Show("Вы уверены, что хотите закрыть окно?", "Подтверждение",
 				MessageBoxButtons::YesNo, MessageBoxIcon::Question);
 			if (messResult == System::Windows::Forms::DialogResult::Yes)
 				this->Close();

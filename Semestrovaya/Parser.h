@@ -3,6 +3,7 @@
 #include "LinkedList.h"
 
 using namespace System;
+using namespace System::Runtime::InteropServices;
 
 ref class Parser
 {
@@ -22,4 +23,7 @@ private:
 
 	// Функция для преобразования System::String^ в std::string
 	static std::string ConvertSystemStringToStdString(String^ str);
+
+
+   
 };
