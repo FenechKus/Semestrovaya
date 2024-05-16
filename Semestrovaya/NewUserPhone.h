@@ -29,7 +29,7 @@ namespace Semestrovaya {
 			isEditMode();
 			if (isEditMode())
 			{
-				this->Text = "Редактирование данных абонента " + user->l_name;
+				this->Text = "Редактирование данных абонента " + user->lName;
 				InsertValueUserData();
 			}
 		}
@@ -287,12 +287,12 @@ namespace Semestrovaya {
 		{
 			if (user != nullptr)
 			{
-				LastNameBox->Text = user->l_name;
-				YearBox->Text = Convert::ToString(user->year_start_up);
+				LastNameBox->Text = user->lName;
+				YearBox->Text = Convert::ToString(user->yearStartUp);
 				PhoneBox->Text = user->phone;
 				StreetBox->Text = user->street;
 				HouseBox->Text = Convert::ToString(user->house);
-				NumApartamentBox->Text = Convert::ToString(user->number_apart);
+				NumApartamentBox->Text = Convert::ToString(user->numberApart);
 			}
 		}
 
@@ -321,15 +321,15 @@ namespace Semestrovaya {
 							if (user->phone == currentNode->GetUser()->phone)
 							{
 								UserData^ user = gcnew UserData();
-								user->l_name = LastNameBox->Text;
-								user->year_start_up = Convert::ToInt32(YearBox->Text);
+								user->lName = LastNameBox->Text;
+								user->yearStartUp = Convert::ToInt32(YearBox->Text);
 								user->phone = PhoneBox->Text;
 								user->street = StreetBox->Text;
 								user->house = Convert::ToInt32(HouseBox->Text);
 								if(NumApartamentBox->Text != "")
-								user->number_apart = Convert::ToInt32(NumApartamentBox->Text);
+								user->numberApart = Convert::ToInt32(NumApartamentBox->Text);
 								else
-									user->number_apart = 0;
+									user->numberApart = 0;
 
 									currentNode->SetUser(user);
 									break;
@@ -343,15 +343,15 @@ namespace Semestrovaya {
 				else
 				{
 					UserData^ user = gcnew UserData();
-					user->l_name = LastNameBox->Text;
-					user->year_start_up = Convert::ToInt32(YearBox->Text);
+					user->lName = LastNameBox->Text;
+					user->yearStartUp = Convert::ToInt32(YearBox->Text);
 					user->phone = PhoneBox->Text;
 					user->street = StreetBox->Text;
 					user->house = Convert::ToInt32(HouseBox->Text);
 					if (NumApartamentBox->Text != "")
-						user->number_apart = Convert::ToInt32(NumApartamentBox->Text);
+						user->numberApart = Convert::ToInt32(NumApartamentBox->Text);
 					else
-						user->number_apart = 0;
+						user->numberApart = 0;
 
 					if (list->IsExistAbonent(user))
 					{

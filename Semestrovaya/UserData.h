@@ -9,14 +9,14 @@ public ref class UserData sealed
 {
 public:
 	//Поля Абонента
-	String^ l_name;
-	int year_start_up;
+	String^ lName;
+	int yearStartUp;
 	String^ phone;
 
 	//Поля Адреса
 	String^ street;
 	int house;
-	int number_apart;
+	int numberApart;
 
 	//Конструкторы
 	UserData();

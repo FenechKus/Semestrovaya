@@ -590,12 +590,12 @@ namespace Semestrovaya {
 				row->CreateCells(GridViewAbonents);
 
 				// Привязывание к ячейкам данных из списка
-				row->Cells[0]->Value = current->GetUser()->l_name;
-				row->Cells[1]->Value = current->GetUser()->year_start_up;
+				row->Cells[0]->Value = current->GetUser()->lName;
+				row->Cells[1]->Value = current->GetUser()->yearStartUp;
 				row->Cells[2]->Value = current->GetUser()->phone;
 				row->Cells[3]->Value = current->GetUser()->street;
 				row->Cells[4]->Value = current->GetUser()->house;
-				row->Cells[5]->Value = current->GetUser()->number_apart;
+				row->Cells[5]->Value = current->GetUser()->numberApart;
 
 				GridViewAbonents->Rows->Add(row);
 				current = current->GetNext();

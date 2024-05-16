@@ -25,7 +25,8 @@ void Parser::GetDataFromCSV(LinkedList^ list, String^ path)
 	{
 		// Считаем количество полей в строке (6)
 		constexpr int fieldCount = 6;
-		auto fields = gcnew array<String^>(fieldCount);
+		//Создаем массив строк с помощью cli::array
+		std::string fields[fieldCount];
 
 		// Разбиваем строку на поля, используя запятую и точку с запятой
 		int fieldIndex = 0;
@@ -35,7 +36,7 @@ void Parser::GetDataFromCSV(LinkedList^ list, String^ path)
 			if (c == ',' || c == ';')
 			{
 				// Преобразуем временное поле в String^ и добавляем в массив полей
-				fields[fieldIndex++] = ConvertStdStringToSystemString(tempField);
+				fields[fieldIndex++] = tempField;
 				tempField.clear();
 
 				// Если достигли точки с запятой, прекращаем разбор строки
@@ -59,12 +60,12 @@ void Parser::GetDataFromCSV(LinkedList^ list, String^ path)
 
 		// Создаем объект UserData и добавляем его в список
 		auto userData = gcnew UserData(
-			fields[0],
-			Int32::Parse(fields[1]),
-			fields[2],
-			fields[3],
-			Int32::Parse(fields[4]),
-			Int32::Parse(fields[5])
+			ConvertStdStringToSystemString(fields[0]),
+			Int32::Parse(ConvertStdStringToSystemString(fields[1])),
+			ConvertStdStringToSystemString(fields[2]),
+			ConvertStdStringToSystemString(fields[3]),
+			Int32::Parse(ConvertStdStringToSystemString(fields[4])),
+			Int32::Parse(ConvertStdStringToSystemString(fields[5]))
 		);
 
 		list->PushBack(userData);
@@ -87,12 +88,12 @@ void Parser::SaveDataInCSV(LinkedList^ list, String^ path)
 		while (current != nullptr) {
 
 			// Форматирование данных для записи
-			outFile << ConvertSystemStringToStdString(current->GetUser()->l_name) << ","
-				<< current->GetUser()->year_start_up << ","
+			outFile << ConvertSystemStringToStdString(current->GetUser()->lName) << ","
+				<< current->GetUser()->yearStartUp << ","
 				<< ConvertSystemStringToStdString(current->GetUser()->phone) << ","
 				<< ConvertSystemStringToStdString(current->GetUser()->street) << ","
 				<< current->GetUser()->house << ","
-				<< current->GetUser()->number_apart << ";\n";
+				<< current->GetUser()->numberApart << ";\n";
 
 			// Переход к следующему узлу
 			current = current->GetNext();

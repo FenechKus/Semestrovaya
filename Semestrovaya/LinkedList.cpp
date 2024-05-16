@@ -27,7 +27,7 @@ UserData^ Node::GetUser()
 
 void Node::SetUser(UserData^ _user)
 {
-    if (_user->l_name == "" || _user->year_start_up == 0 || _user->phone == "" || _user->street == "" || _user->house == 0)
+    if (_user->lName == "" || _user->yearStartUp == 0 || _user->phone == "" || _user->street == "" || _user->house == 0)
     {
 		throw gcnew System::Exception("Неккоректные данные");
     }
@@ -110,7 +110,7 @@ void LinkedList::RemoveNode(String^ _lastName)
 
     while (current != nullptr) {
 
-        if (current->GetUser()->l_name == _lastName) {
+        if (current->GetUser()->lName == _lastName) {
 
             if (current == head) {
                 this->PopFront();
@@ -142,7 +142,7 @@ bool LinkedList::IsExistAbonent(UserData^ _user)
 
     while (curentNode != nullptr)
     {
-        if (curentNode->GetUser()->phone == _user->phone && curentNode->GetUser()->l_name != _user->l_name)
+        if (curentNode->GetUser()->phone == _user->phone && curentNode->GetUser()->lName != _user->lName)
         {
             throw gcnew System::Exception("Номер уже используется");
         }
@@ -174,17 +174,17 @@ void LinkedList::UpdateBindingGridView(LinkedList^ _list, DataGridView^ _dataGri
         row->CreateCells(_dataGridView);
 
         // Устанавливаем значения для каждой ячейки из текущего узла
-        row->Cells[0]->Value = currentNode->GetUser()->l_name;
-        row->Cells[1]->Value = currentNode->GetUser()->year_start_up;
+        row->Cells[0]->Value = currentNode->GetUser()->lName;
+        row->Cells[1]->Value = currentNode->GetUser()->yearStartUp;
         row->Cells[2]->Value = currentNode->GetUser()->phone;
         row->Cells[3]->Value = currentNode->GetUser()->street;
         row->Cells[4]->Value = currentNode->GetUser()->house;
-        if (currentNode->GetUser()->number_apart == 0)
+        if (currentNode->GetUser()->numberApart == 0)
         {
             row->Cells[5]->Value = "Частный дом";
         }
         else
-        row->Cells[5]->Value = currentNode->GetUser()->number_apart;
+        row->Cells[5]->Value = currentNode->GetUser()->numberApart;
 
         // Добавляем строку в DataGridView
         _dataGridView->Rows->Add(row);
@@ -205,7 +205,7 @@ LinkedList^ LinkedList::FindNode(String^ param, String^ _senderName)
 
     while (curentNode != nullptr)
     {
-	    if (curentNode->GetUser()->l_name == param && _senderName == "RichBoxLastname")
+	    if (curentNode->GetUser()->lName == param && _senderName == "RichBoxLastname")
 	    {
             findList->PushBack(curentNode->GetUser());
 	    }
@@ -225,7 +225,7 @@ LinkedList^ LinkedList::FindNode(int _yearStartup)
 
     while (curentNode != nullptr)
     {
-        if (curentNode->GetUser()->year_start_up == _yearStartup)
+        if (curentNode->GetUser()->yearStartUp == _yearStartup)
         {
         	findList->PushBack(curentNode->GetUser());
         }
@@ -250,3 +250,20 @@ LinkedList^ LinkedList::FindNode(String^ _street)
     return findlist;
 }
 
+/*
+ LinkedList* LinkedList::FindNode(string _street)
+{
+    LinkedList* findlist = gcnew LinkedList(); Это создание списка с результатами 
+    Node^ curentNode = head; Это начало списка, его голова
+
+	while (curentNode != nullptr) Это цикл обхода списка по каждому элементу
+    {
+	    if (curentNode->GetUser()->street == _street) Это проверка на совпадение параметра поиска с параметром в текущем узле
+	    {
+			findlist->PushBack(curentNode->GetUser()); Это добавление узла в список с результатами
+	    }
+        curentNode = curentNode->GetNext(); Это переход к следующему узлу
+    }
+    return findlist; Это возврат списка с результатами
+}
+ */

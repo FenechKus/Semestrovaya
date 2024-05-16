@@ -19,12 +19,12 @@ Class UserData: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
     Void .ctor(System.String, Int32, System.String, System.String, Int32, Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Fields:
-    System.String l_name : Public
-    Int32 year_start_up : Public
+    System.String lName : Public
+    Int32 yearStartUp : Public
     System.String phone : Public
     System.String street : Public
     Int32 house : Public
-    Int32 number_apart : Public
+    Int32 numberApart : Public
 Class Node: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(UserData): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
