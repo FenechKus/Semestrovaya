@@ -17,6 +17,7 @@ namespace Semestrovaya {
 	///	Подключение пространства имен для работы с формами и средой CLI
 	/// </summary>
 	using namespace System;
+	using namespace System::Text;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
 	using namespace System::Windows::Forms;
@@ -25,19 +26,19 @@ namespace Semestrovaya {
 
 
 
-	///<summary>
-	///Класс, характеризующий главное окно приложения
-	///</summary>
+	/// <summary>
+	/// Класс, характеризующий главное окно приложения
+	/// </summary>
 	public ref class MainWindow : public System::Windows::Forms::Form
 	{
 	private:
 		LinkedList^ list;
 
 	public:
-		///<summary>
-		///Конструктор инициализации компонентов формы,
-		///открытия файла и инициализации поля сортировки
-		///</summary>
+		/// <summary>
+		/// Конструктор инициализации компонентов формы,
+		/// открытия файла и инициализации поля сортировки
+		/// </summary>
 		MainWindow(void) : GridViewAbonents()
 		{
 			InitializeComponent();
@@ -532,9 +533,9 @@ namespace Semestrovaya {
 
 	private:
 
-		///<summary>
+		/// <summary>
 		/// Метод, который открывает диалоговое окно выбора файла и загружает данные из файла в список
-		///</summary>
+		/// </summary>
 		System::Void OpenSCVFile()
 		{
 			list = gcnew LinkedList();
@@ -602,9 +603,9 @@ namespace Semestrovaya {
 			}
 		}
 
-		////<summary>
-		///Метод инициализации списка сортировки
-		///</summary>
+		/// <summary>
+		/// Метод, служит для инициализации списка сортировки
+		/// </summary>
 		System::Void InitilizeSortBox()
 		{
 			SortDataGrid->DropDownStyle = ComboBoxStyle::DropDownList;
@@ -621,9 +622,9 @@ namespace Semestrovaya {
 			}
 		}
 
-		///<summary>	
-		///Метод обработчика события, который выполняет привязку данных при первом запуске приложения
-		///</summary>
+		/// <summary>	
+		/// Метод обработчика события, который выполняет привязку данных при первом запуске приложения
+		/// </summary>
 		System::Void MainWindow_Load(System::Object^ sender, System::EventArgs^ e) {
 
 		LinkedList::UpdateBindingGridView(list, GridViewAbonents, "front");
@@ -652,29 +653,27 @@ namespace Semestrovaya {
 
 		}
 
-		//TODO: (HIGH) Перенести реализацию работы с списком в LinkedList
-
-		///<summary>
-		///Метод обработчика события кнопки, который вызывает окно редактирования нового пользователя
-		///</summary>
+		/// <summary>
+		/// Метод обработчика события кнопки, который вызывает окно редактирования нового пользователя
+		/// </summary>
 		System::Void EditButton_Click(System::Object^ sender, System::EventArgs^ e) {
 
-			if (GridViewAbonents->SelectedRows->Count > 0) { // Проверяем, есть ли выбранные строки
+			if (GridViewAbonents->SelectedRows->Count > 0) {
 
 				Node^ currentNode = list->GetHead();
 				while (currentNode != nullptr) {
 
 					for (int i = 0; i < GridViewAbonents->SelectedRows->Count; i++) {
-						// Сравниваем имя текущего узла с выбранным именем в GridViewAbonents
+
 						if (currentNode->GetUser()->phone == GridViewAbonents->SelectedRows[i]->Cells[2]->Value->ToString()) {
 							
 							NewUserPhone^ newUserWindow = gcnew NewUserPhone(list, currentNode->GetUser());
-							newUserWindow->ShowDialog(); // Показываем окно как диалог
-							LinkedList::UpdateBindingGridView(list, GridViewAbonents, "front"); // Обновляем dataGridView после редактирования
-							return; // Выходим из метода после редактирования
+							newUserWindow->ShowDialog();
+							LinkedList::UpdateBindingGridView(list, GridViewAbonents, "front");
+							return;
 						}
 					}
-					currentNode = currentNode->GetNext(); // Переходим к следующему узлу
+					currentNode = currentNode->GetNext();
 				}
 			}
 		}
@@ -714,11 +713,9 @@ namespace Semestrovaya {
 
 		/// <summary>
 		/// Методы обработчика события, которые производят поиск по списку
-		/// OnTextChangedFind - поиск по фамилии и телефону
-		/// OnTextChangedFindToStreet - поиск по улице
-		/// OnTextChangedFindYear - поиск по году
 		/// </summary>
 
+		/// Метод обработчика события - поиск по фамилии и телефону
 		System::Void OnTextChangedFind(System::Object^ sender, System::EventArgs^ e) {
 			RichTextBox^ richBox = dynamic_cast<RichTextBox^>(sender);
 			if (richBox->Text->Length != 0)
@@ -734,6 +731,7 @@ namespace Semestrovaya {
 
 		}
 
+		/// Метод обработчика события - поиск по улице
 		System::Void OnTextChangedFindToStreet(System::Object^ sender, System::EventArgs^ e) {
 
 			if (RichBoxStreetFind->Text->Length != 0)
@@ -750,6 +748,7 @@ namespace Semestrovaya {
 
 		}
 
+		/// Метод обработчика события - поиск по году
 		System::Void OnTextChangedFindYear(System::Object^ sender, System::EventArgs^ e) {
 
 			if (RichBoxYearFind->Text->Length != 0)

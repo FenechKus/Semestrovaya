@@ -1,6 +1,7 @@
 #include "MainWindow.h"
 #include "UserData.h"
 using namespace System;
+using namespace System::Text;
 using namespace System::Windows::Forms;
 
 [System::STAThreadAttribute]

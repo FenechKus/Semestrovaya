@@ -305,9 +305,9 @@ namespace Semestrovaya {
 			return false;
 		}
 
-		///<summary>
-		///Метод обработчика события, применяющий изменение пользователя или создающий нового пользователя
-		///</summary>
+		/// <summary>
+		/// Метод обработчика события, применяющий изменение пользователя или создающий нового пользователя
+		/// </summary>
 		System::Void ApplyButton_Click(System::Object^ sender, System::EventArgs^ e) {
 			try
 			{
@@ -368,9 +368,9 @@ namespace Semestrovaya {
 
 		}
 
-		///<summary>
-		///Метод обработчика события, который закрывает данное окно
-		///</summary>
+		/// <summary>
+		/// Метод обработчика события, который закрывает данное окно
+		/// </summary>
 		System::Void CancelButton_Click(System::Object^ sender, System::EventArgs^ e) {
 			auto messResult = MessageBox::Show("Вы уверены, что хотите закрыть окно?", "Подтверждение",
 				MessageBoxButtons::YesNo, MessageBoxIcon::Question);

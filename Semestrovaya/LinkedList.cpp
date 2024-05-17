@@ -9,7 +9,8 @@ Node::Node(UserData^ _user) : next(nullptr), prev(nullptr)
 	this->SetUser(_user);
 }
 
-/// Методы доступа
+// Методы доступа
+
 Node^ Node::GetNext()
 {
 	return next;
@@ -42,11 +43,11 @@ void Node::SetNext(Node^ _next) { next = _next; }
 
 void Node::SetPrev(Node^ _prev) { prev = _prev; }
 
-///--------------------------------------------------------------------------------------------
-///--------------------------------------------------------------------------------------------
-///------------------------------------Linked List---------------------------------------------
-///--------------------------------------------------------------------------------------------
-///--------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------
+//------------------------------------Linked List---------------------------------------------
+//--------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------
 
 Node^ LinkedList::GetHead()
 {
@@ -59,6 +60,7 @@ Node^ LinkedList::GetTail()
 }
 
 LinkedList::LinkedList() : head(nullptr), tail(nullptr) {}
+
 
 void LinkedList::PushBack(UserData^ _user)
 {
@@ -78,30 +80,12 @@ void LinkedList::PushBack(UserData^ _user)
 
 void LinkedList::PopBack()
 {
-    Node^ newTail = tail->GetPrev();
 
-    if (newTail != nullptr) {
-        newTail->SetNext(nullptr);
-    }
-    else {
-        head = newTail;
-    }
-    delete tail;
-    tail = newTail;
 }
 
 void LinkedList::PopFront()
 {
-    Node^ newHead = head->GetNext();
 
-    if (newHead != nullptr) {
-        newHead->SetPrev(nullptr);
-    }
-    else {
-        tail = newHead;
-    }
-    delete head;
-    head = newHead;
 }
 
 void LinkedList::RemoveNode(String^ _lastName)
@@ -113,12 +97,30 @@ void LinkedList::RemoveNode(String^ _lastName)
         if (current->GetUser()->lName == _lastName) {
 
             if (current == head) {
-                this->PopFront();
+                Node^ newHead = head->GetNext();
+
+                if (newHead != nullptr) {
+                    newHead->SetPrev(nullptr);
+                }
+                else {
+                    tail = newHead;
+                }
+                delete head;
+                head = newHead;
                 return;
             }
 
             if (current == tail) {
-                this->PopBack();
+                Node^ newTail = tail->GetPrev();
+
+                if (newTail != nullptr) {
+                    newTail->SetNext(nullptr);
+                }
+                else {
+                    head = newTail;
+                }
+                delete tail;
+                tail = newTail;
                 return;
             }
 
@@ -142,13 +144,18 @@ bool LinkedList::IsExistAbonent(UserData^ _user)
 
     while (curentNode != nullptr)
     {
-        if (curentNode->GetUser()->phone == _user->phone && curentNode->GetUser()->lName != _user->lName)
+        if (curentNode->GetUser()->phone == _user->phone /*&& curentNode->GetUser()->lName != _user->lName*/)
         {
             throw gcnew System::Exception("Номер уже используется");
         }
         curentNode = curentNode->GetNext();
     }
     return true;
+}
+
+LinkedList^ LinkedList::SorttingShell()
+{
+    return  nullptr;
 }
 
 void LinkedList::UpdateBindingGridView(LinkedList^ _list, DataGridView^ _dataGridView, String^ _mode)
