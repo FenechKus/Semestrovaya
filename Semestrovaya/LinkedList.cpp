@@ -225,30 +225,30 @@ LinkedList^ LinkedList::FindNode(String^ param, String^ _senderName)
     return findList;
 }
 
-LinkedList^ LinkedList::FindNode(int _yearStartup)
+int LinkedList::FindNode(int _yearStartup)
 {
-    LinkedList^ findList = gcnew LinkedList();
+	int counterNodes = 0;
     Node^ curentNode = head;
-
     while (curentNode != nullptr)
     {
         if (curentNode->GetUser()->yearStartUp == _yearStartup)
         {
-        	findList->PushBack(curentNode->GetUser());
+            counterNodes++;
         }
         curentNode = curentNode->GetNext();
     }
-    return findList;
+    return counterNodes;
 }
 
-LinkedList^ LinkedList::FindNode(String^ _street)
+LinkedList^ LinkedList::FindNode(String^ _street, int _house)
 {
     LinkedList^ findlist = gcnew LinkedList();
     Node^ curentNode = head;
 
 	while (curentNode != nullptr)
     {
-	    if (curentNode->GetUser()->street == _street)
+        auto user = curentNode->GetUser();
+	    if (user->street == _street && (user->numberApart != 0 && user->house == _house))
 	    {
 			findlist->PushBack(curentNode->GetUser());
 	    }

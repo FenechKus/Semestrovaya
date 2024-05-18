@@ -70,7 +70,7 @@ public:
 	//// Методы для работы с DataGridView из WinForms:
 	static void UpdateBindingGridView(LinkedList^ _list, DataGridView^ _dataGridView, String^ _mode);
 	LinkedList^ FindNode(String^ _lastName, String^ _senderName);
-	LinkedList^ FindNode(int _yearStartup);
-	LinkedList^ FindNode(String^ _street);
+	int FindNode(int _yearStartup);
+	LinkedList^ FindNode(String^ _street, int _house);
 
 };
