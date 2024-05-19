@@ -739,7 +739,7 @@ namespace Semestrovaya {
 				{
 					if (GridViewAbonents->SelectedRows[i]->Cells[0]->Value != nullptr)
 					{
-						list->RemoveNode(GridViewAbonents->SelectedRows[i]->Cells[0]->Value->ToString());
+						list->RemoveNode(GridViewAbonents->SelectedRows[i]->Cells[2]->Value->ToString());
 					}
 				}
 				FrontListButton->Checked = true;

@@ -79,23 +79,15 @@ void LinkedList::PushBack(UserData^ _user)
     countNodes++;
 }
 
-void LinkedList::PopBack()
-{
 
-}
-
-void LinkedList::PopFront()
-{
-
-}
-
-void LinkedList::RemoveNode(String^ _lastName)
+// Метод удаления узла по фамилии
+void LinkedList::RemoveNode(String^ _phone)
 {
     Node^ current = head;
 
     while (current != nullptr) {
 
-        if (current->GetUser()->lName == _lastName) {
+        if (current->GetUser()->phone == _phone) {
 
             if (current == head) {
                 Node^ newHead = head->GetNext();
@@ -140,6 +132,7 @@ void LinkedList::RemoveNode(String^ _lastName)
     }
 }
 
+// Метод проверки наличия абонента в списке
 bool LinkedList::IsExistAbonent(UserData^ _user)
 {
     Node^ curentNode = GetHead();
@@ -159,26 +152,26 @@ bool LinkedList::IsExistAbonent(UserData^ _user)
 void LinkedList::UpdateBindingGridView(LinkedList^ _list, DataGridView^ _dataGridView, String^ _mode)
 {
     int counterNotes = 0;
-    // Очистить все строки в DataGridView
+
     _dataGridView->Rows->Clear();
-    
-    // Начинаем с головы списка
+
     Node^ currentNode;
+
+    // Определение хода списка
     if (_mode == "front" or _mode == nullptr)
         currentNode = _list->GetHead();
     else
         currentNode = _list->GetTail();
 
 
-    // Проходим по каждому узлу в списке
     while (currentNode != nullptr) {
-        // Создаем новую строку для DataGridView
+
+        // Создание ячеек строки
         DataGridViewRow^ row = gcnew DataGridViewRow();
 
-        // Создаем ячейки в строке
         row->CreateCells(_dataGridView);
 
-        // Устанавливаем значения для каждой ячейки из текущего узла
+        // Заполнение строки таблицы
         row->Cells[0]->Value = currentNode->GetUser()->lName;
         row->Cells[1]->Value = currentNode->GetUser()->yearStartUp;
         row->Cells[2]->Value = currentNode->GetUser()->phone;
@@ -191,11 +184,10 @@ void LinkedList::UpdateBindingGridView(LinkedList^ _list, DataGridView^ _dataGri
         else
         row->Cells[5]->Value = currentNode->GetUser()->numberApart;
 
-        // Добавляем строку в DataGridView
         _dataGridView->Rows->Add(row);
         counterNotes++;
 
-        // Переходим к следующему узлу
+        // Ход списка вперед/назад
         if (_mode == "front" or _mode == nullptr)
             currentNode = currentNode->GetNext();
         else
@@ -203,6 +195,7 @@ void LinkedList::UpdateBindingGridView(LinkedList^ _list, DataGridView^ _dataGri
     }
 }
 
+// Поиск узла по параметру (Фамилия или номер телефона)
 LinkedList^ LinkedList::FindNode(String^ param, String^ _senderName)
 {
     LinkedList^ findList = gcnew LinkedList();
@@ -223,6 +216,7 @@ LinkedList^ LinkedList::FindNode(String^ param, String^ _senderName)
     return findList;
 }
 
+//Поиск узла по параметру (Год подключения)
 int LinkedList::FindNode(int _yearStartup)
 {
 	int counterNodes = 0;
@@ -238,6 +232,7 @@ int LinkedList::FindNode(int _yearStartup)
     return counterNodes;
 }
 
+//Поиск узла по параметру (Улица и дом)
 LinkedList^ LinkedList::FindNode(String^ _street, int _house)
 {
     LinkedList^ findlist = gcnew LinkedList();
@@ -255,7 +250,6 @@ LinkedList^ LinkedList::FindNode(String^ _street, int _house)
     return findlist;
 }
 
-typedef int (*CompareFunc)(UserData^, UserData^);
 LinkedList^ LinkedList::SortBy(CompareFunc compareFunc)
 {
     if (head == nullptr) return this;
@@ -265,6 +259,7 @@ LinkedList^ LinkedList::SortBy(CompareFunc compareFunc)
     // Сортировка Шелла
     for (int gap = length / 2; gap > 0; gap /= 2) {
         for (int i = gap; i < length; i++) {
+
             // Поиск i-й элемент
             Node^ tempNode = head;
             for (int k = 0; k < i; k++) {
@@ -300,6 +295,8 @@ LinkedList^ LinkedList::SortBy(CompareFunc compareFunc)
     return this;
 }
 
+//Компараторы сортировки по различным полям
+
 int CompareByLastName(UserData^ a, UserData^ b) {
     return String::Compare(a->lName, b->lName);
 }
@@ -324,7 +321,7 @@ int CompareByYear(UserData^ a, UserData^ b) {
     }
 }
 
-
+//Методы - вызовы сортировок по различным полям
 
 LinkedList^ LinkedList::SortByLastName()
 {

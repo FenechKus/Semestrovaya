@@ -33,12 +33,6 @@ public:
 	void SetUser(UserData^ _user);
 };
 
-//--------------------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------------------
-//-----------------------------------Linked-List----------------------------------------------
-//--------------------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------------------
-
 /// <summary>
 /// Класс характеризующий связный список
 /// </summary>
@@ -46,7 +40,7 @@ public ref class LinkedList
 {
 private:
 	/// Поля:
-	int countNodes = 0;
+	int countNodes = 0;// - количество узлов в списке
 	Node^ head; // - указатель на начало списка
 	Node^ tail; // - указатель на конец списка
 
@@ -62,19 +56,23 @@ public:
 	// Методы для работы со списком:
 
 	void PushBack(UserData^ _user);
-	void PopBack();
-	void PopFront();
 	void RemoveNode(String^ _lastName);
 	bool IsExistAbonent(UserData^ _user);
 
+	//Псевдоним для работы с сортировкой списка
+
+	typedef int (*CompareFunc)(UserData^, UserData^);
+
 	//Методы сортировки списка и его косвенные вызовы
+
 	LinkedList^ SortBy(int (*compareFunc)(UserData^, UserData^));
 	LinkedList^ SortByLastName();
 	LinkedList^ SortByPhone();
 	LinkedList^ SortByYear();
 	LinkedList^ SortByStreet();
 
-	//// Методы для работы с DataGridView из WinForms:
+	//Методы для работы с DataGridView из WinForms:
+
 	static void UpdateBindingGridView(LinkedList^ _list, DataGridView^ _dataGridView, String^ _mode);
 	LinkedList^ FindNode(String^ _lastName, String^ _senderName);
 	int FindNode(int _yearStartup);
