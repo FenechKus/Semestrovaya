@@ -46,6 +46,7 @@ public ref class LinkedList
 {
 private:
 	/// Поля:
+	int countNodes = 0;
 	Node^ head; // - указатель на начало списка
 	Node^ tail; // - указатель на конец списка
 
@@ -65,12 +66,18 @@ public:
 	void PopFront();
 	void RemoveNode(String^ _lastName);
 	bool IsExistAbonent(UserData^ _user);
-	LinkedList^ SorttingShell();
+
+	//Методы сортировки списка и его косвенные вызовы
+	LinkedList^ SortBy(int (*compareFunc)(UserData^, UserData^));
+	LinkedList^ SortByLastName();
+	LinkedList^ SortByPhone();
+	LinkedList^ SortByYear();
+	LinkedList^ SortByStreet();
 
 	//// Методы для работы с DataGridView из WinForms:
 	static void UpdateBindingGridView(LinkedList^ _list, DataGridView^ _dataGridView, String^ _mode);
 	LinkedList^ FindNode(String^ _lastName, String^ _senderName);
 	int FindNode(int _yearStartup);
 	LinkedList^ FindNode(String^ _street, int _house);
-
+	
 };

@@ -33,6 +33,7 @@ namespace Semestrovaya {
 	{
 	private:
 		LinkedList^ list;
+		bool flag = false;
 
 	public:
 		/// <summary>
@@ -44,7 +45,6 @@ namespace Semestrovaya {
 			InitializeComponent();
 			this->StartPosition = FormStartPosition::CenterScreen;
 			OpenSCVFile();
-			InitilizeSortBox();
 
 			// События для обновления счетчика строк
 			GridViewAbonents->RowsAdded += gcnew DataGridViewRowsAddedEventHandler(
@@ -52,7 +52,7 @@ namespace Semestrovaya {
 			GridViewAbonents->RowsRemoved += gcnew DataGridViewRowsRemovedEventHandler(
 				this, &MainWindow::dataGridView_RowsRemoved);
 
-
+			SortDataGrid->SelectedIndex = 0;
 		}
 
 		///<summary>
@@ -145,6 +145,7 @@ namespace Semestrovaya {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			this->CreateNewUser = (gcnew System::Windows::Forms::Button());
 			this->GridViewAbonents = (gcnew System::Windows::Forms::DataGridView());
 			this->LastName = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -215,6 +216,9 @@ namespace Semestrovaya {
 			});
 			this->GridViewAbonents->Location = System::Drawing::Point(12, 5);
 			this->GridViewAbonents->Name = L"GridViewAbonents";
+			dataGridViewCellStyle1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
+			this->GridViewAbonents->RowsDefaultCellStyle = dataGridViewCellStyle1;
 			this->GridViewAbonents->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
 			this->GridViewAbonents->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
 			this->GridViewAbonents->Size = System::Drawing::Size(719, 386);
@@ -310,6 +314,10 @@ namespace Semestrovaya {
 			this->SortDataGrid->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->SortDataGrid->FlatStyle = System::Windows::Forms::FlatStyle::System;
 			this->SortDataGrid->FormattingEnabled = true;
+			this->SortDataGrid->Items->AddRange(gcnew cli::array< System::Object^  >(5) {
+				L"По умолчанию", L"Фамилия", L"Год установки телефона",
+					L"Телефон", L"Улица"
+			});
 			this->SortDataGrid->Location = System::Drawing::Point(12, 111);
 			this->SortDataGrid->Name = L"SortDataGrid";
 			this->SortDataGrid->Size = System::Drawing::Size(114, 21);
@@ -380,7 +388,7 @@ namespace Semestrovaya {
 			this->RichBoxLastname->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
 			this->RichBoxLastname->Size = System::Drawing::Size(114, 25);
 			this->RichBoxLastname->TabIndex = 9;
-			this->RichBoxLastname->Text = L"Влизко";
+			this->RichBoxLastname->Text = L"";
 			this->RichBoxLastname->TextChanged += gcnew System::EventHandler(this, &MainWindow::OnTextChangedFind);
 			// 
 			// RichBoxPhone
@@ -667,25 +675,6 @@ namespace Semestrovaya {
 			}
 		}
 
-		/// <summary>
-		/// Метод, служит для инициализации списка сортировки
-		/// </summary>
-		System::Void InitilizeSortBox()
-		{
-			SortDataGrid->DropDownStyle = ComboBoxStyle::DropDownList;
-			auto tmp = GridViewAbonents->Columns;
-			SortDataGrid->Items->Add("Все");
-			for (int i = 0; i < GridViewAbonents->Columns->Count; i++)
-			{
-				SortDataGrid->Items->Add(tmp[i]->HeaderText);
-			}
-
-			if (SortDataGrid->Items->Count != 0)
-			{
-				SortDataGrid->SelectedIndex = 0;
-			}
-		}
-
 		/// <summary>	
 		/// Метод обработчика события, который выполняет привязку данных при первом запуске приложения
 		/// </summary>
@@ -809,7 +798,7 @@ namespace Semestrovaya {
 
 			if (RichBoxStreetFind->Text->Length != 0 && RichBoxHomeFind->Text->Length != 0)
 			{
-				LinkedList^ findUser = list->FindNode(RichBoxStreetFind->Text, Convert::ToInt32(RichBoxHomeFind->Text));
+				LinkedList^ findUser = list->SortByLastName()->FindNode(RichBoxStreetFind->Text, Convert::ToInt32(RichBoxHomeFind->Text));
 				AddRowToDataGridView(findUser);
 
 			}
@@ -821,46 +810,35 @@ namespace Semestrovaya {
 
 		}
 
-		/// Метод обработчика события - поиск по году
-		System::Void OnTextChangedFindYear(System::Object^ sender, System::EventArgs^ e) {
-
-			if (RichBoxYearFind->Text->Length != 0)
-			{
-				auto result = list->FindNode(Convert::ToInt32(RichBoxYearFind->Text));
-				MessageBox::Show("В " + RichBoxYearFind->Text + " году было подключено " + result.ToString());
-
-			}
-		}
-
 		/// <summary>
 		/// Метод обработчика события, который обновляет привязку данных к DataGridView в зависимости от выбранного элемента в SortDataGrid
 		///	выполняя тем самым сортироввку данных
 		/// </summary>
 		System::Void SelectedValueChangedSortBox(System::Object^ sender, System::EventArgs^ e) {
+			String^ selectedText = dynamic_cast<ComboBox^>(sender)->Text;
 
-			switch (SortDataGrid->SelectedIndex)
+
+			if (selectedText != "По умолчанию" && flag == false)
 			{
-			case 0:
-				FrontListButton->Checked = true;
-				LinkedList::UpdateBindingGridView(list, GridViewAbonents, "front");
-				break;
-
-			case 1:
-
-				break;
-			case 2:
-
-				break;
-			case 3:
-
-				break;
-			case 4:
-
-				break;
-			case 5:
-
-				break;
+				SortDataGrid->Items->RemoveAt(0);
+				flag = true;
 			}
+
+			FrontListButton->Checked = true;
+			
+			if (selectedText == "Фамилия") {
+				LinkedList::UpdateBindingGridView(list->SortByLastName(), GridViewAbonents, "front");
+			}
+			else if (selectedText == "Год установки телефона") {
+				LinkedList::UpdateBindingGridView(list->SortByYear(), GridViewAbonents, "front");
+			}
+			else if (selectedText == "Телефон") {
+				LinkedList::UpdateBindingGridView(list->SortByPhone(), GridViewAbonents, "front");
+			}
+			else if (selectedText == "Улица") {
+				LinkedList::UpdateBindingGridView(list->SortByStreet(), GridViewAbonents, "front");
+			}
+
 
 		}
 	};

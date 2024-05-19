@@ -76,6 +76,7 @@ void LinkedList::PushBack(UserData^ _user)
         head = newNode;
     }
     tail = newNode;
+    countNodes++;
 }
 
 void LinkedList::PopBack()
@@ -131,6 +132,7 @@ void LinkedList::RemoveNode(String^ _lastName)
             nextNode->SetPrev(prevNode);
 
             delete current;
+            countNodes--;
             return;
         }
 
@@ -153,10 +155,6 @@ bool LinkedList::IsExistAbonent(UserData^ _user)
     return true;
 }
 
-LinkedList^ LinkedList::SorttingShell()
-{
-    return  nullptr;
-}
 
 void LinkedList::UpdateBindingGridView(LinkedList^ _list, DataGridView^ _dataGridView, String^ _mode)
 {
@@ -248,7 +246,7 @@ LinkedList^ LinkedList::FindNode(String^ _street, int _house)
 	while (curentNode != nullptr)
     {
         auto user = curentNode->GetUser();
-	    if (user->street == _street && (user->numberApart != 0 && user->house == _house))
+	    if (user->street == _street && user->house == _house)
 	    {
 			findlist->PushBack(curentNode->GetUser());
 	    }
@@ -257,20 +255,93 @@ LinkedList^ LinkedList::FindNode(String^ _street, int _house)
     return findlist;
 }
 
-/*
- LinkedList* LinkedList::FindNode(string _street)
+typedef int (*CompareFunc)(UserData^, UserData^);
+LinkedList^ LinkedList::SortBy(CompareFunc compareFunc)
 {
-    LinkedList* findlist = gcnew LinkedList(); Это создание списка с результатами 
-    Node^ curentNode = head; Это начало списка, его голова
+    if (head == nullptr) return this;
 
-	while (curentNode != nullptr) Это цикл обхода списка по каждому элементу
-    {
-	    if (curentNode->GetUser()->street == _street) Это проверка на совпадение параметра поиска с параметром в текущем узле
-	    {
-			findlist->PushBack(curentNode->GetUser()); Это добавление узла в список с результатами
-	    }
-        curentNode = curentNode->GetNext(); Это переход к следующему узлу
+    int length = countNodes;
+
+    // Сортировка Шелла
+    for (int gap = length / 2; gap > 0; gap /= 2) {
+        for (int i = gap; i < length; i++) {
+            // Поиск i-й элемент
+            Node^ tempNode = head;
+            for (int k = 0; k < i; k++) {
+                tempNode = tempNode->GetNext();
+            }
+            UserData^ tempData = tempNode->GetUser();
+
+            // Перемещение элемента tempNode в отсортированную часть списка
+            Node^ jNode = tempNode;
+            while (jNode != nullptr) {
+                Node^ gapNode = jNode;
+                for (int k = 0; k < gap; k++) {
+                    if (gapNode->GetPrev() != nullptr) {
+                        gapNode = gapNode->GetPrev();
+                    }
+                    else {
+                        gapNode = nullptr;
+                        break;
+                    }
+                }
+
+                if (gapNode == nullptr || compareFunc(gapNode->GetUser(), tempData) <= 0) {
+                    break;
+                }
+
+                jNode->SetUser(gapNode->GetUser());
+                jNode = gapNode;
+            }
+            jNode->SetUser(tempData);
+        }
     }
-    return findlist; Это возврат списка с результатами
+
+    return this;
 }
- */
+
+int CompareByLastName(UserData^ a, UserData^ b) {
+    return String::Compare(a->lName, b->lName);
+}
+
+int CompareByPhone(UserData^ a, UserData^ b) {
+    return String::Compare(a->phone, b->phone);
+}
+
+int CompareByStreet(UserData^ a, UserData^ b) {
+	return String::Compare(a->street, b->street);
+}
+
+int CompareByYear(UserData^ a, UserData^ b) {
+    if (a->yearStartUp > b->yearStartUp) {
+        return 1;
+    }
+    else if (a->yearStartUp < b->yearStartUp) {
+        return -1;
+    }
+    else {
+        return 0;
+    }
+}
+
+
+
+LinkedList^ LinkedList::SortByLastName()
+{
+    return SortBy(CompareByLastName);
+}
+
+LinkedList^ LinkedList::SortByPhone()
+{
+    return SortBy(CompareByPhone);
+}
+
+LinkedList^ LinkedList::SortByYear()
+{
+    return SortBy(CompareByYear);
+}
+
+LinkedList^ LinkedList::SortByStreet()
+{
+    return SortBy(CompareByStreet);
+}
